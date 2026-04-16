@@ -9,7 +9,7 @@ const LESSON_GROUPS = [
         day: "Prep",
         title: "Foundations",
         reading: "Torah · Tanakh · New Testament Writings",
-        href: "lesson-.5-foundations_lesson_torah_tanakh_nt.html"
+        href: "backup/lesson-.5-foundations_lesson_torah_tanakh_nt.html"
       }
     ]
   },
@@ -18,11 +18,11 @@ const LESSON_GROUPS = [
     title: "Week 1",
     subtitle: "Genesis 1–25",
     lessons: [
-      { id: "lesson-1", day: "Day 1", title: "Genesis 1–5", reading: "Creation to Seth's line", href: "lesson-1-genesis-1-4_lesson_template_updated.html" },
-      { id: "lesson-2", day: "Day 2", title: "Genesis 6–10", reading: "Noah, flood, covenant, nations", href: "lesson-2-genesis-6-10_lesson_template_updated.html" },
-      { id: "lesson-3", day: "Day 3", title: "Genesis 11–15", reading: "Babel, Abram, covenant promise", href: "lesson-3-genesis-11-15_lesson_template_updated.html" },
-      { id: "lesson-4", day: "Day 4", title: "Genesis 16–20", reading: "Waiting, covenant sign, intercession", href: "lesson-4-genesis-16-20_lesson_template_updated.html" },
-      { id: "lesson-5", day: "Day 5", title: "Genesis 21–25", reading: "Isaac, testing, provision", href: "lesson-5-genesis-21-25_lesson_template_updated.html" }
+      { id: "lesson-1", day: "Day 1", title: "Genesis 1–5", reading: "Creation to Seth's line", href: "Lessons/Week%201/genesis1-5-enhanced.html" },
+      { id: "lesson-2", day: "Day 2", title: "Genesis 6–10", reading: "Noah, flood, covenant, nations", href: "Lessons/Week%201/lesson-2-genesis-6-10_lesson_template_updated.html" },
+      { id: "lesson-3", day: "Day 3", title: "Genesis 11–15", reading: "Babel, Abram, covenant promise", href: "Lessons/Week%201/lesson-3-genesis-11-15_lesson_template_updated.html" },
+      { id: "lesson-4", day: "Day 4", title: "Genesis 16–20", reading: "Waiting, covenant sign, intercession", href: "Lessons/Week%201/lesson-4-genesis-16-20_lesson_template_updated.html" },
+      { id: "lesson-5", day: "Day 5", title: "Genesis 21–25", reading: "Isaac, testing, provision", href: "Lessons/Week%201/lesson-5-genesis-21-25_lesson_template_updated.html" }
     ]
   },
   {
@@ -30,11 +30,11 @@ const LESSON_GROUPS = [
     title: "Week 2",
     subtitle: "Genesis 26–50",
     lessons: [
-      { id: "lesson-6", day: "Day 1", title: "Genesis 26–30", reading: "Isaac, Jacob, Bethel, household growth", href: "lesson-6-genesis-26-30_lesson_template_updated.html" },
-      { id: "lesson-7", day: "Day 2", title: "Genesis 31–35", reading: "Return, wrestling, Bethel, Israel", href: "lesson-7-genesis-31-35_lesson_template_updated.html" },
-      { id: "lesson-8", day: "Day 3", title: "Genesis 36–40", reading: "Joseph's early years in Egypt", href: "lesson-8-genesis-36-40_lesson_template_updated.html" },
-      { id: "lesson-9", day: "Day 4", title: "Genesis 41–45", reading: "Wisdom, famine, reconciliation", href: "lesson-9-genesis-41-45_lesson_template_updated.html" },
-      { id: "lesson-10", day: "Day 5", title: "Genesis 46–50", reading: "Blessing, forgiveness, providence", href: "lesson-10-genesis-46-50_lesson_template_updated.html" }
+      { id: "lesson-6", day: "Day 1", title: "Genesis 26–30", reading: "Isaac, Jacob, Bethel, household growth", href: "Lessons/Week%202/lesson-6-genesis-26-30_lesson_template_updated.html" },
+      { id: "lesson-7", day: "Day 2", title: "Genesis 31–35", reading: "Return, wrestling, Bethel, Israel", href: "Lessons/Week%202/lesson-7-genesis-31-35_lesson_template_updated.html" },
+      { id: "lesson-8", day: "Day 3", title: "Genesis 36–40", reading: "Joseph's early years in Egypt", href: "Lessons/Week%202/lesson-8-genesis-36-40_lesson_template_updated.html" },
+      { id: "lesson-9", day: "Day 4", title: "Genesis 41–45", reading: "Wisdom, famine, reconciliation", href: "Lessons/Week%202/lesson-9-genesis-41-45_lesson_template_updated.html" },
+      { id: "lesson-10", day: "Day 5", title: "Genesis 46–50", reading: "Blessing, forgiveness, providence", href: "Lessons/Week%202/lesson-10-genesis-46-50_lesson_template_updated.html" }
     ]
   }
 ];
