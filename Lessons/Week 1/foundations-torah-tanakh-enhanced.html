@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foundations: Torah, Tanakh, and the Apostolic Writings</title>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Spectral:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --parchment:     #f7f2e8;
+      --parchment-mid: #ede5d0;
+      --parchment-drk: #ddd3ba;
+      --ink:           #1b1710;
+      --ink-light:     #3e3628;
+      --ink-faint:     #7a6f58;
+      --sienna:        #8b3a1a;
+      --sienna-light:  #c0623a;
+      --sienna-pale:   #f6ece5;
+      --gold:          #b8892a;
+      --gold-pale:     #fdf5e0;
+      --deep-blue:     #1a2d4a;
+      --blue-light:    #e8eef6;
+      --green:         #2a5c3a;
+      --green-pale:    #e5f2e8;
+      --red-pale:      #fdf0f0;
+      --radius:        10px;
+      --shadow:        0 3px 16px rgba(27,23,16,0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Spectral', serif;
+      background: var(--parchment);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    /* ─── PROGRESS BAR ─── */
+    .progress-bar-wrap {
+      position: sticky; top: 0; z-index: 200;
+      height: 5px; background: var(--parchment-drk);
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--sienna));
+      width: 0%; transition: width 0.4s ease;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      background: var(--deep-blue);
+      color: var(--parchment);
+      padding: 44px 24px 38px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 3px solid var(--gold);
+    }
+    header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 120%, rgba(184,137,42,0.18), transparent),
+        repeating-linear-gradient(-45deg, transparent, transparent 24px, rgba(255,255,255,0.018) 24px, rgba(255,255,255,0.018) 48px);
+      pointer-events: none;
+    }
+    .header-bg-text {
+      font-family: 'Crimson Pro', serif;
+      font-size: 3rem;
+      color: rgba(184,137,42,0.22);
+      position: absolute;
+      top: 8px; right: 18px;
+      user-select: none; pointer-events: none;
+      letter-spacing: 0.08em;
+      line-height: 1.2;
+    }
+    header .subtitle {
+      font-size: 0.78rem;
+      color: rgba(247,242,232,0.6);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      position: relative;
+    }
+    header h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.01em;
+      margin-bottom: 8px;
+      position: relative;
+      line-height: 1.3;
+    }
+    header .focus-line {
+      font-size: 0.88rem;
+      color: rgba(247,242,232,0.65);
+      margin-bottom: 16px;
+      position: relative;
+    }
+    header .themes {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      justify-content: center; margin: 12px 0 20px;
+    }
+    .theme-chip {
+      background: rgba(184,137,42,0.16);
+      border: 1px solid rgba(184,137,42,0.38);
+      border-radius: 20px;
+      padding: 3px 14px;
+      font-size: 0.75rem;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .memory-verse-box {
+      display: inline-block;
+      background: rgba(184,137,42,0.1);
+      border: 1px solid rgba(184,137,42,0.3);
+      border-radius: var(--radius);
+      padding: 14px 26px;
+      max-width: 640px;
+      margin-top: 4px;
+      position: relative;
+    }
+    .mv-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .memory-verse-box blockquote {
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      font-size: 1.08rem;
+      color: var(--parchment);
+      line-height: 1.6;
+    }
+    .memory-verse-box .ref {
+      font-size: 0.75rem; color: var(--gold); margin-top: 6px;
+    }
+
+    /* ─── SECTION BANDS ─── */
+    .subject-band {
+      display: flex; align-items: center; gap: 12px;
+      margin: 30px 0 16px;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--ink-faint);
+    }
+    .subject-band::before, .subject-band::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--parchment-drk), transparent);
+    }
+    .band-label { display: flex; align-items: center; gap: 6px; }
+    .band-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+
+    /* ─── MAIN ─── */
+    main { max-width: 800px; margin: 0 auto; padding: 28px 20px 80px; }
+
+    /* ─── CARDS ─── */
+    .card {
+      background: #fff;
+      border: 1px solid var(--parchment-mid);
+      border-radius: var(--radius);
+      padding: 26px 28px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow);
+    }
+    .card-header {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--parchment-mid);
+    }
+    .card-icon {
+      width: 34px; height: 34px;
+      background: var(--ink); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; flex-shrink: 0;
+    }
+    .card h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.1rem; font-weight: 700; color: var(--ink);
+    }
+    .card-number {
+      margin-left: auto; font-size: 0.7rem; color: var(--ink-faint);
+      font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    }
+
+    /* ─── LEARN BODY ─── */
+    .learn-body p { margin-bottom: 14px; }
+    .learn-body p:last-child { margin-bottom: 0; }
+
+    /* ─── SCRIPTURE STRUCTURE DIAGRAM ─── */
+    .scripture-structure {
+      margin: 22px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--parchment-drk);
+      box-shadow: 0 2px 8px rgba(27,23,16,0.08);
+    }
+    @media (max-width: 480px) { .scripture-structure { grid-template-columns: 1fr; } }
+    .struct-col {
+      padding: 16px 14px;
+      border-right: 1px solid var(--parchment-drk);
+    }
+    .struct-col:last-child { border-right: none; }
+    .struct-col-header {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .struct-col-heb {
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.8rem;
+      font-style: italic;
+      color: var(--gold);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .struct-col-books {
+      font-size: 0.8rem;
+      color: var(--ink-faint);
+      line-height: 1.7;
+    }
+    .struct-col-books span {
+      display: block;
+      padding: 2px 0;
+      border-bottom: 1px dotted var(--parchment-drk);
+    }
+    .struct-col-books span:last-child { border-bottom: none; }
+    .struct-col.tanakh-col { background: var(--parchment); }
+    .struct-col.apostolic-col { background: var(--blue-light); }
+    .struct-col.apostolic-col .struct-col-header { color: var(--deep-blue); }
+    .struct-col-note {
+      font-size: 0.72rem;
+      color: var(--ink-faint);
+      font-style: italic;
+      margin-top: 8px;
+    }
+
+    /* ─── CONCEPT GRID ─── */
+    .concept-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px;
+    }
+    @media (max-width: 500px) { .concept-grid { grid-template-columns: 1fr; } }
+    .concept-box {
+      background: var(--parchment); border-radius: 8px; padding: 14px 16px;
+      border-left: 3px solid var(--gold);
+    }
+    .concept-box strong {
+      display: block; font-size: 0.72rem; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--sienna); margin-bottom: 5px;
+      font-family: 'Spectral', serif;
+    }
+    .concept-box p { font-size: 0.9rem; color: var(--ink-light); margin: 0; }
+
+    /* ─── CROSS-SUBJECT CALLOUTS ─── */
+    .subject-callout {
+      border-radius: 8px; padding: 14px 16px; margin: 14px 0;
+      display: flex; gap: 12px; align-items: flex-start;
+    }
+    .subject-callout.history { background: var(--sienna-pale); border-left: 3px solid var(--sienna); }
+    .subject-callout.logic   { background: var(--blue-light);  border-left: 3px solid var(--deep-blue); }
+    .subject-callout.writing { background: var(--green-pale);  border-left: 3px solid var(--green); }
+    .subject-callout.language{ background: #f0ede8;           border-left: 3px solid #8a7a5a; }
+    .callout-icon { font-size: 1.3rem; flex-shrink: 0; line-height: 1; }
+    .callout-body { flex: 1; }
+    .callout-label {
+      font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em;
+      font-weight: 700; margin-bottom: 3px;
+    }
+    .history  .callout-label { color: var(--sienna); }
+    .logic    .callout-label { color: var(--deep-blue); }
+    .writing  .callout-label { color: var(--green); }
+    .language .callout-label { color: #5a4a2a; }
+    .callout-body p { font-size: 0.9rem; color: var(--ink-light); margin: 0; line-height: 1.6; }
+
+    /* ─── DETAILS / EXPANDABLE ─── */
+    details {
+      margin-top: 14px; border: 1px solid var(--parchment-mid);
+      border-radius: 8px; overflow: hidden;
+    }
+    details summary {
+      padding: 12px 16px; cursor: pointer; font-size: 0.88rem; font-weight: 600;
+      color: var(--sienna); background: var(--parchment); list-style: none;
+      display: flex; align-items: center; gap: 8px; user-select: none;
+    }
+    details summary::before { content: '▶'; font-size: 0.6rem; transition: transform 0.2s; }
+    details[open] summary::before { transform: rotate(90deg); }
+    details .detail-body {
+      padding: 14px 16px; font-size: 0.9rem; color: var(--ink-light);
+      line-height: 1.7; border-top: 1px solid var(--parchment-mid);
+    }
+    details .detail-body p { margin-bottom: 10px; }
+    details .detail-body p:last-child { margin-bottom: 0; }
+
+    /* ─── VOCAB FLIP CARDS ─── */
+    .vocab-section-label {
+      font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--ink-faint); font-weight: 600; margin: 22px 0 6px;
+    }
+    .vocab-tap-hint {
+      font-size: 0.75rem; color: var(--ink-faint); font-style: italic;
+      margin-bottom: 12px; text-align: center;
+    }
+    .vocab-flip-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+      gap: 12px; margin-bottom: 10px;
+    }
+    .flip-card { height: 110px; perspective: 900px; cursor: pointer; }
+    .flip-card-inner {
+      position: relative; width: 100%; height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.55s cubic-bezier(0.4,0,0.2,1);
+    }
+    .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+    .flip-card-front, .flip-card-back {
+      position: absolute; inset: 0; backface-visibility: hidden;
+      border-radius: 8px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; padding: 10px; text-align: center;
+    }
+    .flip-card-front { background: var(--ink); border: 1px solid rgba(184,137,42,0.4); }
+    .flip-card-back  { background: var(--gold-pale); border: 1px solid var(--gold); transform: rotateY(180deg); }
+    .flip-word { font-family: 'Crimson Pro', serif; font-size: 1.1rem; font-style: italic; color: var(--gold); font-weight: 600; margin-bottom: 4px; }
+    .flip-lang { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; background: rgba(184,137,42,0.25); color: var(--gold); border-radius: 3px; padding: 1px 7px; margin-bottom: 4px; }
+    .flip-hint { font-size: 0.68rem; color: rgba(184,137,42,0.55); font-style: italic; }
+    .flip-meaning { font-family: 'Libre Baskerville', serif; font-size: 0.97rem; font-weight: 700; color: var(--sienna); margin-bottom: 4px; }
+    .flip-note { font-size: 0.7rem; color: var(--ink-faint); line-height: 1.4; }
+
+    /* ─── INLINE TOOLTIPS ─── */
+    .tooltip-word {
+      color: var(--sienna); font-weight: 600; cursor: pointer;
+      border-bottom: 1px dotted var(--sienna-light); position: relative;
+    }
+    .tooltip-word .tooltip-pop {
+      display: none; position: absolute; bottom: calc(100% + 6px); left: 50%;
+      transform: translateX(-50%); background: var(--ink); color: var(--parchment);
+      border: 1px solid var(--gold); border-radius: 6px; padding: 8px 12px;
+      font-size: 0.78rem; width: 190px; z-index: 300; line-height: 1.45;
+      pointer-events: none; font-style: normal; text-align: left;
+    }
+    .tooltip-word .tooltip-pop::after {
+      content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+      border: 6px solid transparent; border-top-color: var(--gold);
+    }
+    .tooltip-word:hover .tooltip-pop,
+    .tooltip-word.tip-open .tooltip-pop { display: block; }
+    .tooltip-pop .tp-word { font-family: 'Crimson Pro', serif; font-style: italic; color: var(--gold); font-size: 0.85rem; font-weight: 600; }
+    .tooltip-pop .tp-lang { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(184,137,42,0.7); display: block; margin-bottom: 3px; }
+
+    /* ─── QUESTIONS ─── */
+    .question {
+      margin: 14px 0; padding: 16px 18px;
+      background: var(--parchment); border-radius: 8px;
+      border: 1px solid var(--parchment-mid);
+    }
+    .question p.q-text { font-weight: 600; color: var(--ink); margin-bottom: 12px; font-size: 0.95rem; line-height: 1.55; }
+    .q-note { font-size: 0.78rem; color: var(--ink-faint); font-style: italic; margin-bottom: 10px; }
+    .question label {
+      display: flex; align-items: flex-start; gap: 9px; padding: 6px 0;
+      cursor: pointer; font-size: 0.93rem; color: var(--ink-light); border-radius: 6px;
+    }
+    .question label input { margin-top: 3px; accent-color: var(--sienna); flex-shrink: 0; }
+    .question label:hover { color: var(--ink); }
+
+    select {
+      border: 1px solid #ccc; border-radius: 6px; padding: 7px 10px;
+      font-family: inherit; font-size: 0.9rem; background: #fff; color: var(--ink);
+      cursor: pointer; margin-top: 4px;
+    }
+    select:focus { outline: 2px solid var(--gold); }
+    textarea {
+      width: 100%; border: 1px solid #ccc; border-radius: 8px; padding: 10px 12px;
+      font-family: inherit; font-size: 0.9rem; color: var(--ink); background: #fff;
+      resize: vertical; margin-top: 6px; line-height: 1.65;
+    }
+    textarea:focus { outline: 2px solid var(--gold); border-color: transparent; }
+
+    .editable-line {
+      border: 1px solid #ccc; border-radius: 8px; padding: 12px 14px;
+      background: #fff; color: var(--ink); line-height: 1.7;
+      margin-top: 8px; min-height: 48px;
+    }
+    .editable-line:focus { outline: 2px solid var(--gold); border-color: transparent; }
+
+    /* ─── BUTTONS ─── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 10px; padding: 8px 18px; border: 1.5px solid var(--ink);
+      border-radius: 8px; background: var(--ink); color: var(--parchment);
+      cursor: pointer; font-family: 'Spectral', serif; font-size: 0.85rem;
+      font-weight: 600; letter-spacing: 0.04em;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .btn:hover { background: var(--sienna); border-color: var(--sienna); }
+    .btn-outline { background: transparent; color: var(--ink); }
+    .btn-outline:hover { background: var(--ink); color: var(--parchment); }
+    .btn-gold { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+    .btn-gold:hover { background: #9a7020; border-color: #9a7020; color: #fff; }
+
+    /* ─── FEEDBACK ─── */
+    .feedback { display: none; margin-top: 10px; padding: 10px 14px; border-radius: 8px; font-size: 0.88rem; font-weight: 600; line-height: 1.5; }
+    .feedback.correct { display: block; background: var(--green-pale); color: #1a4a28; border: 1px solid #b2d4bc; }
+    .feedback.wrong   { display: block; background: var(--red-pale);  color: #8b2020; border: 1px solid #f5c0c0; }
+    .feedback.hint    { display: block; background: var(--gold-pale);  color: #6a4a10; border: 1px solid #e8d08a; }
+
+    /* ─── REFLECTION BOXES ─── */
+    .reflection-box {
+      background: var(--parchment); border: 1px solid var(--parchment-mid);
+      border-top: 3px solid var(--gold); border-radius: 8px; padding: 14px 16px; margin: 10px 0;
+    }
+    .reflection-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); font-weight: 700; margin-bottom: 6px; }
+    .reflection-box p { font-size: 0.9rem; color: var(--ink-light); margin: 0; }
+
+    /* ─── SUMMARY CARD ─── */
+    .summary-card {
+      display: none; text-align: center; padding: 36px 28px;
+      background: var(--ink); color: var(--parchment); border-radius: var(--radius);
+      margin-top: 24px; border: 1px solid rgba(184,137,42,0.3);
+    }
+    .summary-card.visible { display: block; }
+    .summary-card h2 { font-family: 'Libre Baskerville', serif; font-size: 1.5rem; color: var(--gold); margin-bottom: 10px; }
+    .summary-number { font-family: 'Spectral', serif; font-size: 3.2rem; font-weight: 300; color: var(--gold); line-height: 1; margin: 16px 0; }
+    .summary-label { font-size: 0.88rem; color: var(--parchment-mid); }
+    .action-bar { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 18px; }
+
+    @media print {
+      .progress-bar-wrap, .action-bar, button, .btn { display: none !important; }
+      header { background: #fff !important; color: #000 !important; border: 2px solid #000; }
+      header h1 { color: #000 !important; }
+      .summary-card { display: block !important; background: #f0f0f0 !important; color: #000 !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressBar"></div></div>
+
+<header>
+  <div class="header-bg-text" aria-hidden="true">תּוֹרָה<br>תנ״ך</div>
+  <p class="subtitle">Torah-Based Homeschool Curriculum · High School · Foundations</p>
+  <h1>Torah, Tanakh, and the Apostolic Writings</h1>
+  <p class="focus-line">What Scripture is · How the books fit together · Why we study</p>
+  <div class="themes">
+    <span class="theme-chip">Torah</span>
+    <span class="theme-chip">Tanakh</span>
+    <span class="theme-chip">Nevi'im</span>
+    <span class="theme-chip">Ketuvim</span>
+    <span class="theme-chip">Apostolic Writings</span>
+    <span class="theme-chip">Why We Study</span>
+  </div>
+  <div class="memory-verse-box">
+    <div class="mv-label">Memory Verse</div>
+    <blockquote>"All Scripture is breathed out by Elohim and profitable for teaching, for reproof, for correction, and for training in righteousness."</blockquote>
+    <p class="ref">— 2 Timothy 3:16</p>
+  </div>
+</header>
+
+<main>
+
+  <!-- STUDENT NAME -->
+  <div class="card" style="margin-top:24px;">
+    <div class="card-header">
+      <div class="card-icon">👤</div>
+      <h2>Student Name</h2>
+      <span class="card-number">Identification</span>
+    </div>
+    <div class="question">
+      <p class="q-text">Type your name below. It will appear on your printed summary.</p>
+      <div id="student-name-input" class="editable-line" contenteditable="true" aria-label="Student name"></div>
+    </div>
+  </div>
+
+  <!-- ══ PART 1: LEARN ══ -->
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 1 — Foundation &amp; Background</span></div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📖</div>
+      <h2>Learn</h2>
+      <span class="card-number">Foundation</span>
+    </div>
+    <div class="learn-body">
+
+      <p><strong>The <span class="tooltip-word">Torah<span class="tooltip-pop"><span class="tp-word">Torah (תּוֹרָה)</span><span class="tp-lang">Hebrew</span>Instruction or teaching — broader than "law." Yehovah's guidance for living before Him.</span></span></strong> is the first five books of Scripture: Genesis, Exodus, Leviticus, Numbers, and Deuteronomy. The word <em>Torah</em> means instruction or teaching — not merely legal code. These books lay the foundation for everything that follows. They tell us about creation, covenant, redemption, holiness, and the ways of Yehovah. Every other section of Scripture builds on what the Torah establishes.</p>
+
+      <p><strong>The <span class="tooltip-word">Tanakh<span class="tooltip-pop"><span class="tp-word">Tanakh (תנ״ך)</span><span class="tp-lang">Hebrew</span>An acronym from Torah (תּ), Nevi'im (נ), and Ketuvim (כ) — the three major sections of the Hebrew Scriptures.</span></span></strong> is the full Hebrew Scripture, often called the Old Testament. The name is an acronym built from three Hebrew words: <em>Torah</em> (Instruction), <em>Nevi'im</em> (Prophets), and <em>Ketuvim</em> (Writings). So when we say Tanakh, we mean the Scriptures from Genesis through Chronicles — the entire Hebrew canon.</p>
+
+      <p>The books often called the New Testament come after the Tanakh. In this curriculum we call them the <strong>Apostolic Writings</strong>. They do not stand outside the earlier Scriptures or replace them. They fit after the Torah, Prophets, and Writings, and they continue the same story — showing Messiah, the proclamation of the kingdom, the witness of the apostles, and instruction for the assemblies. To understand the Apostolic Writings well, you must know the Tanakh they stand upon.</p>
+
+      <div class="subject-callout history">
+        <div class="callout-icon">🏛️</div>
+        <div class="callout-body">
+          <div class="callout-label">History Connection</div>
+          <p>The Tanakh was not written all at once. It was composed across roughly a thousand years — from Moses through Ezra and Nehemiah. The Torah was given first, then the Prophets wrote during the periods of the kings and exile, and the Writings were collected last. Understanding this long historical span helps you see that the same God was speaking faithfully to His people across many centuries and circumstances.</p>
+        </div>
+      </div>
+
+      <p>We study Scripture because Yehovah tells us that his word is good, true, and profitable. We also study because we love him. Love is not empty feeling — if we love him, we want to know him, understand his ways, learn what pleases him, and walk in the instruction he has given. We are not gathering information simply to store it. We are studying so that we may know his word, treasure it, and live faithfully before him.</p>
+
+      <div class="subject-callout logic">
+        <div class="callout-icon">🔎</div>
+        <div class="callout-body">
+          <div class="callout-label">Logic &amp; Rhetoric</div>
+          <p>Notice the structure of 2 Timothy 3:16 — it is a single claim with four supporting purposes: teaching, reproof, correction, training in righteousness. This is a common rhetorical form called a <em>list of uses</em>. When you read a claim followed by a list, ask: do the uses listed actually follow from the claim? In this case, what would it mean for Scripture to be "breathed out by Elohim" — and how does that foundation make each of the four purposes make sense?</p>
+        </div>
+      </div>
+
+      <!-- SCRIPTURE STRUCTURE VISUAL -->
+      <p style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--ink-faint);font-weight:600;margin:22px 0 10px;">The Structure of Scripture at a Glance</p>
+      <div class="scripture-structure">
+        <div class="struct-col tanakh-col">
+          <div class="struct-col-header">Torah</div>
+          <span class="struct-col-heb">תּוֹרָה — Instruction</span>
+          <div class="struct-col-books">
+            <span>Genesis</span>
+            <span>Exodus</span>
+            <span>Leviticus</span>
+            <span>Numbers</span>
+            <span>Deuteronomy</span>
+          </div>
+          <div class="struct-col-note">The foundation of all Scripture</div>
+        </div>
+        <div class="struct-col tanakh-col">
+          <div class="struct-col-header">Nevi'im + Ketuvim</div>
+          <span class="struct-col-heb">נְבִיאִים + כְּתוּבִים</span>
+          <div class="struct-col-books">
+            <span>Joshua through Malachi</span>
+            <span>Psalms, Proverbs, Job</span>
+            <span>Daniel, Ezra, Chronicles…</span>
+          </div>
+          <div class="struct-col-note">Prophets &amp; Writings — together with Torah = <strong>Tanakh</strong></div>
+        </div>
+        <div class="struct-col apostolic-col">
+          <div class="struct-col-header">Apostolic Writings</div>
+          <span class="struct-col-heb" style="color:#3a5a8a;">Continuing the story</span>
+          <div class="struct-col-books">
+            <span>Matthew through John</span>
+            <span>Acts</span>
+            <span>Letters (Paul, James…)</span>
+            <span>Revelation</span>
+          </div>
+          <div class="struct-col-note">Fit after the Tanakh — not a replacement</div>
+        </div>
+      </div>
+
+      <details>
+        <summary>Going Deeper: Why "Apostolic Writings" and Not "New Testament"?</summary>
+        <div class="detail-body">
+          <p>The phrase "New Testament" is itself a translation of a Latin phrase — <em>Novum Testamentum</em> — which comes from the Latin Bible. The word <em>testamentum</em> (testament) translates the Greek <em>diatheke</em>, which means covenant. So "New Testament" originally meant "New Covenant" — a phrase drawn from Jeremiah 31:31.</p>
+          <p>Calling these books the "Apostolic Writings" keeps the focus on what they actually are: the witness and letters of the apostles and their close associates. It also helps avoid the impression that the earlier Scriptures are old in the sense of outdated or set aside. The Torah and Prophets remain living and authoritative — the Apostolic Writings build on them, not over them.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Going Deeper: What Are the Nevi'im?</summary>
+        <div class="detail-body">
+          <p>The <em>Nevi'im</em> (Prophets) is itself divided into two parts in the Hebrew tradition. The Former Prophets includes Joshua, Judges, Samuel, and Kings — the historical narrative of Israel in the land. The Latter Prophets includes Isaiah, Jeremiah, Ezekiel, and the twelve shorter prophetic books (sometimes called the Minor Prophets in English Bibles).</p>
+          <p>This matters because the prophets were not only predicting the future — they were calling Yehovah's people back to the Torah in their present moment. Understanding the prophets well requires knowing the Torah first. When Isaiah or Amos speaks of covenant faithfulness, they are standing on what was established in the five books of Moses.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Going Deeper: What Is the Ketuvim?</summary>
+        <div class="detail-body">
+          <p>The <em>Ketuvim</em> (Writings) is a rich and varied collection. It includes poetry and wisdom literature (Psalms, Proverbs, Job, Song of Songs, Ecclesiastes), short narratives and stories (Ruth, Esther), a prophetic vision (Daniel), laments (Lamentations), and historical books (Ezra, Nehemiah, Chronicles). Together these books show how Yehovah's people wrestled with praise, suffering, wisdom, exile, and restoration — all within the framework of the covenant.</p>
+        </div>
+      </details>
+
+      <!-- VOCAB FLIP CARDS -->
+      <p class="vocab-section-label">Hebrew &amp; Latin — Vocabulary Reference</p>
+      <p class="vocab-tap-hint">Tap or click any card to reveal its meaning →</p>
+      <div class="vocab-flip-grid">
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flip-word">Torah</div>
+              <div class="flip-lang">Hebrew</div>
+              <div class="flip-hint">תּוֹרָה</div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-meaning">Instruction / Teaching</div>
+              <div class="flip-note">Often translated "law" — but its true sense is guidance and teaching from Yehovah</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flip-word">Tanakh</div>
+              <div class="flip-lang">Hebrew</div>
+              <div class="flip-hint">תנ״ך</div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-meaning">Torah + Prophets + Writings</div>
+              <div class="flip-note">An acronym: T (Torah), N (Nevi'im), K (Ketuvim) — the full Hebrew Scriptures</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flip-word">Nevi'im</div>
+              <div class="flip-lang">Hebrew</div>
+              <div class="flip-hint">נְבִיאִים</div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-meaning">Prophets</div>
+              <div class="flip-note">The second section of the Tanakh — Joshua through the Twelve</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flip-word">Ketuvim</div>
+              <div class="flip-lang">Hebrew</div>
+              <div class="flip-hint">כְּתוּבִים</div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-meaning">Writings</div>
+              <div class="flip-note">The third section — includes Psalms, Proverbs, Job, Chronicles, and more</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flip-word">Scriptura</div>
+              <div class="flip-lang">Latin</div>
+              <div class="flip-hint">scriptura, -ae</div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-meaning">Writing / Scripture</div>
+              <div class="flip-note">Root of English "Scripture" — from scribere, to write</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flip-word">Verbum</div>
+              <div class="flip-lang">Latin</div>
+              <div class="flip-hint">verbum, -i</div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-meaning">Word</div>
+              <div class="flip-note">Root of: verbal, verb, proverb — and connects to the Greek logos (Word)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flip-word">Testamentum</div>
+              <div class="flip-lang">Latin</div>
+              <div class="flip-hint">testamentum, -i</div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-meaning">Covenant / Testament</div>
+              <div class="flip-note">The Latin root of "New Testament" — translates the Greek diatheke (covenant)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flip-word">Nabi</div>
+              <div class="flip-lang">Hebrew</div>
+              <div class="flip-hint">נָבִיא</div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-meaning">Prophet</div>
+              <div class="flip-note">A messenger who speaks on behalf of Yehovah — root of the word Nevi'im</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <p style="font-size:0.78rem;color:var(--ink-faint);margin-top:8px;">Word study tip: Look up key words in the Blue Letter Bible app or a Strong's concordance as you read. The Hebrew word behind an English translation often carries more depth than a single gloss can show.</p>
+
+      <div class="subject-callout writing" style="margin-top:18px;">
+        <div class="callout-icon">✍️</div>
+        <div class="callout-body">
+          <div class="callout-label">Writing &amp; Composition</div>
+          <p>As you work through this lesson, practice taking brief notes in your own words. When you can explain what the Torah is, what the Tanakh is, and how the Apostolic Writings relate — without looking — you have moved from reading to understanding. That shift from reception to expression is what learning looks like.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ PART 2: OBSERVE ══ -->
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 2 — Observation &amp; Memory</span></div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔍</div>
+      <h2>Observe</h2>
+      <span class="card-number">Reading Questions</span>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Which books belong to the Torah? (Select all that apply.)</p>
+      <label><input type="checkbox" class="chk-torah" value="a"> Genesis</label>
+      <label><input type="checkbox" class="chk-torah" value="b"> Exodus</label>
+      <label><input type="checkbox" class="chk-torah" value="c"> Psalms</label>
+      <label><input type="checkbox" class="chk-torah" value="d"> Leviticus</label>
+      <label><input type="checkbox" class="chk-torah" value="e"> Numbers</label>
+      <label><input type="checkbox" class="chk-torah" value="f"> Deuteronomy</label>
+      <button class="btn" onclick="checkCheckboxes('chk-torah',['a','b','d','e','f'],'fb-torah','Correct. The Torah is the five books of Moses: Genesis, Exodus, Leviticus, Numbers, and Deuteronomy. Psalms belongs to the Ketuvim (Writings).','Not quite. The Torah is only the first five books — Psalms belongs to a different section.')">Check</button>
+      <div class="feedback" id="fb-torah"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">The Tanakh is made up of which three sections?</p>
+      <label><input type="radio" name="q-tanakh"> Torah, Gospels, and Letters</label>
+      <label><input type="radio" name="q-tanakh"> Torah, Prophets, and Writings</label>
+      <label><input type="radio" name="q-tanakh"> Law, Wisdom, and Revelation</label>
+      <button class="btn" onclick="checkRadio('q-tanakh',1,'fb-tanakh','Correct. Tanakh stands for Torah (Instruction), Nevi\'im (Prophets), and Ketuvim (Writings) — the full Hebrew Scriptures.','Look again at the three Hebrew sections named in the Learn section.')">Check</button>
+      <div class="feedback" id="fb-tanakh"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">The Apostolic Writings fit…</p>
+      <label><input type="radio" name="q-ntfit"> After the Tanakh as the continuation of the same story</label>
+      <label><input type="radio" name="q-ntfit"> In place of the Torah because the Torah no longer applies</label>
+      <label><input type="radio" name="q-ntfit"> Before the Prophets and Writings</label>
+      <button class="btn" onclick="checkRadio('q-ntfit',0,'fb-ntfit','Correct. The Apostolic Writings come after the Tanakh and continue the same scriptural story — they do not replace the earlier Scriptures.','Not quite. The Apostolic Writings build on the Torah and Tanakh — they do not replace them.')">Check</button>
+      <div class="feedback" id="fb-ntfit"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Which section of the Tanakh includes books like Joshua, Judges, Isaiah, and Jeremiah?</p>
+      <label><input type="radio" name="q-neviim"> Ketuvim (Writings)</label>
+      <label><input type="radio" name="q-neviim"> Nevi'im (Prophets)</label>
+      <label><input type="radio" name="q-neviim"> Torah (Instruction)</label>
+      <button class="btn" onclick="checkRadio('q-neviim',1,'fb-neviim','Correct. These books all belong to the Nevi\'im — the Prophets section of the Tanakh.','Review the structure chart above. Joshua, Judges, Isaiah, and Jeremiah all belong to the Prophets section.')">Check</button>
+      <div class="feedback" id="fb-neviim"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">✦</div>
+      <h2>Memory Verse</h2>
+      <span class="card-number">2 Timothy 3:16</span>
+    </div>
+    <div class="question">
+      <p class="q-text">"All Scripture is breathed out by Elohim and profitable for teaching, for reproof, for correction, and for training in ______."</p>
+      <select id="mv1">
+        <option value="">Choose the missing word</option>
+        <option>righteousness</option>
+        <option>knowledge</option>
+        <option>tradition</option>
+      </select>
+      <button class="btn" onclick="checkSelect('mv1','righteousness','fb-mv','Correct. Scripture trains us in righteousness — not merely intellectual knowledge or cultural tradition.','Not quite. Read the verse carefully and choose the final key word.')">Check</button>
+      <div class="feedback" id="fb-mv"></div>
+    </div>
+    <div class="question" style="margin-top:14px;">
+      <p class="q-text">2 Timothy 3:16 says Scripture is profitable for four purposes. Which of the following are the four listed? (Select all that apply.)</p>
+      <label><input type="checkbox" class="chk-profitable" value="a"> Teaching</label>
+      <label><input type="checkbox" class="chk-profitable" value="b"> Entertainment</label>
+      <label><input type="checkbox" class="chk-profitable" value="c"> Reproof</label>
+      <label><input type="checkbox" class="chk-profitable" value="d"> Correction</label>
+      <label><input type="checkbox" class="chk-profitable" value="e"> Training in righteousness</label>
+      <button class="btn" onclick="checkCheckboxes('chk-profitable',['a','c','d','e'],'fb-profitable','Correct. The four purposes are teaching, reproof, correction, and training in righteousness.','Review the verse. One of those options does not appear in the text.')">Check</button>
+      <div class="feedback" id="fb-profitable"></div>
+    </div>
+  </div>
+
+  <!-- ══ PART 3: VOCABULARY & LANGUAGE ══ -->
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 3 — Vocabulary &amp; Grammar</span></div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📝</div>
+      <h2>Words</h2>
+      <span class="card-number">Vocabulary</span>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Choose the correct meaning of <em>Torah</em>.</p>
+      <label><input type="radio" name="q-torahmeaning"> Prophecy only</label>
+      <label><input type="radio" name="q-torahmeaning"> Instruction / teaching</label>
+      <label><input type="radio" name="q-torahmeaning"> Temple song</label>
+      <button class="btn btn-outline" onclick="checkRadio('q-torahmeaning',1,'fb-torahmeaning','Correct. Torah means instruction or teaching — it is broader than "law" and includes guidance, wisdom, and direction from Yehovah.','Not quite. Torah is broader than a legal code alone.')">Check</button>
+      <div class="feedback" id="fb-torahmeaning"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Choose the correct spelling:</p>
+      <label><input type="radio" name="q-spell"> Deuteronomy</label>
+      <label><input type="radio" name="q-spell"> Deuteronamy</label>
+      <label><input type="radio" name="q-spell"> Deuteronemy</label>
+      <button class="btn btn-outline" onclick="checkRadio('q-spell',0,'fb-spell','Correct — Deuteronomy. This word comes from the Greek deuteronomion, meaning "second law" or "repetition of the law." The ending is -nomy, not -namy or -nemy.','Look carefully at the ending of the word — it follows the same pattern as astronomy, economy, and autonomy.')">Check</button>
+      <div class="feedback" id="fb-spell"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">The Latin word <em>scriptura</em> is the root of which English word?</p>
+      <label><input type="radio" name="q-scriptura"> Sculptor</label>
+      <label><input type="radio" name="q-scriptura"> Scripture</label>
+      <label><input type="radio" name="q-scriptura"> Signature</label>
+      <button class="btn btn-outline" onclick="checkRadio('q-scriptura',1,'fb-scriptura','Correct. Scriptura means writing — it is the direct Latin root of the English word Scripture. Both come from the Latin verb scribere, to write.','Not quite. The Latin root scriptura literally means writing or something written.')">Check</button>
+      <div class="feedback" id="fb-scriptura"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">✏️</div>
+      <h2>English Grammar &amp; Writing</h2>
+      <span class="card-number">Grammar</span>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Choose the correctly capitalized sentence.</p>
+      <label><input type="radio" name="q-english1"> the Torah is the first five books of Scripture.</label>
+      <label><input type="radio" name="q-english1"> The Torah is the first five books of Scripture.</label>
+      <label><input type="radio" name="q-english1"> The torah is the first five books of scripture.</label>
+      <button class="btn" onclick="checkRadio('q-english1',1,'fb-english1','Correct. The sentence begins with a capital letter, Torah is capitalized as a title, and Scripture is capitalized as a proper name for the body of sacred writings.','Look carefully — a sentence must begin with a capital, and both Torah and Scripture function as proper titles here.')">Check</button>
+      <div class="feedback" id="fb-english1"></div>
+    </div>
+
+    <div style="margin-top:18px;">
+      <p style="font-size:0.82rem;font-weight:600;color:var(--ink-faint);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">Deeper Writing — Choose ONE if Assigned</p>
+      <div class="reflection-box">
+        <div class="reflection-label">Option A — Explanation</div>
+        <p>In 2–4 sentences, explain in your own words what the Tanakh is and how it is organized. Do not look at your notes — write from what you remember.</p>
+      </div>
+      <div class="reflection-box" style="margin-top:10px;">
+        <div class="reflection-label">Option B — Reflection</div>
+        <p>Why is it important to understand how the Apostolic Writings relate to the Tanakh? What could go wrong if someone read the Apostolic Writings without knowing the earlier Scriptures?</p>
+      </div>
+      <div class="reflection-box" style="margin-top:10px;">
+        <div class="reflection-label">Option C — Application</div>
+        <p>According to this lesson, why do we study Scripture? Write 3–5 sentences that go beyond the obvious answer — explain what kind of studying the lesson is calling us to, and how that differs from just gathering information.</p>
+      </div>
+      <textarea rows="5" placeholder="Write your response here…" style="margin-top:10px;"></textarea>
+    </div>
+  </div>
+
+  <!-- ══ PART 4: HEBREW & LATIN ══ -->
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 4 — Hebrew &amp; Latin</span></div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">𐤀</div>
+      <h2>Hebrew &amp; Latin Quiz</h2>
+      <span class="card-number">Language</span>
+    </div>
+    <p class="q-note" style="margin-bottom:14px;">Review the flip cards in Part 1 before completing this section. You may scroll up at any time.</p>
+
+    <div class="question">
+      <p class="q-text">What does <em>Scriptura</em> mean in Latin?</p>
+      <label><input type="radio" name="q-latin1"> Writing / Scripture</label>
+      <label><input type="radio" name="q-latin1"> Mountain</label>
+      <label><input type="radio" name="q-latin1"> Covenant</label>
+      <button class="btn btn-outline" onclick="checkRadio('q-latin1',0,'fb-latin1','Correct. Scriptura is the Latin root behind the English word Scripture — from scribere, to write.','Not quite. Think about the English word that comes directly from this Latin root.')">Check</button>
+      <div class="feedback" id="fb-latin1"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">What does <em>Verbum</em> mean in Latin?</p>
+      <label><input type="radio" name="q-verbum"> Blessing</label>
+      <label><input type="radio" name="q-verbum"> Word</label>
+      <label><input type="radio" name="q-verbum"> Scroll</label>
+      <button class="btn btn-outline" onclick="checkRadio('q-verbum',1,'fb-verbum','Correct. Verbum means word — it is the root of verbal, verb, and proverb, and it connects to the Greek logos.','Not quite. Verbum gives us the English words verbal and verb.')">Check</button>
+      <div class="feedback" id="fb-verbum"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">What does <em>Ketuvim</em> (כְּתוּבִים) mean?</p>
+      <label><input type="radio" name="q-hebrew1"> Writings</label>
+      <label><input type="radio" name="q-hebrew1"> Kings</label>
+      <label><input type="radio" name="q-hebrew1"> Offerings</label>
+      <button class="btn btn-outline" onclick="checkRadio('q-hebrew1',0,'fb-hebrew1','Correct. Ketuvim means Writings — the third section of the Tanakh, which includes Psalms, Proverbs, Job, and Chronicles.','Not quite. Ketuvim is the third section of the Tanakh — its name tells you what kind of texts it contains.')">Check</button>
+      <div class="feedback" id="fb-hebrew1"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">What does <em>Nabi</em> (נָבִיא) mean?</p>
+      <label><input type="radio" name="q-nabi"> Priest</label>
+      <label><input type="radio" name="q-nabi"> Prophet</label>
+      <label><input type="radio" name="q-nabi"> King</label>
+      <button class="btn btn-outline" onclick="checkRadio('q-nabi',1,'fb-nabi','Correct. Nabi means prophet — a messenger who speaks on behalf of Yehovah. The plural nevi\'im gives the Prophets section its name.','Not quite. This word is the root of the word Nevi\'im — the Prophets section.')">Check</button>
+      <div class="feedback" id="fb-nabi"></div>
+    </div>
+  </div>
+
+  <!-- ══ PART 5: HISTORY & CONTEXT ══ -->
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 5 — History &amp; Context</span></div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🌿</div>
+      <h2>History &amp; Scripture</h2>
+      <span class="card-number">Context</span>
+    </div>
+
+    <div class="learn-body" style="margin-bottom:16px;">
+      <p>Knowing <em>what</em> Scripture is matters — but it is also important to understand <em>why</em> we study it and how to approach it well. The Tanakh was written across more than a thousand years, preserved through exile, copied by hand for centuries, and translated into Greek (the Septuagint), Latin (the Vulgate), and eventually into English. Each of these moments in history is worth knowing.</p>
+
+      <div class="subject-callout history">
+        <div class="callout-icon">📜</div>
+        <div class="callout-body">
+          <div class="callout-label">History — Transmission of Scripture</div>
+          <p>The Hebrew Scriptures were preserved and copied by scribes called <em>Soferim</em>, and later by a group called the <em>Masoretes</em> (7th–10th centuries AD), who developed a detailed system of marks and counts to ensure the text was copied without error. The care they gave to transmission is one reason we can have confidence in the text we read today. This history of careful preservation is itself part of understanding what Scripture is.</p>
+        </div>
+      </div>
+
+      <div class="subject-callout language" style="margin-top:10px;">
+        <div class="callout-icon">🗣️</div>
+        <div class="callout-body">
+          <div class="callout-label">Language — Hebrew, Greek, Latin</div>
+          <p>The Torah and Tanakh were written primarily in Hebrew (with small portions in Aramaic). The Apostolic Writings were written in Greek. The Latin Vulgate (translated mainly by Jerome in the late 4th century) became the standard Bible of the Western church for over a thousand years. English Bibles stand at the end of a long chain of translation — which is one reason learning even basic Hebrew and Latin words enriches how you read.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">What comes first in the order of Scripture?</p>
+      <label><input type="radio" name="q-order1"> The Apostolic Writings</label>
+      <label><input type="radio" name="q-order1"> The Torah</label>
+      <label><input type="radio" name="q-order1"> Revelation</label>
+      <button class="btn" onclick="checkRadio('q-order1',1,'fb-order1','Correct. The Torah stands at the beginning and lays the foundation for the rest of Scripture.','Not quite. Think about the first section of the Bible.')">Check</button>
+      <div class="feedback" id="fb-order1"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Why should we study Scripture? (Select all that apply.)</p>
+      <label><input type="checkbox" class="chk-why" value="a"> Because Scripture is from Elohim and is profitable for teaching</label>
+      <label><input type="checkbox" class="chk-why" value="b"> Because we love Yehovah and want to know what pleases him</label>
+      <label><input type="checkbox" class="chk-why" value="c"> Because studying only matters if we win arguments</label>
+      <label><input type="checkbox" class="chk-why" value="d"> Because we want to know his word and walk faithfully before him</label>
+      <button class="btn" onclick="checkCheckboxes('chk-why',['a','b','d'],'fb-why','Correct. We study because Scripture is from Elohim, because we love him, and because we want to walk faithfully in his ways — not to accumulate information or win debates.','Not quite. Choose the reasons that match what the Learn section teaches about why we study.')">Check</button>
+      <div class="feedback" id="fb-why"></div>
+    </div>
+  </div>
+
+  <!-- ══ PART 6: REVIEW ══ -->
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 6 — Review &amp; Reflection</span></div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">◉</div>
+      <h2>Review</h2>
+      <span class="card-number">Summary Questions</span>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Which section of Scripture includes Psalms, Proverbs, Job, and Chronicles?</p>
+      <label><input type="radio" name="q-review1"> Torah</label>
+      <label><input type="radio" name="q-review1"> Writings (Ketuvim)</label>
+      <label><input type="radio" name="q-review1"> Gospels</label>
+      <button class="btn" onclick="checkRadio('q-review1',1,'fb-review1','Correct. These books belong to the Ketuvim — the Writings, the third section of the Tanakh.','Not quite. Think about the third section of the Tanakh.')">Check</button>
+      <div class="feedback" id="fb-review1"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Which of the following best describes what the Torah is?</p>
+      <label><input type="radio" name="q-review2"> A collection of prophecies about the end times</label>
+      <label><input type="radio" name="q-review2"> The five books of Moses — the foundation and instruction of Scripture</label>
+      <label><input type="radio" name="q-review2"> Only the Ten Commandments</label>
+      <button class="btn" onclick="checkRadio('q-review2',1,'fb-review2','Correct. The Torah is the five books of Moses — Genesis through Deuteronomy — and it is the foundation of all Scripture.','Not quite. The Torah is broader than commandments alone, and it is not prophecy about the end times.')">Check</button>
+      <div class="feedback" id="fb-review2"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">The word Tanakh is an acronym. What do its three letters stand for?</p>
+      <label><input type="radio" name="q-review3"> Torah, Nevi'im, Ketuvim</label>
+      <label><input type="radio" name="q-review3"> Torah, Nations, Kingdom</label>
+      <label><input type="radio" name="q-review3"> Tabernacle, Numbers, Kings</label>
+      <button class="btn" onclick="checkRadio('q-review3',0,'fb-review3','Correct. T = Torah (Instruction), N = Nevi\'im (Prophets), K = Ketuvim (Writings). Together these three sections make up the full Hebrew Scriptures.','Not quite. The acronym Tanakh is built from the first letters of each Hebrew section name.')">Check</button>
+      <div class="feedback" id="fb-review3"></div>
+    </div>
+
+    <div style="margin-top:22px;">
+      <p style="font-size:0.82rem;font-weight:600;color:var(--ink-faint);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">Short Response — Choose One if Assigned</p>
+      <div class="reflection-box">
+        <div class="reflection-label">Option A</div>
+        <p>In 2–3 sentences: If someone asked you, "What is the Tanakh?" how would you explain it clearly and accurately?</p>
+      </div>
+      <div class="reflection-box" style="margin-top:10px;">
+        <div class="reflection-label">Option B</div>
+        <p>What is one thing from this lesson you want to remember — and why does it matter to you personally?</p>
+      </div>
+      <textarea rows="4" placeholder="Write your response here…" style="margin-top:10px;"></textarea>
+      <p class="q-note" style="margin-top:8px;">Complete only one if your teacher assigns it. Depth comes through reading, discussion, and honest reflection.</p>
+    </div>
+
+    <div style="text-align:center;margin-top:24px;">
+      <button class="btn btn-gold" style="padding:12px 34px;font-size:1rem;" onclick="showSummary()">See My Summary</button>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="summary-card" id="summaryCard">
+    <h2>Lesson Summary</h2>
+    <p style="margin-top:10px;font-size:0.92rem;color:var(--parchment-mid);"><strong>Student:</strong> <span id="summaryStudentName">—</span></p>
+    <div class="summary-number" id="summaryDisplay">–</div>
+    <div class="summary-label" id="summaryLabel">attempted · mastered</div>
+    <p style="margin-top:18px;color:var(--parchment-mid);font-size:0.88rem;">Review any missed questions above, then save your work as a PDF.</p>
+    <div class="action-bar" style="margin-top:24px;">
+      <button class="btn btn-gold" onclick="window.print()" style="padding:11px 22px;">🖨 Print / Save as PDF</button>
+    </div>
+    <p style="font-size:0.75rem;color:var(--ink-faint);margin-top:14px;">
+      <strong style="color:var(--parchment-mid);">To save as PDF:</strong> tap Print → choose "Save as PDF".<br>
+      <strong style="color:var(--parchment-mid);">To email:</strong> save the PDF first, then attach it to an email.
+    </p>
+  </div>
+
+</main>
+
+<script>
+  const questionState = {};
+  const gradedIds = [
+    'fb-torah','fb-tanakh','fb-ntfit','fb-neviim',
+    'fb-mv','fb-profitable',
+    'fb-torahmeaning','fb-spell','fb-scriptura','fb-english1',
+    'fb-latin1','fb-verbum','fb-hebrew1','fb-nabi',
+    'fb-order1','fb-why',
+    'fb-review1','fb-review2','fb-review3'
+  ];
+
+  function updateProgress() {
+    const attempted = gradedIds.filter(id => id in questionState).length;
+    document.getElementById('progressBar').style.width = Math.round((attempted / gradedIds.length) * 100) + '%';
+  }
+  function recordAnswer(id, correct) { questionState[id] = !!correct; updateProgress(); }
+
+  function showFeedback(id, type, html) {
+    const el = document.getElementById(id);
+    el.className = 'feedback ' + type;
+    el.innerHTML = (type === 'correct' ? '✓ ' : type === 'wrong' ? '✗ ' : '💡 ') + html;
+  }
+
+  function checkRadio(name, correctIndex, fbId, correctMsg, wrongMsg) {
+    const radios = document.querySelectorAll(`input[name="${name}"]`);
+    let selected = -1;
+    radios.forEach((r, i) => { if (r.checked) selected = i; });
+    if (selected === -1) { showFeedback(fbId, 'hint', 'Please select an answer first.'); return; }
+    const ok = selected === correctIndex;
+    showFeedback(fbId, ok ? 'correct' : 'wrong', ok ? correctMsg : wrongMsg);
+    recordAnswer(fbId, ok);
+  }
+
+  function checkCheckboxes(cls, correctValues, fbId, correctMsg, wrongMsg) {
+    const boxes = document.querySelectorAll('.' + cls);
+    const selected = [];
+    boxes.forEach(b => { if (b.checked) selected.push(b.value); });
+    if (selected.length === 0) { showFeedback(fbId, 'hint', 'Select at least one answer.'); return; }
+    const ok = [...selected].sort().join(',') === [...correctValues].sort().join(',');
+    showFeedback(fbId, ok ? 'correct' : 'wrong', ok ? correctMsg : wrongMsg);
+    recordAnswer(fbId, ok);
+  }
+
+  function checkSelect(id, correctVal, fbId, correctMsg, wrongMsg) {
+    const val = document.getElementById(id).value;
+    if (!val) { showFeedback(fbId, 'hint', 'Please choose an option first.'); return; }
+    const ok = val === correctVal;
+    showFeedback(fbId, ok ? 'correct' : 'wrong', ok ? correctMsg : wrongMsg);
+    recordAnswer(fbId, ok);
+  }
+
+  function showSummary() {
+    const card = document.getElementById('summaryCard');
+    const attempted = gradedIds.filter(id => id in questionState).length;
+    const mastered  = gradedIds.filter(id => questionState[id] === true).length;
+    const name = (document.getElementById('student-name-input').innerText || '').replace(/\s+/g,' ').trim();
+    card.classList.add('visible');
+    document.getElementById('summaryStudentName').textContent = name || 'Not entered';
+    document.getElementById('summaryDisplay').textContent = `${mastered} / ${gradedIds.length}`;
+    document.getElementById('summaryLabel').textContent = `${attempted} attempted · ${mastered} mastered`;
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  // Touch-friendly tooltip toggle
+  document.addEventListener('click', function(e) {
+    const tw = e.target.closest('.tooltip-word');
+    document.querySelectorAll('.tooltip-word.tip-open').forEach(el => {
+      if (el !== tw) el.classList.remove('tip-open');
+    });
+    if (tw) { tw.classList.toggle('tip-open'); e.stopPropagation(); }
+  });
+</script>
+</body>
+</html>

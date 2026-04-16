@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Torah-Highschool Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tracker.css" />
+</head>
+<body class="tracker-home">
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Torah-Highschool</p>
+      <h1>Lesson Tracker</h1>
+      <p class="hero-copy">A simple GitHub Pages dashboard for moving week by week through the lessons, seeing what is complete, and keeping the next lesson clear.</p>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="card intro-card">
+      <h2>How This Works</h2>
+      <p>This tracker groups the available lessons by week and opens each lesson directly from this repository. Each student page keeps its own completion state in the browser so finished lessons can be greyed out and the next lesson stands out clearly.</p>
+      <p class="privacy-note"><strong>Important:</strong> a public GitHub Pages site cannot truly secure student data by itself. This version keeps progress in the browser with `localStorage`, which is convenient for a checklist but not private or synced across devices. It is best used with first names only and without grades or sensitive student information.</p>
+    </section>
+
+    <section class="student-grid">
+      <a class="student-tile" href="student-1.html">
+        <span class="student-label">Student Page</span>
+        <h2>Noah</h2>
+        <p>Open the tracker page for the first student.</p>
+      </a>
+
+      <a class="student-tile" href="student-2.html">
+        <span class="student-label">Student Page</span>
+        <h2>Elijah</h2>
+        <p>Open the tracker page for the second student.</p>
+      </a>
+    </section>
+
+    <section class="card mini-list">
+      <h2>Current Scope</h2>
+      <p>The tracker is preloaded with the current lessons in this folder:</p>
+      <ul>
+        <li>Foundations</li>
+        <li>Week 1: Genesis 1–25</li>
+        <li>Week 2: Genesis 26–50</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

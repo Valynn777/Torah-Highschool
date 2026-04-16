@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Genesis 1–5 — Enhanced Lesson</title>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Spectral:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --parchment:     #f7f2e8;
+      --parchment-mid: #ede5d0;
+      --parchment-drk: #ddd3ba;
+      --ink:           #1b1710;
+      --ink-light:     #3e3628;
+      --ink-faint:     #7a6f58;
+      --sienna:        #8b3a1a;
+      --sienna-light:  #c0623a;
+      --sienna-pale:   #f6ece5;
+      --gold:          #b8892a;
+      --gold-pale:     #fdf5e0;
+      --deep-blue:     #1a2d4a;
+      --blue-light:    #e8eef6;
+      --green:         #2a5c3a;
+      --green-pale:    #e5f2e8;
+      --red-pale:      #fdf0f0;
+      --radius:        10px;
+      --shadow:        0 3px 16px rgba(27,23,16,0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Spectral', serif;
+      background: var(--parchment);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    /* ─── PROGRESS BAR ─── */
+    .progress-bar-wrap {
+      position: sticky; top: 0; z-index: 200;
+      height: 5px; background: var(--parchment-drk);
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--sienna));
+      width: 0%; transition: width 0.4s ease;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      background: var(--deep-blue);
+      color: var(--parchment);
+      padding: 44px 24px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 3px solid var(--gold);
+    }
+    header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 60% at 50% 120%, rgba(184,137,42,0.15), transparent),
+        repeating-linear-gradient(-45deg, transparent, transparent 24px, rgba(255,255,255,0.02) 24px, rgba(255,255,255,0.02) 48px);
+      pointer-events: none;
+    }
+    .header-hebrew {
+      font-family: 'Crimson Pro', serif;
+      font-size: 2.6rem;
+      color: rgba(184,137,42,0.35);
+      position: absolute;
+      top: 10px; right: 20px;
+      user-select: none;
+      pointer-events: none;
+      letter-spacing: 0.1em;
+    }
+    header h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+      margin-bottom: 6px;
+      position: relative;
+    }
+    header .subtitle {
+      font-family: 'Spectral', serif;
+      font-size: 0.9rem;
+      color: rgba(247,242,232,0.7);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    header .themes {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      justify-content: center; margin: 12px 0 20px;
+    }
+    header .theme-chip {
+      background: rgba(184,137,42,0.18);
+      border: 1px solid rgba(184,137,42,0.4);
+      border-radius: 20px;
+      padding: 3px 14px;
+      font-size: 0.78rem;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .memory-verse-box {
+      display: inline-block;
+      background: rgba(184,137,42,0.1);
+      border: 1px solid rgba(184,137,42,0.3);
+      border-radius: var(--radius);
+      padding: 14px 24px;
+      max-width: 580px;
+      margin-top: 4px;
+    }
+    .memory-verse-box .mv-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .memory-verse-box blockquote {
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--parchment);
+      line-height: 1.6;
+    }
+    .memory-verse-box .ref {
+      font-size: 0.75rem; color: var(--gold); margin-top: 6px;
+    }
+
+    /* ─── SUBJECT BANDS ─── */
+    .subject-band {
+      display: flex; align-items: center; gap: 12px;
+      margin: 30px 0 16px;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--ink-faint);
+    }
+    .subject-band::before, .subject-band::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--parchment-drk), transparent);
+    }
+    .subject-band .band-label {
+      display: flex; align-items: center; gap: 6px;
+    }
+    .band-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* ─── MAIN ─── */
+    main { max-width: 800px; margin: 0 auto; padding: 28px 20px 80px; }
+
+    /* ─── CARDS ─── */
+    .card {
+      background: #fff;
+      border: 1px solid var(--parchment-mid);
+      border-radius: var(--radius);
+      padding: 26px 28px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: visible;
+    }
+    .card-header {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--parchment-mid);
+    }
+    .card-icon {
+      width: 34px; height: 34px;
+      background: var(--ink);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+    .card h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .card-number {
+      margin-left: auto;
+      font-size: 0.7rem;
+      color: var(--ink-faint);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ─── LEARN BODY ─── */
+    .learn-body p { margin-bottom: 14px; }
+    .learn-body p:last-child { margin-bottom: 0; }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    @media (max-width: 500px) { .concept-grid { grid-template-columns: 1fr; } }
+    .concept-box {
+      background: var(--parchment);
+      border-radius: 8px;
+      padding: 14px 16px;
+      border-left: 3px solid var(--gold);
+    }
+    .concept-box strong {
+      display: block;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--sienna);
+      margin-bottom: 5px;
+      font-family: 'Spectral', serif;
+    }
+    .concept-box p { font-size: 0.9rem; color: var(--ink-light); margin: 0; }
+
+    /* ─── CROSS-SUBJECT CALLOUT ─── */
+    .subject-callout {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin: 14px 0;
+      display: flex; gap: 12px; align-items: flex-start;
+    }
+    .subject-callout.science { background: var(--blue-light); border-left: 3px solid var(--deep-blue); }
+    .subject-callout.history { background: var(--sienna-pale); border-left: 3px solid var(--sienna); }
+    .subject-callout.math    { background: #f0ede8; border-left: 3px solid #8a7a5a; }
+    .subject-callout.writing { background: var(--green-pale); border-left: 3px solid var(--green); }
+    .subject-callout.art     { background: #f5edf8; border-left: 3px solid #7a3a8a; }
+    .callout-icon { font-size: 1.3rem; flex-shrink: 0; line-height: 1; }
+    .callout-body { flex: 1; }
+    .callout-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+    .science .callout-label { color: var(--deep-blue); }
+    .history .callout-label { color: var(--sienna); }
+    .math .callout-label    { color: #5a4a2a; }
+    .writing .callout-label { color: var(--green); }
+    .art .callout-label     { color: #7a3a8a; }
+    .callout-body p { font-size: 0.9rem; color: var(--ink-light); margin: 0; line-height: 1.6; }
+
+    details {
+      margin-top: 14px;
+      border: 1px solid var(--parchment-mid);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    details summary {
+      padding: 12px 16px;
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--sienna);
+      background: var(--parchment);
+      list-style: none;
+      display: flex; align-items: center; gap: 8px;
+      user-select: none;
+    }
+    details summary::before { content: '▶'; font-size: 0.6rem; transition: transform 0.2s; }
+    details[open] summary::before { transform: rotate(90deg); }
+    details .detail-body {
+      padding: 14px 16px;
+      font-size: 0.9rem;
+      color: var(--ink-light);
+      line-height: 1.7;
+      border-top: 1px solid var(--parchment-mid);
+    }
+    details .detail-body p { margin-bottom: 10px; }
+    details .detail-body p:last-child { margin-bottom: 0; }
+
+    /* ─── VOCAB FLIP CARDS ─── */
+    .vocab-section-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--ink-faint);
+      font-weight: 600;
+      margin: 22px 0 12px;
+    }
+    .vocab-flip-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .flip-card {
+      height: 110px;
+      perspective: 900px;
+      cursor: pointer;
+    }
+    .flip-card-inner {
+      position: relative; width: 100%; height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.55s cubic-bezier(0.4,0,0.2,1);
+    }
+    .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+    .flip-card-front, .flip-card-back {
+      position: absolute; inset: 0;
+      backface-visibility: hidden;
+      border-radius: 8px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 10px;
+      text-align: center;
+    }
+    .flip-card-front {
+      background: var(--ink);
+      border: 1px solid rgba(184,137,42,0.4);
+    }
+    .flip-card-back {
+      background: var(--gold-pale);
+      border: 1px solid var(--gold);
+      transform: rotateY(180deg);
+    }
+    .flip-word {
+      font-family: 'Crimson Pro', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .flip-lang {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      background: rgba(184,137,42,0.25);
+      color: var(--gold);
+      border-radius: 3px;
+      padding: 1px 7px;
+      margin-bottom: 4px;
+    }
+    .flip-hint {
+      font-size: 0.7rem;
+      color: rgba(184,137,42,0.6);
+      font-style: italic;
+    }
+    .flip-meaning {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--sienna);
+      margin-bottom: 4px;
+    }
+    .flip-note {
+      font-size: 0.72rem;
+      color: var(--ink-faint);
+      line-height: 1.4;
+    }
+    .vocab-tap-hint {
+      font-size: 0.75rem;
+      color: var(--ink-faint);
+      font-style: italic;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    /* ─── INLINE VOCAB TOOLTIPS ─── */
+    .tooltip-word {
+      color: var(--sienna);
+      font-weight: 600;
+      cursor: pointer;
+      border-bottom: 1px dotted var(--sienna-light);
+      position: relative;
+    }
+    .tooltip-word .tooltip-pop {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--ink);
+      color: var(--parchment);
+      border: 1px solid var(--gold);
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 0.78rem;
+      width: 180px;
+      z-index: 300;
+      line-height: 1.45;
+      pointer-events: none;
+      font-style: normal;
+      text-align: left;
+    }
+    .tooltip-word .tooltip-pop::after {
+      content: '';
+      position: absolute;
+      top: 100%; left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: var(--gold);
+    }
+    .tooltip-word:hover .tooltip-pop,
+    .tooltip-word.tip-open .tooltip-pop { display: block; }
+    .tooltip-pop .tp-word {
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      color: var(--gold);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .tooltip-pop .tp-lang {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(184,137,42,0.7);
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    /* ─── QUESTIONS ─── */
+    .question {
+      margin: 14px 0;
+      padding: 16px 18px;
+      background: var(--parchment);
+      border-radius: 8px;
+      border: 1px solid var(--parchment-mid);
+    }
+    .question p.q-text {
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+    .question label {
+      display: flex; align-items: flex-start; gap: 9px;
+      padding: 6px 0;
+      cursor: pointer;
+      font-size: 0.93rem;
+      color: var(--ink-light);
+      border-radius: 6px;
+    }
+    .question label input { margin-top: 3px; accent-color: var(--sienna); flex-shrink: 0; }
+    .question label:hover { color: var(--ink); }
+    .q-note {
+      font-size: 0.78rem;
+      color: var(--ink-faint);
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    select {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 7px 10px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      background: #fff;
+      color: var(--ink);
+      cursor: pointer;
+      margin-top: 4px;
+    }
+    select:focus { outline: 2px solid var(--gold); }
+
+    textarea {
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      color: var(--ink);
+      background: #fff;
+      resize: vertical;
+      margin-top: 6px;
+      line-height: 1.65;
+    }
+    textarea:focus { outline: 2px solid var(--gold); border-color: transparent; }
+
+    .editable-line, .editable-block {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 12px 14px;
+      background: #fff;
+      color: var(--ink);
+      line-height: 1.7;
+      margin-top: 8px;
+    }
+    .editable-line { min-height: 48px; }
+    .editable-block { min-height: 140px; }
+    .editable-line:focus, .editable-block:focus {
+      outline: 2px solid var(--gold); border-color: transparent;
+    }
+
+    .word-bank {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-bottom: 12px;
+    }
+    .word-chip {
+      padding: 4px 13px;
+      background: var(--parchment-mid);
+      border: 1px solid var(--parchment-drk);
+      border-radius: 20px;
+      font-size: 0.82rem;
+      color: var(--ink-light);
+      font-style: italic;
+      font-family: 'Crimson Pro', serif;
+    }
+
+    /* ─── BUTTONS ─── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 10px;
+      padding: 8px 18px;
+      border: 1.5px solid var(--ink);
+      border-radius: 8px;
+      background: var(--ink);
+      color: var(--parchment);
+      cursor: pointer;
+      font-family: 'Spectral', serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .btn:hover { background: var(--sienna); border-color: var(--sienna); }
+    .btn-outline {
+      background: transparent; color: var(--ink);
+    }
+    .btn-outline:hover { background: var(--ink); color: var(--parchment); }
+    .btn-gold { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+    .btn-gold:hover { background: #9a7020; border-color: #9a7020; color: #fff; }
+
+    /* ─── FEEDBACK ─── */
+    .feedback {
+      display: none;
+      margin-top: 10px; padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+    .feedback.correct { display: block; background: var(--green-pale); color: #1a4a28; border: 1px solid #b2d4bc; }
+    .feedback.wrong   { display: block; background: var(--red-pale);  color: #8b2020; border: 1px solid #f5c0c0; }
+    .feedback.hint    { display: block; background: var(--gold-pale);  color: #6a4a10; border: 1px solid #e8d08a; }
+
+    /* ─── VOCAB QUIZ ─── */
+    .vocab-quiz-item {
+      background: var(--parchment);
+      border: 1px solid var(--parchment-mid);
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+    }
+    .word-label {
+      font-family: 'Crimson Pro', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .lang-badge {
+      display: inline-block;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      background: var(--ink);
+      color: var(--gold);
+      border-radius: 4px;
+      padding: 1px 7px;
+      margin-bottom: 8px;
+    }
+    .vocab-quiz-item select { display: block; width: 100%; margin-bottom: 0; }
+
+    /* ─── TIMELINE ─── */
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+      margin: 16px 0;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 9px; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--gold), var(--sienna));
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 16px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -22px; top: 6px;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 1px var(--gold);
+    }
+    .timeline-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--sienna);
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .timeline-text { font-size: 0.9rem; color: var(--ink-light); }
+
+    /* ─── SUMMARY CARD ─── */
+    .summary-card {
+      display: none;
+      text-align: center;
+      padding: 36px 28px;
+      background: var(--ink);
+      color: var(--parchment);
+      border-radius: var(--radius);
+      margin-top: 24px;
+      border: 1px solid rgba(184,137,42,0.3);
+    }
+    .summary-card.visible { display: block; }
+    .summary-card h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.5rem;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .summary-number {
+      font-family: 'Spectral', serif;
+      font-size: 3.2rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      margin: 16px 0;
+    }
+    .summary-label { font-size: 0.88rem; color: var(--parchment-mid); }
+    .action-bar {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      justify-content: center; margin-top: 18px;
+    }
+
+    /* ─── REFLECTION PROMPTS ─── */
+    .reflection-box {
+      background: var(--parchment);
+      border: 1px solid var(--parchment-mid);
+      border-top: 3px solid var(--gold);
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin: 12px 0;
+    }
+    .reflection-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .reflection-box p { font-size: 0.92rem; color: var(--ink-light); margin: 0; }
+
+    @media print {
+      .progress-bar-wrap, .action-bar, button, .btn { display: none !important; }
+      header { background: #fff !important; color: #000 !important; border: 2px solid #000; }
+      header h1 { color: #000 !important; }
+      .summary-card { display: block !important; background: #f0f0f0 !important; color: #000 !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressBar"></div></div>
+
+<header>
+  <div class="header-hebrew" aria-hidden="true">בְּרֵאשִׁית</div>
+  <p class="subtitle">Torah-Based Homeschool Curriculum · High School Level</p>
+  <h1>Genesis 1–5 <span style="color:rgba(184,137,42,0.5);font-size:1.4rem;">/ Bereshit</span></h1>
+  <div class="themes">
+    <span class="theme-chip">Creation</span>
+    <span class="theme-chip">Order</span>
+    <span class="theme-chip">The Fall</span>
+    <span class="theme-chip">Cain &amp; Abel</span>
+    <span class="theme-chip">Generations</span>
+    <span class="theme-chip">Image of Elohim</span>
+  </div>
+  <div class="memory-verse-box">
+    <div class="mv-label">Memory Verse</div>
+    <blockquote>"So Elohim created mankind in his own image, in the image of Elohim he created them; male and female he created them."</blockquote>
+    <p class="ref">— Genesis 1:27</p>
+  </div>
+</header>
+
+<main>
+  <!-- STUDENT NAME -->
+  <div class="card" style="margin-top:24px;">
+    <div class="card-header">
+      <div class="card-icon">👤</div>
+      <h2>Student Name</h2>
+      <span class="card-number">Identification</span>
+    </div>
+    <div class="question">
+      <p class="q-text">Type your name below. It will appear on your printed summary.</p>
+      <div id="student-name-input" class="editable-line" contenteditable="true" aria-label="Student name"></div>
+    </div>
+  </div>
+
+  <!-- ══ PART 1: LEARN ══ -->
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 1 — Torah Reading &amp; Background</span></div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📖</div>
+      <h2>Learn</h2>
+      <span class="card-number">Background &amp; Themes</span>
+    </div>
+    <div class="learn-body">
+      <p><strong>Before you begin:</strong> Read Genesis 1–5 in full in your Torah or Bible before working through this lesson. Everything below is meant to help you reflect on what you have already read, not to replace reading.</p>
+
+      <p>Genesis 1–5 opens the whole story of Scripture and lays the foundation for everything that follows. These chapters reveal who Elohim is, who mankind is, what mankind was created for, what sin does, and how the generations begin to unfold. From the very beginning, creation is not presented as random or confused — it is full of order, purpose, boundaries, blessing, and command.</p>
+
+      <p><strong>Genesis 1</strong> shows Elohim bringing order, division, beauty, and life. He separates light from darkness, waters from waters, and land from sea, and then fills what He has formed. Each stage prepares for what comes next. Mankind is created last — not as an afterthought, but as the one given responsibility within Elohim's ordered world. The Word of Elohim is not empty speech: it establishes reality, gives life, and sets all things in their proper place.</p>
+
+      <div class="subject-callout science">
+        <div class="callout-icon">🔬</div>
+        <div class="callout-body">
+          <div class="callout-label">Science Connection</div>
+          <p>Genesis 1 presents creation in ordered stages — separation, formation, then filling. Notice how each category of life reproduces "according to its kind." This principle of bounded kinds and ordered systems is one reason many scientists across history have seen the natural world as lawful and studyable. What does it tell us about the Creator that He makes a world with consistent, discoverable patterns?</p>
+        </div>
+      </div>
+
+      <p><strong>Genesis 2</strong> draws closer and shows the relationship between the Creator and mankind. Adam is placed in the garden with purpose, responsibility, and command. 
+      <span class="tooltip-word">Chavah<span class="tooltip-pop"><span class="tp-word">Chavah</span><span class="tp-lang">Hebrew</span>Life-giver. The name Eve comes from the Hebrew root meaning "to live."</span></span>
+      is made as a fitting companion, and together they are given a place of life, provision, and nearness to Elohim. Before sin enters, we see harmony: mankind with Elohim, mankind with one another, and mankind within creation.</p>
+
+      <p><strong>Genesis 3</strong> introduces rebellion. The serpent does not begin by openly praising evil. Instead, he works by causing doubt about the goodness of Elohim's word. Adam and Chavah disobey, and immediately the effects appear: shame, fear, hiding, blame, and exile. Sin does not remain a private inward thing. It breaks trust, distorts fellowship, and brings separation. The fall is not simply the breaking of a rule — it is turning away from the Source of life itself.</p>
+
+      <div class="subject-callout writing">
+        <div class="callout-icon">✍️</div>
+        <div class="callout-body">
+          <div class="callout-label">Logic &amp; Rhetoric</div>
+          <p>Notice the serpent's technique in Genesis 3:1 — he begins with a question that slightly misquotes the command. Examine how the original command in Gen 2:17 compares to what the serpent says in Gen 3:1. What is subtly changed? This kind of small distortion is a classic rhetorical strategy. Being able to notice it is a skill worth developing.</p>
+        </div>
+      </div>
+
+      <p><strong>Genesis 4</strong> shows that sin spreads outward. What began in the garden now appears between brothers. Cain becomes angry when his offering is not regarded as 
+      <span class="tooltip-word">Abel's<span class="tooltip-pop"><span class="tp-word">Hevel (הֶבֶל)</span><span class="tp-lang">Hebrew</span>Abel's Hebrew name means "breath" or "vapor" — brief and fleeting, like his short life.</span></span>
+      is. Before Cain acts, Elohim warns him — sin is crouching at the door, and he is told to rule over it. He is confronted, warned, and given a choice. But he does not master sin. Instead, jealousy grows into murder. In only a few chapters, disobedience has moved from eating what was forbidden to taking the life of another image-bearer.</p>
+
+      <p><strong>Genesis 5</strong> may seem quieter, but it is deeply important. It traces the line from Adam through Seth and repeats the solemn reality: <em>"and he died."</em> The genealogy shows that Elohim's word in the garden was true. Death has entered the world. Yet it also shows that the generations continue and that Elohim preserves a line. Even in judgment, the story does not end.</p>
+
+      <div class="subject-callout math">
+        <div class="callout-icon">🔢</div>
+        <div class="callout-body">
+          <div class="callout-label">Numbers &amp; Logic</div>
+          <p>Genesis 5 records ages in a striking way — fathers having children at ages like 130 or 187, then living for hundreds more years. Count the generations from Adam to Noah. How many are listed? Notice also the exception: one figure in the list does not have the phrase "and he died." Who is it, and why might the text mark him differently?</p>
+        </div>
+      </div>
+
+      <div class="concept-grid">
+        <div class="concept-box">
+          <strong>Order &amp; Filling</strong>
+          <p>Elohim forms and then fills. Light, sky, land, and seas show that His world is built with order, purpose, and wisdom — not accident.</p>
+        </div>
+        <div class="concept-box">
+          <strong>The Presence of Elohim</strong>
+          <p>Mankind was made to walk before Elohim in nearness and purpose. The garden shows what life looks like when the command is honored.</p>
+        </div>
+        <div class="concept-box">
+          <strong>Image of Elohim (Tselem)</strong>
+          <p>Mankind uniquely bears the <em>tselem</em> of Elohim. This is why human life has dignity, weight, and value from the very first chapter.</p>
+        </div>
+        <div class="concept-box">
+          <strong>Sin Spreads</strong>
+          <p>What begins as doubting the commandment becomes shame, blame, exile, anger, and murder. Sin never stays small once welcomed.</p>
+        </div>
+        <div class="concept-box">
+          <strong>Warning &amp; Choice</strong>
+          <p>Before Cain sins, Elohim warns him directly. This shows that he is not acting without light or instruction — he is given a real choice.</p>
+        </div>
+        <div class="concept-box">
+          <strong>Generations Continue</strong>
+          <p>Genesis 5 shows death marking every generation, yet Elohim preserves a line. His purpose continues forward even through judgment.</p>
+        </div>
+      </div>
+
+      <details>
+        <summary>Commentary: The Meaning of the Fall (Genesis 3)</summary>
+        <div class="detail-body">
+          <p>The serpent's work begins by making the commandment seem restrictive instead of good. In this way, the temptation is not only about the fruit, but about trust. Adam and Chavah are led to question whether Elohim's word is truly for life.</p>
+          <p>Notice what follows immediately after their disobedience: they look at one another differently. They try to cover themselves. Then, when Elohim walks in the garden, they hide. The break with Elohim immediately becomes a break in the relationship between them. This is important — sin does not stay inward. Their exile from the garden shows that turning away from His command is turning away from the place of life, peace, and nearness to Him.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Commentary: Why Genesis 5 Matters</summary>
+        <div class="detail-body">
+          <p>Genealogies can seem like lists to skip over, but Genesis 5 is doing important theological and historical work. Each entry in the list follows the same pattern: born, fathered children, lived X years, and died. The rhythm is relentless. The fall's consequence is real, historical, and universal.</p>
+          <p>Yet Enoch breaks the pattern. He "walked with Elohim, and he was not, for Elohim took him." The phrase is brief and deliberate. In the middle of a chapter filled with death, one man's life is marked by walking closely with the Creator — and something different happens at the end of it. The genealogy is not just a list. It is making a theological argument about life, death, obedience, and the purposes of Elohim.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Going Deeper: Cain and Abel — Two Offerings</summary>
+        <div class="detail-body">
+          <p>The text does not spell out exactly why Elohim regards Abel's offering and not Cain's — and that has led to many discussions. Some point to the type of offering (firstborn of the flock vs. produce of the ground). Others point to Hebrews 11:4, which says Abel offered "by faith." The most careful readers notice that the text says Abel brought the <em>firstborn</em> and the <em>fat portions</em> — language suggesting the best of what he had. What matters most for this passage is what comes next: Elohim does not abandon Cain. He speaks to him directly. The question Elohim asks — "Why are you angry?" — is an invitation to reflection, not an accusation. Cain is given space to respond and turn. That he does not is the tragedy of the chapter.</p>
+        </div>
+      </details>
+
+      <!-- VOCAB FLIP CARDS -->
+      <p class="vocab-section-label">Hebrew &amp; Latin — Vocabulary Reference</p>
+      <p class="vocab-tap-hint">Tap or click any card to reveal its meaning →</p>
+      <div class="vocab-flip-grid">
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flip-word">Bereshit</div>
+              <div class="flip-lang">Hebrew</div>
+              <div class="flip-hint">בְּרֵאשִׁית</div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-meaning">In the beginning</div>
+              <div class="flip-note">Genesis 1:1 — the first word of Scripture and the Hebrew title of the book</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flip-word">Bara</div>
+              <div class="flip-lang">Hebrew</div>
+              <div class="flip-hint">בָּרָא</div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-meaning">To create</div>
+              <div class="flip-note">Used only of Elohim — points to His unique authority as Creator</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flip-word">Tov</div>
+              <div class="flip-lang">Hebrew</div>
+              <div class="flip-hint">טוֹב</div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-meaning">Good</div>
+              <div class="flip-note">Repeated in Gen 1 — what Elohim makes is fitting, ordered, and right</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flip-word">Tselem</div>
+              <div class="flip-lang">Hebrew</div>
+              <div class="flip-hint">צֶלֶם</div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-meaning">Image / Likeness</div>
+              <div class="flip-note">Used in Gen 1:26–27 — mankind uniquely bears the image of Elohim</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flip-word">Toledot</div>
+              <div class="flip-lang">Hebrew</div>
+              <div class="flip-hint">תּוֹלְדוֹת</div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-meaning">Generations / Account</div>
+              <div class="flip-note">A key structural marker in Genesis — begins each new section of the story</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flip-word">Lux</div>
+              <div class="flip-lang">Latin</div>
+              <div class="flip-hint">lux, lucis</div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-meaning">Light</div>
+              <div class="flip-note">Root of: lucid, luminous, translucent — see Gen 1:3</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flip-word">Imago</div>
+              <div class="flip-lang">Latin</div>
+              <div class="flip-hint">imago, imaginis</div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-meaning">Image / Likeness</div>
+              <div class="flip-note">Root of: image, imagine, imagination — connects to tselem / Gen 1:27</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flip-word">Generatio</div>
+              <div class="flip-lang">Latin</div>
+              <div class="flip-hint">generatio, -onis</div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-meaning">Birth / Generation</div>
+              <div class="flip-note">Root of: generation, generate, genealogy — ties to Gen 5's structure</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <p style="font-size:0.78rem;color:var(--ink-faint);margin-top:8px;">Word study tip: As you read, look up key words in the Blue Letter Bible app or a Strong's concordance. A Hebrew word often carries more depth than any single English translation can show.</p>
+    </div>
+  </div>
+
+  <!-- ══ PART 2: OBSERVE ══ -->
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 2 — Observation &amp; Memory</span></div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔍</div>
+      <h2>Observe</h2>
+      <span class="card-number">Reading Questions</span>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Which of the following show <em>order and purpose</em> in Genesis 1? (Select all that apply.)</p>
+      <label><input type="checkbox" class="chk-notice1" value="a"> Creation happens in a deliberate sequence, each stage preparing the next</label>
+      <label><input type="checkbox" class="chk-notice1" value="b"> Elohim separates light from darkness, waters from waters</label>
+      <label><input type="checkbox" class="chk-notice1" value="c"> Creation is described as random and without structure</label>
+      <label><input type="checkbox" class="chk-notice1" value="d"> Mankind is given a specific role and responsibility within creation</label>
+      <label><input type="checkbox" class="chk-notice1" value="e"> Elohim repeatedly declares what He has made to be <em>tov</em> (good)</label>
+      <button class="btn" onclick="checkCheckboxes('chk-notice1', ['a','b','d','e'], 'fb-notice1',
+        'Correct. Genesis 1 presents intentional sequence, meaningful separation, purposeful calling, and the repeated declaration of goodness. Each of these reflects the character of the One who speaks creation into being.',
+        'Not quite. Look for the choices that reflect intention, structure, and purpose — not confusion.')">Check</button>
+      <div class="feedback" id="fb-notice1"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Elohim's warning to Cain about sin "crouching at the door" (Genesis 4:7) comes…</p>
+      <label><input type="radio" name="q-cain"> After Abel is already dead</label>
+      <label><input type="radio" name="q-cain"> Before Cain acts — giving him a real chance to choose differently</label>
+      <label><input type="radio" name="q-cain"> Only after Cain brings his offering</label>
+      <button class="btn" onclick="checkRadio('q-cain', 1, 'fb-cain',
+        'Correct. Elohim warns Cain before the murder. Cain is addressed, confronted, and given the chance to master sin before it masters him. This is important — his action is not the result of ignorance.',
+        'Re-read Genesis 4:6–7. The warning comes before Cain goes into the field with Abel.')">Check</button>
+      <div class="feedback" id="fb-cain"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">What does Genesis 5 primarily help the reader see?</p>
+      <label><input type="radio" name="q-gen5a"> That the line from Adam continues through Seth, and that death marks every generation</label>
+      <label><input type="radio" name="q-gen5a"> That the flood of Noah has already begun</label>
+      <label><input type="radio" name="q-gen5a"> That Israel has entered the land of Canaan</label>
+      <button class="btn" onclick="checkRadio('q-gen5a', 0, 'fb-gen5a',
+        'Correct. Genesis 5 preserves the line through Seth while also repeating the sober reality that death now marks human life — just as Elohim warned in the garden.',
+        'Not quite. Genesis 5 is a genealogy before the flood, and the flood is not yet underway.')">Check</button>
+      <div class="feedback" id="fb-gen5a"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Which figure in Genesis 5 breaks the repeated pattern of "and he died"?</p>
+      <label><input type="radio" name="q-enoch"> Seth</label>
+      <label><input type="radio" name="q-enoch"> Enoch</label>
+      <label><input type="radio" name="q-enoch"> Methuselah</label>
+      <button class="btn" onclick="checkRadio('q-enoch', 1, 'fb-enoch',
+        'Correct. Enoch "walked with Elohim, and he was not, for Elohim took him" (Genesis 5:24). In a chapter full of death, his entry is deliberately different — it is a signal worth paying attention to.',
+        'Look again at each entry in Genesis 5 and find the one that does not end with the phrase "and he died."')">Check</button>
+      <div class="feedback" id="fb-enoch"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">✦</div>
+      <h2>Memory Verse</h2>
+      <span class="card-number">Genesis 1:27</span>
+    </div>
+    <div class="question">
+      <p class="q-text">Fill in the blanks: "So Elohim created mankind in his own <strong>___</strong>, in the image of Elohim he <strong>___</strong> them; male and female he created <strong>___</strong>."</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;">
+        <div>
+          <label style="font-size:0.78rem;color:var(--ink-faint);display:block;margin-bottom:4px;">First blank:</label>
+          <select id="mv1"><option value="">Choose</option><option>image</option><option>name</option><option>form</option></select>
+        </div>
+        <div>
+          <label style="font-size:0.78rem;color:var(--ink-faint);display:block;margin-bottom:4px;">Second blank:</label>
+          <select id="mv2"><option value="">Choose</option><option>blessed</option><option>created</option><option>named</option></select>
+        </div>
+        <div>
+          <label style="font-size:0.78rem;color:var(--ink-faint);display:block;margin-bottom:4px;">Third blank:</label>
+          <select id="mv3"><option value="">Choose</option><option>him</option><option>us</option><option>them</option></select>
+        </div>
+      </div>
+      <button class="btn" onclick="checkMemoryVerse()">Check</button>
+      <div class="feedback" id="fb-mv"></div>
+    </div>
+  </div>
+
+  <!-- ══ PART 3: VOCABULARY & LANGUAGE ══ -->
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 3 — Vocabulary &amp; Language</span></div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📝</div>
+      <h2>Words</h2>
+      <span class="card-number">English Vocabulary</span>
+    </div>
+    <div class="word-bank">
+      <span class="word-chip">image</span>
+      <span class="word-chip">offering</span>
+      <span class="word-chip">dominion</span>
+      <span class="word-chip">cursed</span>
+      <span class="word-chip">subdue</span>
+      <span class="word-chip">generations</span>
+    </div>
+
+    <div class="question">
+      <p class="q-text">1. Mankind was made in the ______ of Elohim. (Genesis 1:27)</p>
+      <select id="voc1"><option value="">Choose</option><option>image</option><option>offering</option><option>dominion</option><option>cursed</option><option>subdue</option><option>generations</option></select>
+      <button class="btn btn-outline" onclick="checkSelect('voc1','image','fb-voc1','Correct. From the beginning, human life carries dignity because mankind is made in the image of Elohim — the tselem.','Not quite. Which word describes what mankind was made in?')">Check</button>
+      <div class="feedback" id="fb-voc1"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">2. Elohim told mankind to ______ the earth and have ______ over the creatures. (Genesis 1:28)</p>
+      <select id="voc2a" style="margin-right:8px;"><option value="">First blank</option><option>subdue</option><option>curse</option><option>offer</option></select>
+      <select id="voc2b"><option value="">Second blank</option><option>image</option><option>dominion</option><option>offering</option></select>
+      <button class="btn btn-outline" onclick="checkDoubleSelect('voc2a','subdue','voc2b','dominion','fb-voc2','Correct. These words show responsibility and stewardship — mankind is given ordered rule within creation, not reckless control.','Not quite. Re-read Genesis 1:28 and look for the two key action words.')">Check</button>
+      <div class="feedback" id="fb-voc2"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">3. Choose the correctly spelled word:</p>
+      <label><input type="radio" name="spell1"> dominion</label>
+      <label><input type="radio" name="spell1"> dominnion</label>
+      <label><input type="radio" name="spell1"> dominan</label>
+      <button class="btn btn-outline" onclick="checkRadio('spell1', 0, 'fb-spell1','Correct. Dominion: one n in the middle, ends in -ion. Comes from the Latin dominium, meaning lordship or ownership.','Look again — the correct form has one n and ends in -ion.')">Check</button>
+      <div class="feedback" id="fb-spell1"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">✏️</div>
+      <h2>English Grammar &amp; Writing</h2>
+      <span class="card-number">Grammar</span>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Sentence correction: Edit the line below — fix capitalization and punctuation.</p>
+      <p class="q-note">Hint: Proper nouns and sentence beginnings need capitals. Do not forget the period at the end.</p>
+      <div id="sentence-input" class="editable-line" contenteditable="true">yehovah made adam and chavah in his image</div>
+      <button class="btn" onclick="checkSentence()">Check</button>
+      <div class="feedback" id="fb-sentence"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Paragraph editing: Add correct capitalization, commas, and sentence breaks.</p>
+      <p class="q-note">Hint: Three separate sentences are needed. Proper names must be capitalized. Introductory phrases often need commas.</p>
+      <div id="paragraph-input" class="editable-block" contenteditable="true">adam and chavah were given a command in the garden but they disobeyed after that they hid from yehovah and blamed others cain later became angry and killed his brother</div>
+      <button class="btn" onclick="checkParagraph()">Check</button>
+      <div class="feedback" id="fb-paragraph"></div>
+    </div>
+
+    <div style="margin-top:18px;">
+      <p style="font-size:0.82rem;font-weight:600;color:var(--ink-faint);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">Deeper Writing — Choose ONE (if assigned)</p>
+      <div class="reflection-box">
+        <div class="reflection-label">Option A — Analysis</div>
+        <p>In 2–4 sentences: How does the serpent's question in Genesis 3:1 differ from what Elohim actually said in Genesis 2:17? What was the effect of that change?</p>
+      </div>
+      <div class="reflection-box" style="margin-top:10px;">
+        <div class="reflection-label">Option B — Reflection</div>
+        <p>In 3–5 sentences: What do Genesis 1–5 teach you about the relationship between obedience, sin, and the value of human life? Give at least one specific example from the text.</p>
+      </div>
+      <div class="reflection-box" style="margin-top:10px;">
+        <div class="reflection-label">Option C — Creative</div>
+        <p>Write a short paragraph (4–6 sentences) from the perspective of Cain, <em>before</em> he goes into the field — after he has heard Elohim's warning. What might he have been thinking or feeling? Stay close to what the text shows about him.</p>
+      </div>
+      <textarea rows="5" placeholder="Write your response here…" style="margin-top:10px;"></textarea>
+    </div>
+  </div>
+
+  <!-- ══ PART 4: HEBREW & LATIN ══ -->
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 4 — Hebrew &amp; Latin</span></div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">𐤀</div>
+      <h2>Hebrew &amp; Latin Quiz</h2>
+      <span class="card-number">Language</span>
+    </div>
+    <p class="q-note" style="margin-bottom:14px;">Review the flip cards in Part 1 before completing this section. You can scroll up at any time.</p>
+
+    <div class="vocab-quiz-item">
+      <div class="word-label">Bereshit (בְּרֵאשִׁית)</div>
+      <span class="lang-badge">Hebrew</span>
+      <select id="heb1"><option value="">What does this word mean?</option><option>In the beginning</option><option>Light</option><option>Man</option><option>Created</option></select>
+      <button class="btn btn-outline" style="margin-top:10px;" onclick="checkSelect('heb1','In the beginning','fb-heb1','Correct. Bereshit opens Scripture itself — the very first word of Torah.','Not quite. This is the first word of Genesis.')">Check</button>
+      <div class="feedback" id="fb-heb1"></div>
+    </div>
+
+    <div class="vocab-quiz-item">
+      <div class="word-label">Bara (בָּרָא)</div>
+      <span class="lang-badge">Hebrew</span>
+      <select id="heb2"><option value="">What does this word mean?</option><option>To create</option><option>To bless</option><option>To see</option><option>To rule</option></select>
+      <button class="btn btn-outline" style="margin-top:10px;" onclick="checkSelect('heb2','To create','fb-heb2','Correct. Bara is used only of Elohim\'s creative act — it highlights His unique authority as Creator.','Not quite. This is the action word used in Genesis 1:1.')">Check</button>
+      <div class="feedback" id="fb-heb2"></div>
+    </div>
+
+    <div class="vocab-quiz-item">
+      <div class="word-label">Tselem (צֶלֶם)</div>
+      <span class="lang-badge">Hebrew</span>
+      <select id="heb3"><option value="">What does this word mean?</option><option>Image / Likeness</option><option>Blessing</option><option>Dust</option><option>Breath</option></select>
+      <button class="btn btn-outline" style="margin-top:10px;" onclick="checkSelect('heb3','Image / Likeness','fb-heb3','Correct. Tselem is the word behind "image" in Genesis 1:26–27 — it points to mankind\'s unique dignity and calling.','Not quite. Think about what makes mankind different from the rest of creation in Genesis 1.')">Check</button>
+      <div class="feedback" id="fb-heb3"></div>
+    </div>
+
+    <div class="vocab-quiz-item">
+      <div class="word-label">Lux</div>
+      <span class="lang-badge">Latin</span>
+      <select id="lat1"><option value="">What does this word mean?</option><option>Light</option><option>Earth</option><option>Life</option><option>Water</option></select>
+      <button class="btn btn-outline" style="margin-top:10px;" onclick="checkSelect('lat1','Light','fb-lat1','Correct. Lux means light — the root of lucid, luminous, and translucent. It connects naturally to Genesis 1:3.','Not quite. Think about the first thing Elohim says on day one.')">Check</button>
+      <div class="feedback" id="fb-lat1"></div>
+    </div>
+
+    <div class="vocab-quiz-item">
+      <div class="word-label">Imago</div>
+      <span class="lang-badge">Latin</span>
+      <select id="lat2"><option value="">What does this word mean?</option><option>Image / Likeness</option><option>Soul</option><option>Land</option><option>Breath</option></select>
+      <button class="btn btn-outline" style="margin-top:10px;" onclick="checkSelect('lat2','Image / Likeness','fb-lat2','Correct. Imago is the Latin root of image, imagine, and imagination — it connects to the Hebrew tselem in Genesis 1:27.','Not quite. This Latin word is the root of a very common English word.')">Check</button>
+      <div class="feedback" id="fb-lat2"></div>
+    </div>
+  </div>
+
+  <!-- ══ PART 5: HISTORY & SCIENCE ══ -->
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 5 — History, Science &amp; Context</span></div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🌿</div>
+      <h2>History &amp; Science</h2>
+      <span class="card-number">Context</span>
+    </div>
+
+    <div class="learn-body" style="margin-bottom:16px;">
+      <p>Genesis 1–5 belongs at the very beginning of the biblical timeline — before the flood, before the patriarchs, before Israel, before the kingdom. These chapters are the foundation of the whole story.</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-label">Genesis 1–2</div>
+          <div class="timeline-text">Creation — Elohim forms, fills, and commissions. Mankind is placed in the garden.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-label">Genesis 3</div>
+          <div class="timeline-text">The Fall — disobedience, shame, exile. Death enters the story.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-label">Genesis 4</div>
+          <div class="timeline-text">Cain and Abel — sin spreads from the garden into the family. First murder.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-label">Genesis 5</div>
+          <div class="timeline-text">Generations from Adam to Noah — ten names, and the phrase "and he died" repeated eight times. Enoch is the exception.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-label">Genesis 6 onward</div>
+          <div class="timeline-text">The flood narrative begins. These events come <em>after</em> the scope of this lesson.</div>
+        </div>
+      </div>
+
+      <div class="subject-callout science" style="margin-top:16px;">
+        <div class="callout-icon">🔬</div>
+        <div class="callout-body">
+          <div class="callout-label">Science — Kinds and Order</div>
+          <p>Genesis 1 repeatedly describes life reproducing "according to its kinds." This teaches that creation was made with stability, boundaries, and ordered categories. Many early scientists — including Linnaeus, who developed the system of biological classification — worked from the assumption that the natural world reflects a mind that built it with order. What does it say about Elohim that He builds His world this way?</p>
+        </div>
+      </div>
+
+      <div class="subject-callout history" style="margin-top:10px;">
+        <div class="callout-icon">🏛️</div>
+        <div class="callout-body">
+          <div class="callout-label">Ancient Near East — Context</div>
+          <p>Other ancient creation accounts from Mesopotamia (like the Enuma Elish) also tell stories of creation and the origins of mankind — but with major differences. In those stories, mankind is often created as an afterthought to do labor for the gods. Genesis presents something very different: mankind made in the image of Elohim, given dignity, purpose, and responsibility. Knowing this background helps you see how deliberately different the Torah's account is.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Where do Genesis 1–5 belong in the biblical timeline?</p>
+      <label><input type="radio" name="timeline"> At the very beginning — before the flood, before the patriarchs</label>
+      <label><input type="radio" name="timeline"> After the flood of Noah</label>
+      <label><input type="radio" name="timeline"> During the time of the Israelite kingdom</label>
+      <button class="btn" onclick="checkRadio('timeline', 0, 'fb-timeline','Correct. These chapters form the absolute beginning of the biblical story and establish the foundation for everything that follows.','Not quite. These events take place long before the flood is even described.')">Check</button>
+      <div class="feedback" id="fb-timeline"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Which of the following belong within Genesis 1–5? (Select all that apply.)</p>
+      <label><input type="checkbox" class="chk-gen1" value="a"> Seed-bearing plants and fruit trees</label>
+      <label><input type="checkbox" class="chk-gen1" value="b"> Cain and Abel</label>
+      <label><input type="checkbox" class="chk-gen1" value="c"> The line through Seth</label>
+      <label><input type="checkbox" class="chk-gen1" value="d"> The crossing of the Jordan River</label>
+      <label><input type="checkbox" class="chk-gen1" value="e"> The sun, moon, and stars being set in place</label>
+      <label><input type="checkbox" class="chk-gen1" value="f"> Enoch walking with Elohim</label>
+      <button class="btn" onclick="checkCheckboxes('chk-gen1', ['a','b','c','e','f'], 'fb-gen1','Correct. All of these — creation details, the first brothers, the line through Seth, the heavenly lights, and Enoch — belong in Genesis 1–5. The Jordan crossing belongs centuries later in the time of Joshua.','Check again. Choose details from the opening chapters only — not events from later in Israel\'s history.')">Check</button>
+      <div class="feedback" id="fb-gen1"></div>
+    </div>
+  </div>
+
+  <!-- ══ PART 6: REVIEW ══ -->
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 6 — Review &amp; Reflection</span></div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">◉</div>
+      <h2>Review</h2>
+      <span class="card-number">Summary Questions</span>
+    </div>
+
+    <div class="question">
+      <p class="q-text">What phrase does Elohim repeat after each stage of creation in Genesis 1?</p>
+      <label><input type="radio" name="review1"> "It was finished"</label>
+      <label><input type="radio" name="review1"> "It was good"</label>
+      <label><input type="radio" name="review1"> "It was holy"</label>
+      <button class="btn" onclick="checkRadio('review1', 1, 'fb-review1','Correct. The repeated word tov — good — shows that what Elohim makes is fitting, purposeful, and right. It is a declaration of design, not just description.','Look again at the phrase repeated after each stage of creation in Genesis 1.')">Check</button>
+      <div class="feedback" id="fb-review1"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">What repeated detail in Genesis 5 underlines the consequence of sin in human history?</p>
+      <label><input type="radio" name="review2"> "And he built an altar"</label>
+      <label><input type="radio" name="review2"> "And he died"</label>
+      <label><input type="radio" name="review2"> "And the sea parted"</label>
+      <button class="btn" onclick="checkRadio('review2', 1, 'fb-review2','Correct. The repeated phrase "and he died" underlines that death has entered the world just as Elohim warned. Yet the chapter also shows the line continuing and Elohim\'s purpose moving forward.','Look for the solemn phrase that ends almost every entry in the genealogy of Genesis 5.')">Check</button>
+      <div class="feedback" id="fb-review2"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Which of the following best describes what sin does in Genesis 1–5?</p>
+      <label><input type="radio" name="review3"> It stays small and affects only the person who first disobeys</label>
+      <label><input type="radio" name="review3"> It spreads outward — breaking relationships, distorting fellowship, and bringing death</label>
+      <label><input type="radio" name="review3"> It is immediately forgiven with no lasting consequences</label>
+      <button class="btn" onclick="checkRadio('review3', 1, 'fb-review3','Correct. In just five chapters, sin moves from the garden to between brothers to a spreading pattern of death through all generations. It never stays small or private.','Read back through chapters 3–5 and trace what sin produces at each step.')">Check</button>
+      <div class="feedback" id="fb-review3"></div>
+    </div>
+
+    <div style="margin-top:22px;">
+      <p style="font-size:0.82rem;font-weight:600;color:var(--ink-faint);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">Short Response — Choose One if Assigned</p>
+      <div class="reflection-box">
+        <div class="reflection-label">Option A</div>
+        <p>In 2–4 sentences: How does Genesis 3 change the relationship between Adam, Chavah, and Yehovah? Give a specific detail from the text.</p>
+      </div>
+      <div class="reflection-box" style="margin-top:10px;">
+        <div class="reflection-label">Option B</div>
+        <p>What is one thing from Genesis 1–5 that surprised you, stood out to you, or that you want to understand better? Explain briefly.</p>
+      </div>
+      <textarea rows="4" placeholder="Write your response here…" style="margin-top:10px;"></textarea>
+      <p class="q-note" style="margin-top:8px;">Complete only one prompt if your teacher assigns it. Depth in this lesson comes mainly through reading, discussion, and reflection.</p>
+    </div>
+
+    <div style="text-align:center;margin-top:24px;">
+      <button class="btn btn-gold" style="padding:12px 34px;font-size:1rem;" onclick="showSummary()">See My Summary</button>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="summary-card" id="summaryCard">
+    <h2>Lesson Summary</h2>
+    <p style="margin-top:10px;font-size:0.92rem;color:var(--parchment-mid);"><strong>Student:</strong> <span id="summaryStudentName">—</span></p>
+    <div class="summary-number" id="summaryDisplay">–</div>
+    <div class="summary-label" id="summaryLabel">attempted · mastered</div>
+    <p style="margin-top:18px;color:var(--parchment-mid);font-size:0.88rem;">Review any missed questions above, then save your work as a PDF.</p>
+    <div class="action-bar" style="margin-top:24px;">
+      <button class="btn btn-gold" onclick="window.print()" style="padding:11px 22px;">🖨 Print / Save as PDF</button>
+    </div>
+    <p style="font-size:0.75rem;color:var(--ink-faint);margin-top:14px;">
+      <strong style="color:var(--parchment-mid);">To save as PDF:</strong> tap Print → choose "Save as PDF".<br>
+      <strong style="color:var(--parchment-mid);">To email:</strong> save the PDF first, then attach it to an email.
+    </p>
+  </div>
+
+</main>
+
+<script>
+  const questionState = {};
+  const gradedIds = [
+    'fb-notice1','fb-cain','fb-gen5a','fb-enoch','fb-mv',
+    'fb-voc1','fb-voc2','fb-spell1','fb-sentence','fb-paragraph',
+    'fb-heb1','fb-heb2','fb-heb3','fb-lat1','fb-lat2',
+    'fb-timeline','fb-gen1','fb-review1','fb-review2','fb-review3'
+  ];
+
+  function updateProgress() {
+    const attempted = gradedIds.filter(id => id in questionState).length;
+    document.getElementById('progressBar').style.width = Math.round((attempted / gradedIds.length) * 100) + '%';
+  }
+  function recordAnswer(id, correct) { questionState[id] = !!correct; updateProgress(); }
+
+  function showFeedback(id, type, html) {
+    const el = document.getElementById(id);
+    el.className = 'feedback ' + type;
+    el.innerHTML = (type === 'correct' ? '✓ ' : type === 'wrong' ? '✗ ' : '💡 ') + html;
+  }
+
+  function checkRadio(name, correctIndex, fbId, correctMsg, wrongMsg) {
+    const radios = document.querySelectorAll(`input[name="${name}"]`);
+    let selected = -1;
+    radios.forEach((r, i) => { if (r.checked) selected = i; });
+    if (selected === -1) { showFeedback(fbId, 'hint', 'Please select an answer first.'); return; }
+    const ok = selected === correctIndex;
+    showFeedback(fbId, ok ? 'correct' : 'wrong', ok ? correctMsg : wrongMsg);
+    recordAnswer(fbId, ok);
+  }
+
+  function checkCheckboxes(cls, correctValues, fbId, correctMsg, wrongMsg) {
+    const boxes = document.querySelectorAll('.' + cls);
+    const selected = [];
+    boxes.forEach(b => { if (b.checked) selected.push(b.value); });
+    if (selected.length === 0) { showFeedback(fbId, 'hint', 'Select at least one answer.'); return; }
+    const ok = [...selected].sort().join(',') === [...correctValues].sort().join(',');
+    showFeedback(fbId, ok ? 'correct' : 'wrong', ok ? correctMsg : wrongMsg);
+    recordAnswer(fbId, ok);
+  }
+
+  function checkSelect(id, correctVal, fbId, correctMsg, wrongMsg) {
+    const val = document.getElementById(id).value;
+    if (!val) { showFeedback(fbId, 'hint', 'Please choose an option first.'); return; }
+    const ok = val === correctVal;
+    showFeedback(fbId, ok ? 'correct' : 'wrong', ok ? correctMsg : wrongMsg);
+    recordAnswer(fbId, ok);
+  }
+
+  function checkDoubleSelect(id1, val1, id2, val2, fbId, correctMsg, wrongMsg) {
+    const v1 = document.getElementById(id1).value;
+    const v2 = document.getElementById(id2).value;
+    if (!v1 || !v2) { showFeedback(fbId, 'hint', 'Please choose both blanks first.'); return; }
+    const ok = v1 === val1 && v2 === val2;
+    showFeedback(fbId, ok ? 'correct' : 'wrong', ok ? correctMsg : wrongMsg);
+    recordAnswer(fbId, ok);
+  }
+
+  function checkMemoryVerse() {
+    const v1 = document.getElementById('mv1').value;
+    const v2 = document.getElementById('mv2').value;
+    const v3 = document.getElementById('mv3').value;
+    if (!v1 || !v2 || !v3) { showFeedback('fb-mv', 'hint', 'Please choose all three blanks.'); return; }
+    const ok = v1 === 'image' && v2 === 'created' && v3 === 'them';
+    showFeedback('fb-mv', ok ? 'correct' : 'wrong',
+      ok ? 'Correct! "…in his own <strong>image</strong>…he <strong>created</strong> them…he created <strong>them</strong>."' :
+           'Not quite. Read Genesis 1:27 carefully and try again.');
+    recordAnswer('fb-mv', ok);
+  }
+
+  function normalizeText(text) {
+    return text.replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
+  }
+  function getEditableText(id) {
+    const el = document.getElementById(id);
+    return normalizeText(el.innerText || el.textContent || '');
+  }
+
+  function checkSentence() {
+    const correct = 'Yehovah made Adam and Chavah in his image.';
+    const input = getEditableText('sentence-input');
+    if (!input || input.length < 5) { showFeedback('fb-sentence', 'hint', 'Tap into the line and correct the sentence first.'); return; }
+    if (input === correct) { showFeedback('fb-sentence', 'correct', 'Perfect! Correct capitalization and punctuation.'); recordAnswer('fb-sentence', true); return; }
+    const issues = [];
+    if (!input.includes('Yehovah')) issues.push('capitalize "Yehovah"');
+    if (!input.includes('Adam')) issues.push('capitalize "Adam"');
+    if (!input.includes('Chavah')) issues.push('capitalize "Chavah"');
+    if (!input.endsWith('.')) issues.push('add a period at the end');
+    showFeedback('fb-sentence', 'wrong', issues.length ? 'Almost — check: ' + issues.join('; ') + '.' : 'Very close — compare carefully with the model sentence.');
+    recordAnswer('fb-sentence', false);
+  }
+
+  function checkParagraph() {
+    const correct = 'Adam and Chavah were given a command in the garden, but they disobeyed. After that, they hid from Yehovah and blamed others. Cain later became angry and killed his brother.';
+    const input = getEditableText('paragraph-input');
+    if (!input || input.length < 10) { showFeedback('fb-paragraph', 'hint', 'Tap into the paragraph and edit it first.'); return; }
+    if (input === correct) { showFeedback('fb-paragraph', 'correct', 'Excellent! Correct capitals, commas, and sentence breaks throughout.'); recordAnswer('fb-paragraph', true); return; }
+    const issues = [];
+    if (!input.includes('Adam')) issues.push('capitalize Adam');
+    if (!input.includes('Chavah')) issues.push('capitalize Chavah');
+    if (!input.includes('Yehovah')) issues.push('capitalize Yehovah');
+    if (!input.includes('Cain')) issues.push('capitalize Cain');
+    if (!input.includes(', but')) issues.push('add a comma before "but"');
+    const sentences = input.split(/[.!?]+/).filter(s => s.trim().length > 0);
+    if (sentences.length < 3) issues.push('break the paragraph into three sentences');
+    showFeedback('fb-paragraph', 'wrong', issues.length ? 'Still needs work: ' + issues.join('; ') + '.' : 'Very close — compare carefully with the model.');
+    recordAnswer('fb-paragraph', false);
+  }
+
+  function showSummary() {
+    const card = document.getElementById('summaryCard');
+    const attempted = gradedIds.filter(id => id in questionState).length;
+    const mastered = gradedIds.filter(id => questionState[id] === true).length;
+    const studentName = getEditableText('student-name-input');
+    card.classList.add('visible');
+    document.getElementById('summaryStudentName').textContent = studentName || 'Not entered';
+    document.getElementById('summaryDisplay').textContent = `${mastered} / ${gradedIds.length}`;
+    document.getElementById('summaryLabel').textContent = `${attempted} attempted · ${mastered} mastered`;
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  // Touch-friendly tooltip toggle for mobile
+  document.addEventListener('click', function(e) {
+    const tw = e.target.closest('.tooltip-word');
+    document.querySelectorAll('.tooltip-word.tip-open').forEach(el => {
+      if (el !== tw) el.classList.remove('tip-open');
+    });
+    if (tw) { tw.classList.toggle('tip-open'); e.stopPropagation(); }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Genesis 21–25 Lesson</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --parchment: #f5f0e8;
+      --parchment-dark: #e8e0cc;
+      --parchment-mid: #ede6d6;
+      --ink: #1e1a13;
+      --ink-light: #4a4234;
+      --ink-faint: #7a6f5e;
+      --accent: #8b4513;
+      --accent-light: #c0703a;
+      --accent-pale: #f5e8dc;
+      --gold: #c49a2a;
+      --gold-pale: #fdf7e6;
+      --green-correct: #2d6a3f;
+      --green-correct-pale: #e8f5ec;
+      --red-wrong: #8b2020;
+      --red-wrong-pale: #fdf0f0;
+      --radius: 10px;
+      --shadow: 0 2px 12px rgba(30,26,19,0.10);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: var(--parchment);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.65;
+    }
+
+    header {
+      background: var(--ink);
+      color: var(--parchment);
+      padding: 36px 24px 28px;
+      text-align: center;
+      border-bottom: 4px solid var(--gold);
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 18px,
+        rgba(196,154,42,0.04) 18px,
+        rgba(196,154,42,0.04) 36px
+      );
+      pointer-events: none;
+    }
+    header h1 {
+      font-family: 'Lora', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--parchment-dark);
+      font-size: 0.95rem;
+      margin-top: 4px;
+    }
+    header strong { color: var(--gold); }
+
+    .memory-verse-box {
+      display: inline-block;
+      margin-top: 18px;
+      background: rgba(196,154,42,0.12);
+      border: 1px solid rgba(196,154,42,0.35);
+      border-radius: var(--radius);
+      padding: 12px 22px;
+      max-width: 560px;
+    }
+    .memory-verse-box .label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+    .memory-verse-box blockquote {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--parchment);
+      line-height: 1.55;
+    }
+
+    .progress-bar-wrap {
+      background: var(--parchment-dark);
+      height: 6px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--gold);
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--parchment-dark);
+      border-radius: var(--radius);
+      padding: 24px 26px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--parchment-dark);
+    }
+    .card-icon {
+      width: 32px; height: 32px;
+      background: var(--ink);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .card h2 {
+      font-family: 'Lora', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.01em;
+    }
+    .card-number {
+      margin-left: auto;
+      font-size: 0.75rem;
+      color: var(--ink-faint);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .learn-body p { margin-bottom: 12px; }
+    .learn-body p:last-child { margin-bottom: 0; }
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    @media (max-width: 480px) { .concept-grid { grid-template-columns: 1fr; } }
+    .concept-box {
+      background: var(--parchment-mid);
+      border-radius: 8px;
+      padding: 12px 14px;
+      border-left: 3px solid var(--gold);
+    }
+    .concept-box strong {
+      display: block;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .concept-box p { font-size: 0.92rem; color: var(--ink-light); margin: 0; }
+
+    .question {
+      margin: 14px 0;
+      padding: 14px 16px;
+      background: var(--parchment);
+      border-radius: 8px;
+      border: 1px solid var(--parchment-dark);
+    }
+    .question p.q-text {
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 10px;
+      font-size: 0.97rem;
+    }
+    .question label {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 6px 0;
+      cursor: pointer;
+      font-size: 0.95rem;
+      color: var(--ink-light);
+      border-radius: 6px;
+    }
+    .question label input { margin-top: 3px; accent-color: var(--accent); flex-shrink: 0; }
+    .question label:hover { color: var(--ink); }
+
+    select {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 7px 10px;
+      font-family: inherit;
+      font-size: 0.93rem;
+      background: #fff;
+      color: var(--ink);
+      cursor: pointer;
+      margin-top: 4px;
+    }
+    select:focus { outline: 2px solid var(--gold); }
+
+    textarea {
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 0.93rem;
+      color: var(--ink);
+      background: #fff;
+      resize: vertical;
+      margin-top: 6px;
+      line-height: 1.6;
+    }
+    textarea:focus { outline: 2px solid var(--gold); border-color: transparent; }
+
+    .editable-line, .editable-block {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 12px;
+      background: #fff;
+      color: var(--ink);
+      line-height: 1.7;
+      margin-top: 8px;
+    }
+    .editable-line { min-height: 48px; }
+    .editable-block { min-height: 140px; }
+    .editable-line[contenteditable="true"], .editable-block[contenteditable="true"] {
+      cursor: text;
+    }
+    .editable-line:focus, .editable-block:focus {
+      outline: 2px solid var(--gold);
+      border-color: transparent;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      padding: 8px 18px;
+      border: 1.5px solid var(--ink);
+      border-radius: 8px;
+      background: var(--ink);
+      color: var(--parchment);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      transition: background 0.15s, color 0.15s;
+    }
+    .btn:hover { background: var(--accent); border-color: var(--accent); }
+    .btn-outline {
+      background: transparent;
+      color: var(--ink);
+    }
+    .btn-outline:hover { background: var(--ink); color: var(--parchment); }
+
+    .feedback {
+      display: none;
+      margin-top: 10px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .feedback.correct {
+      display: block;
+      background: var(--green-correct-pale);
+      color: var(--green-correct);
+      border: 1px solid #b2dfc0;
+    }
+    .feedback.wrong {
+      display: block;
+      background: var(--red-wrong-pale);
+      color: var(--red-wrong);
+      border: 1px solid #f5c0c0;
+    }
+    .feedback.hint {
+      display: block;
+      background: var(--gold-pale);
+      color: #7a5a10;
+      border: 1px solid #e8d08a;
+    }
+
+    .word-bank {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .word-chip {
+      padding: 4px 12px;
+      background: var(--parchment-mid);
+      border: 1px solid var(--parchment-dark);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      color: var(--ink-light);
+      font-style: italic;
+    }
+
+    .vocab-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .vocab-card {
+      background: var(--parchment);
+      border: 1px solid var(--parchment-dark);
+      border-left: 4px solid var(--gold);
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+    .vocab-word {
+      font-family: serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .vocab-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      background: var(--ink);
+      color: var(--gold);
+      border-radius: 4px;
+      padding: 1px 6px;
+      margin: 4px 0 5px;
+    }
+    .vocab-meaning {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 0.97rem;
+      display: block;
+      margin-bottom: 3px;
+    }
+    .vocab-note {
+      font-size: 0.83rem;
+      color: var(--ink-light);
+    }
+
+    .vocab-quiz-item {
+      background: var(--parchment);
+      border: 1px solid var(--parchment-dark);
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+    }
+    .vocab-quiz-item .word-label {
+      font-family: serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .vocab-quiz-item .lang-badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      background: var(--ink);
+      color: var(--gold);
+      border-radius: 4px;
+      padding: 1px 6px;
+      margin-bottom: 8px;
+    }
+    .vocab-quiz-item select {
+      display: block;
+      width: 100%;
+      margin-bottom: 0;
+    }
+
+    .action-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 16px;
+    }
+    .btn-print { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+    .btn-print:hover { background: #a07e1a; border-color: #a07e1a; color: #fff; }
+
+    @media print {
+      .progress-bar-wrap, .action-bar, button, .btn { display: none !important; }
+      header { background: #fff !important; color: #000 !important; border: 2px solid #000; }
+      header h1, header strong { color: #000 !important; }
+      header p { color: #333 !important; }
+      .memory-verse-box { background: #f5f5f5 !important; border: 1px solid #ccc !important; }
+      .memory-verse-box .label { color: #555 !important; }
+      .memory-verse-box blockquote { color: #000 !important; }
+      body { background: #fff; font-size: 13px; }
+      .card { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; margin-bottom: 14px; }
+      .feedback { display: block !important; }
+      .feedback.correct { background: #e8f5ec !important; color: #1a4a28 !important; border: 1px solid #aad4b8; }
+      .feedback.wrong { background: #fdf0f0 !important; color: #6b1a1a !important; border: 1px solid #f5b8b8; }
+      .feedback.hint { display: none !important; }
+      .section-label { color: #555; }
+      .section-label::after { background: #ccc; }
+      .summary-card { display: block !important; background: #f5f5f5 !important; color: #000 !important; border: 2px solid #000; }
+      .summary-card h2 { color: #000 !important; }
+      .summary-number { color: #333 !important; }
+    }
+
+    .summary-card {
+      display: none;
+      text-align: center;
+      padding: 32px 24px;
+      background: var(--ink);
+      color: var(--parchment);
+      border-radius: var(--radius);
+      margin-top: 24px;
+    }
+    .summary-card.visible { display: block; }
+    .summary-card h2 {
+      font-family: 'Lora', serif;
+      font-size: 1.5rem;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .summary-number {
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      margin: 14px 0;
+    }
+    .summary-label { font-size: 0.9rem; color: var(--parchment-dark); }
+
+    .section-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--ink-faint);
+      margin-bottom: 18px;
+      margin-top: 32px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--parchment-dark);
+    }
+  </style>
+</head>
+<body>
+
+<div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressBar"></div></div>
+
+<header>
+  <h1>Genesis 21–25</h1>
+  <p><strong>Today’s Reading:</strong> Genesis 21–25</p>
+  <p><strong>Themes:</strong> Isaac · Testing · Provision · Covenant Line</p>
+  <div class="memory-verse-box">
+    <div class="label">Memory Verse</div>
+    <blockquote>
+      "So Elohim created mankind in his own image, in the image of Elohim he created them; male and female he created them."
+    </blockquote>
+    <p style="font-size:0.78rem;color:var(--gold);margin-top:6px;">— Genesis 1:27</p>
+  </div>
+</header>
+
+<main>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">👤</div>
+      <h2>Student Name</h2>
+      <span class="card-number">Identification</span>
+    </div>
+    <div class="question">
+      <p class="q-text">Type your name below. It will appear on the printed summary.</p>
+      <div id="student-name-input" class="editable-line" contenteditable="true" aria-label="Student name"></div>
+    </div>
+  </div>
+
+  <div class="section-label">Part 1</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📖</div>
+      <h2>Learn</h2>
+      <span class="card-number">Background</span>
+    </div>
+    <div class="learn-body">
+      <p>Genesis 21–25 centers on Isaac&apos;s birth, Abraham&apos;s testing, Sarah&apos;s death, and the next step in the covenant line through Rebekah. These chapters show Yehovah keeping his word and providing what is needed at each stage.</p>
+      <p>Genesis 21 begins with the birth of Isaac, the long-promised son. What Yehovah promised, He did. The chapter also includes Hagar and Ishmael again, reminding us that Yehovah sees affliction and cares for those in distress even when family situations are painful.</p>
+      <p>Genesis 22 is one of the most serious chapters in the Torah. Abraham is tested concerning Isaac, and Yehovah provides the ram. The chapter teaches trust, reverence, and provision. Abraham does not treat the command lightly, and Yehovah does not abandon him.</p>
+      <p>Genesis 23–24 slow down to show covenant faithfulness in ordinary life as well: burial, inheritance concerns, and the careful search for a wife for Isaac. These details matter because the covenant line moves through real families, real decisions, and real acts of faithfulness.</p>
+      <p>Genesis 25 closes Abraham&apos;s life and moves the story toward Isaac and the next generation. Scripture keeps showing that the covenant line is preserved by Yehovah&apos;s faithfulness, not by human strength alone.</p>
+      <div class="concept-grid">
+        <div class="concept-box">
+          <strong>Promise Fulfilled</strong>
+          <p>Isaac&apos;s birth shows that Yehovah keeps His word, even after long waiting.</p>
+        </div>
+        <div class="concept-box">
+          <strong>Testing Reveals Trust</strong>
+          <p>Genesis 22 does not present a casual moment. Abraham is tested, and his response shows reverence and trust in Yehovah.</p>
+        </div>
+        <div class="concept-box">
+          <strong>Yehovah Provides</strong>
+          <p>At the mountain, Yehovah provides what is needed. His provision is part of the lesson, not a minor detail.</p>
+        </div>
+        <div class="concept-box">
+          <strong>Covenant in Daily Life</strong>
+          <p>Genesis 23–24 show that burial, marriage, and household decisions matter inside the covenant story.</p>
+        </div>
+        <div class="concept-box">
+          <strong>The Line Continues</strong>
+          <p>These chapters move the story from Abraham toward Isaac and the next generation without breaking Yehovah&apos;s promise.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:22px;">
+        <p style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--ink-faint);font-weight:600;margin-bottom:10px;">Hebrew &amp; Latin — Vocabulary Reference</p>
+        <div class="vocab-grid">
+          <div class="vocab-card">
+            <div class="vocab-word">Bereshit (בְּרֵאשִׁית)</div>
+            <span class="vocab-tag">Hebrew</span>
+            <span class="vocab-meaning">In the beginning</span>
+            <span class="vocab-note">Genesis 1:1 — the very first word of Scripture and the Hebrew title of the whole book</span>
+          </div>
+          <div class="vocab-card">
+            <div class="vocab-word">Yitzchak (יִצְחָק)</div>
+            <span class="vocab-tag">Hebrew</span>
+            <span class="vocab-meaning">Isaac / he laughs</span>
+            <span class="vocab-note">Genesis 21 — Isaac&apos;s name keeps connected with the laughter surrounding the promised birth</span>
+          </div>
+          <div class="vocab-card">
+            <div class="vocab-word">Yireh (יִרְאֶה)</div>
+            <span class="vocab-tag">Hebrew</span>
+            <span class="vocab-meaning">He will provide / he will see</span>
+            <span class="vocab-note">Genesis 22:14 — Abraham names the place around Yehovah&apos;s provision</span>
+          </div>
+          <div class="vocab-card">
+            <div class="vocab-word">Lux</div>
+            <span class="vocab-tag">Latin</span>
+            <span class="vocab-meaning">Light</span>
+            <span class="vocab-note">The week&apos;s Latin root from the plan; light remains a fitting image as Yehovah guides the covenant line</span>
+          </div>
+          <div class="vocab-card">
+            <div class="vocab-word">Testamentum</div>
+            <span class="vocab-tag">Latin</span>
+            <span class="vocab-meaning">Covenant / solemn arrangement</span>
+            <span class="vocab-note">A useful Latin word when thinking about inheritance, promises, and covenant continuity</span>
+          </div>
+        </div>
+        <p style="font-size:0.82rem;color:var(--ink-faint);margin-top:10px;">Study these before the Hebrew &amp; Latin quiz below.</p>
+        <p style="font-size:0.82rem;color:var(--ink-faint);margin-top:8px;">Word study tip: as you read, look up key words in the BLB app or in a Strong&apos;s concordance book. That can help you trace ideas like provision, testing, and covenant continuity more carefully through the passage.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Part 2</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔍</div>
+      <h2>Notice</h2>
+      <span class="card-number">Observation</span>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Which details belong to Genesis 21–25? (Select all that apply.)</p>
+      <label><input type="checkbox" class="chk-notice1" value="a"> Isaac is born</label>
+      <label><input type="checkbox" class="chk-notice1" value="b"> Abraham is tested concerning Isaac</label>
+      <label><input type="checkbox" class="chk-notice1" value="c"> The ten plagues strike Egypt</label>
+      <label><input type="checkbox" class="chk-notice1" value="d"> Rebekah becomes Isaac&apos;s wife</label>
+      <button class="btn" onclick="checkCheckboxes('chk-notice1', ['a','b','d'], 'fb-notice1',
+        'Correct. Isaac&apos;s birth, Abraham&apos;s testing, and Rebekah&apos;s marriage to Isaac all belong here. The plagues belong in Exodus.',
+        'Not quite. Choose the details that belong to Genesis 21–25.')">Check</button>
+      <div class="feedback" id="fb-notice1"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">What does Genesis 22 especially emphasize?</p>
+      <label><input type="radio" name="q-cain"> Yehovah tests Abraham and provides what is needed</label>
+      <label><input type="radio" name="q-cain"> Yehovah gives manna in the wilderness</label>
+      <label><input type="radio" name="q-cain"> Yehovah parts the Jordan River</label>
+      <button class="btn" onclick="checkRadio('q-cain', 0, 'fb-cain',
+        'Correct. Genesis 22 is a testing chapter, and Yehovah&apos;s provision is central to it.',
+        'Look again at the mountain account. Testing and provision are the key themes.')">Check</button>
+      <div class="feedback" id="fb-cain"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Why do Genesis 23–24 matter in the story?</p>
+      <label><input type="radio" name="q-gen5"> They show covenant faithfulness in burial, inheritance, and marriage within the covenant line</label>
+      <label><input type="radio" name="q-gen5"> They pause the story with details that do not matter</label>
+      <label><input type="radio" name="q-gen5"> They describe Israel&apos;s exile to Babylon</label>
+      <button class="btn" onclick="checkRadio('q-gen5', 0, 'fb-gen5',
+        'Correct. These chapters show that everyday covenant decisions matter in Scripture&apos;s storyline.',
+        'Not quite. The burial of Sarah and the marriage of Isaac are important parts of covenant continuity.')">Check</button>
+      <div class="feedback" id="fb-gen5"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">✦</div>
+      <h2>Memory Verse</h2>
+      <span class="card-number">Genesis 1:27</span>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Fill in the blanks. Genesis 1:27 — "So Elohim created mankind in his own <strong>___</strong>, in the image of Elohim he <strong>___</strong> them; male and female he created <strong>___</strong>."</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;">
+        <div>
+          <label style="font-size:0.82rem;color:var(--ink-faint);display:block;margin-bottom:4px;">First blank:</label>
+          <select id="mv1">
+            <option value="">Choose</option>
+            <option>image</option>
+            <option>name</option>
+            <option>form</option>
+          </select>
+        </div>
+        <div>
+          <label style="font-size:0.82rem;color:var(--ink-faint);display:block;margin-bottom:4px;">Second blank:</label>
+          <select id="mv2">
+            <option value="">Choose</option>
+            <option>blessed</option>
+            <option>created</option>
+            <option>named</option>
+          </select>
+        </div>
+        <div>
+          <label style="font-size:0.82rem;color:var(--ink-faint);display:block;margin-bottom:4px;">Third blank:</label>
+          <select id="mv3">
+            <option value="">Choose</option>
+            <option>him</option>
+            <option>us</option>
+            <option>them</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" onclick="checkMemoryVerse()">Check</button>
+      <div class="feedback" id="fb-mv"></div>
+    </div>
+  </div>
+
+  <div class="section-label">Part 3</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📝</div>
+      <h2>Words</h2>
+      <span class="card-number">Vocabulary</span>
+    </div>
+
+    <div class="word-bank">
+      <span class="word-chip">provision</span>
+      <span class="word-chip">promise</span>
+      <span class="word-chip">tested</span>
+      <span class="word-chip">inheritance</span>
+      <span class="word-chip">wife</span>
+    </div>
+
+    <div class="question">
+      <p class="q-text">1. In Genesis 22, Yehovah provides what is needed, showing His ______.</p>
+      <select id="voc1">
+        <option value="">Choose</option>
+        <option>provision</option>
+        <option>promise</option>
+        <option>tested</option>
+        <option>inheritance</option>
+        <option>wife</option>
+      </select>
+      <button class="btn btn-outline" onclick="checkSelect('voc1','provision','fb-voc1',
+        'Correct. The mountain account highlights Yehovah&apos;s provision.',
+        'Not quite. Look for the word that fits what Yehovah does on the mountain.')">Check</button>
+      <div class="feedback" id="fb-voc1"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">2. Isaac is the son of ______, and Rebekah becomes his ______.</p>
+      <select id="voc2a" style="margin-right:8px;">
+        <option value="">First blank</option>
+        <option>promise</option>
+        <option>judgment</option>
+        <option>fear</option>
+      </select>
+      <select id="voc2b">
+        <option value="">Second blank</option>
+        <option>wife</option>
+        <option>altar</option>
+        <option>city</option>
+      </select>
+      <button class="btn btn-outline" onclick="checkDoubleSelect('voc2a','promise','voc2b','wife','fb-voc2',
+        'Correct. Isaac is the son of promise, and Rebekah becomes his wife in Genesis 24.',
+        'Not quite. Think about Isaac&apos;s place in the covenant line and what Genesis 24 is about.')">Check</button>
+      <div class="feedback" id="fb-voc2"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">3. Choose the correct spelling:</p>
+      <label><input type="radio" name="spell1"> inheritance</label>
+      <label><input type="radio" name="spell1"> inheritence</label>
+      <label><input type="radio" name="spell1"> inheretance</label>
+      <button class="btn btn-outline" onclick="checkRadio('spell1', 0, 'fb-spell1',
+        'Correct — <em>inheritance</em>.',
+        'Look again at the middle vowels in the word.')">Check</button>
+      <div class="feedback" id="fb-spell1"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">✏️</div>
+      <h2>English</h2>
+      <span class="card-number">Grammar &amp; Writing</span>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Sentence correction: Tap in the line below and change the capitalization and punctuation.</p>
+      <p style="font-size:0.82rem;color:var(--ink-faint);margin-bottom:8px;">Hint: Proper nouns and sentence starts need capitals. Don't forget the period.</p>
+      <div id="sentence-input" class="editable-line" contenteditable="true">yehovah provided for abraham on the mountain</div>
+      <button class="btn" onclick="checkSentence()">Check</button>
+      <div class="feedback" id="fb-sentence"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Paragraph editing: Tap in the paragraph below and add correct capitalization, commas, and sentence breaks.</p>
+      <p style="font-size:0.82rem;color:var(--ink-faint);margin-bottom:8px;">Hint: Three separate sentences are needed. Proper names should be capitalized. Introductory phrases often need a comma.</p>
+      <div id="paragraph-input" class="editable-block" contenteditable="true">isaac was born just as yehovah promised later abraham was tested on the mountain and yehovah provided after sarahs death rebekah became isaacs wife</div>
+      <button class="btn" onclick="checkParagraph()">Check</button>
+      <div class="feedback" id="fb-paragraph"></div>
+    </div>
+  </div>
+
+  <div class="section-label">Part 4</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">𐤀</div>
+      <h2>Hebrew &amp; Latin</h2>
+      <span class="card-number">Language</span>
+    </div>
+
+    <p style="font-size:0.85rem;color:var(--ink-faint);margin-bottom:14px;">Use the reference cards in the Learn section above if you need to look up a word.</p>
+
+    <div class="vocab-quiz-item">
+      <div class="word-label">Bereshit (בְּרֵאשִׁית)</div>
+      <span class="lang-badge">Hebrew</span>
+      <select id="heb1">
+        <option value="">What does this word mean?</option>
+        <option>In the beginning</option>
+        <option>Light</option>
+        <option>Man</option>
+        <option>Created</option>
+      </select>
+      <button class="btn btn-outline" style="margin-top:10px;" onclick="checkSelect('heb1','In the beginning','fb-heb1','Correct. Bereshit is also the Hebrew title for the entire book of Genesis.','Not quite. This is the very first word of Scripture.')">Check</button>
+      <div class="feedback" id="fb-heb1"></div>
+    </div>
+
+    <div class="vocab-quiz-item">
+      <div class="word-label">Yireh (יִרְאֶה)</div>
+      <span class="lang-badge">Hebrew</span>
+      <select id="heb2">
+        <option value="">What does this word mean?</option>
+        <option>He will provide</option>
+        <option>Confusion</option>
+        <option>Inheritance</option>
+        <option>Marriage</option>
+      </select>
+      <button class="btn btn-outline" style="margin-top:10px;" onclick="checkSelect('heb2','He will provide','fb-heb2','Correct. Yireh points to Yehovah&apos;s provision in Genesis 22.','Not quite. This word is tied to the mountain where Yehovah provides.')">Check</button>
+      <div class="feedback" id="fb-heb2"></div>
+    </div>
+
+    <div class="vocab-quiz-item">
+      <div class="word-label">Lux</div>
+      <span class="lang-badge">Latin</span>
+      <select id="lat1">
+        <option value="">What does this word mean?</option>
+        <option>Light</option>
+        <option>Earth</option>
+        <option>Life</option>
+        <option>Water</option>
+      </select>
+      <button class="btn btn-outline" style="margin-top:10px;" onclick="checkSelect('lat1','Light','fb-lat1','Correct. Latin lux = light. You can see it in words like lucid and illuminate.','Not quite. Think about the first thing Elohim creates on day one.')">Check</button>
+      <div class="feedback" id="fb-lat1"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🌿</div>
+      <h2>History &amp; Science</h2>
+      <span class="card-number">Context</span>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Where do Genesis 21–25 belong in the biblical timeline?</p>
+      <label><input type="radio" name="timeline"> Early in Genesis — still in Abraham and Isaac&apos;s time, long before Moses and the kingdom</label>
+      <label><input type="radio" name="timeline"> During Israel&apos;s wilderness journey after Egypt</label>
+      <label><input type="radio" name="timeline"> During the time of the Israelite kingdom</label>
+      <button class="btn" onclick="checkRadio('timeline', 0, 'fb-timeline',
+        'Correct. These chapters are still early in Genesis during Abraham and Isaac&apos;s time.',
+        'Not quite. These chapters still belong long before Exodus or the monarchy.')">Check</button>
+      <div class="feedback" id="fb-timeline"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Which of the following fit Genesis 21–25? (Select all that apply.)</p>
+      <label><input type="checkbox" class="chk-gen1" value="a"> Isaac&apos;s birth</label>
+      <label><input type="checkbox" class="chk-gen1" value="b"> The testing on the mountain</label>
+      <label><input type="checkbox" class="chk-gen1" value="c"> Rebekah becoming Isaac&apos;s wife</label>
+      <label><input type="checkbox" class="chk-gen1" value="d"> The crossing of the Red Sea</label>
+      <label><input type="checkbox" class="chk-gen1" value="e"> Abraham&apos;s death</label>
+      <button class="btn" onclick="checkCheckboxes('chk-gen1', ['a','b','c','e'], 'fb-gen1',
+        'Correct. All of those belong in Genesis 21–25 except the Red Sea crossing, which comes much later.',
+        'Check again. Choose the details that belong to Isaac&apos;s birth, Abraham&apos;s testing, and the transition to the next generation.')">Check</button>
+      <div class="feedback" id="fb-gen1"></div>
+    </div>
+  </div>
+
+  <div class="section-label">Part 5</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">◉</div>
+      <h2>Review</h2>
+      <span class="card-number">Summary</span>
+    </div>
+
+    <div class="question">
+      <p class="q-text">What does Genesis 22 show about Yehovah?</p>
+      <label><input type="radio" name="review1"> He tests with purpose and provides what is needed</label>
+      <label><input type="radio" name="review1"> He forgets His promises</label>
+      <label><input type="radio" name="review1"> He stops caring about the covenant line</label>
+      <button class="btn" onclick="checkRadio('review1', 0, 'fb-review1',
+        'Correct. The mountain account highlights both testing and provision.',
+        'Not quite. Read Genesis 22 again and notice what Yehovah does at the decisive moment.')">Check</button>
+      <div class="feedback" id="fb-review1"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">What do Genesis 21–25 teach about covenant faithfulness?</p>
+      <label><input type="radio" name="review2"> That Yehovah keeps His word and guides the covenant line through birth, testing, provision, and family decisions</label>
+      <label><input type="radio" name="review2"> That only dramatic miracles matter, not ordinary faithfulness</label>
+      <label><input type="radio" name="review2"> That the covenant line no longer matters after Isaac is born</label>
+      <button class="btn" onclick="checkRadio('review2', 0, 'fb-review2',
+        'Correct. These chapters show Yehovah&apos;s faithfulness in both major tests and ordinary covenant decisions.',
+        'Not quite. These chapters keep showing that ordinary covenant faithfulness matters deeply.')">Check</button>
+      <div class="feedback" id="fb-review2"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Short response (optional): Pick only one of the prompts below if assigned.</p>
+      <textarea rows="4" placeholder="Option 1: In 1–3 sentences, explain what Genesis 22 teaches about Abraham, Isaac, and Yehovah&apos;s provision."></textarea>
+      <textarea rows="4" placeholder="Option 2: What do Genesis 21–25 teach about trusting Yehovah when you do not yet see the whole outcome?" style="margin-top:10px;"></textarea>
+      <p style="font-size:0.82rem;color:var(--ink-faint);margin-top:8px;">On regular lesson days, complete only one if your teacher assigns it. These response boxes will not appear in every lesson.</p>
+    </div>
+
+    <div style="text-align:center;margin-top:20px;">
+      <button class="btn" style="padding:12px 32px;font-size:1rem;" onclick="showSummary()">See My Summary</button>
+    </div>
+  </div>
+
+  <div class="summary-card" id="summaryCard">
+    <h2>Lesson Summary</h2>
+    <p style="margin-top:10px;font-size:0.95rem;color:var(--ink-light);"><strong>Student:</strong> <span id="summaryStudentName">—</span></p>
+    <div class="summary-number" id="summaryDisplay">–</div>
+    <div class="summary-label">mastery on auto-checked sections</div>
+    <p style="margin-top:18px;color:var(--parchment-dark);font-size:0.9rem;">Review any missed questions above, then save your work as a PDF.</p>
+
+    <div class="action-bar" style="margin-top:24px;">
+      <button class="btn btn-print" onclick="window.print()" style="padding:11px 22px;">🖨 Print / Save as PDF</button>
+    </div>
+    <p style="font-size:0.78rem;color:var(--parchment-dark);margin-top:12px;">
+      <strong>To save as PDF:</strong> tap Print, then choose “Save as PDF” or pinch outward on the print preview and save to Files.<br>
+      <strong>To email it:</strong> save the PDF first, then attach that PDF to an email. If it is not saved on your USB storage or Files location yet, save it before sending.
+    </p>
+  </div>
+</main>
+
+<script>
+  const questionState = {};
+  const gradedQuestionIds = [
+    'fb-notice1',
+    'fb-cain',
+    'fb-gen5',
+    'fb-mv',
+    'fb-voc1',
+    'fb-voc2',
+    'fb-spell1',
+    'fb-sentence',
+    'fb-paragraph',
+    'fb-heb1',
+    'fb-heb2',
+    'fb-lat1',
+    'fb-timeline',
+    'fb-gen1',
+    'fb-review1',
+    'fb-review2'
+  ];
+
+  function updateProgress() {
+    const attempted = gradedQuestionIds.filter(id => id in questionState).length;
+    const pct = Math.round((attempted / gradedQuestionIds.length) * 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+  }
+
+  function recordAnswer(id, correct) {
+    questionState[id] = !!correct;
+    updateProgress();
+  }
+
+  function getSummaryCounts() {
+    const attempted = gradedQuestionIds.filter(id => id in questionState).length;
+    const mastered = gradedQuestionIds.filter(id => questionState[id] === true).length;
+    return { attempted, mastered, total: gradedQuestionIds.length };
+  }
+
+  function showFeedback(id, type, html) {
+    const el = document.getElementById(id);
+    el.className = 'feedback ' + type;
+    el.innerHTML = (type === 'correct' ? '✓ ' : type === 'wrong' ? '✗ ' : '💡 ') + html;
+  }
+
+  function checkRadio(name, correctIndex, fbId, correctMsg, wrongMsg) {
+    const radios = document.querySelectorAll(`input[name="${name}"]`);
+    let selected = -1;
+    radios.forEach((r, i) => { if (r.checked) selected = i; });
+    if (selected === -1) { showFeedback(fbId, 'hint', 'Please select an answer first.'); return; }
+    const isCorrect = selected === correctIndex;
+    showFeedback(fbId, isCorrect ? 'correct' : 'wrong', isCorrect ? correctMsg : wrongMsg);
+    recordAnswer(fbId, isCorrect);
+  }
+
+  function checkCheckboxes(cls, correctValues, fbId, correctMsg, wrongMsg) {
+    const boxes = document.querySelectorAll('.' + cls);
+    const selected = [];
+    boxes.forEach(b => { if (b.checked) selected.push(b.value); });
+    if (selected.length === 0) { showFeedback(fbId, 'hint', 'Select at least one answer.'); return; }
+    const sortedSel = [...selected].sort().join(',');
+    const sortedCor = [...correctValues].sort().join(',');
+    const isCorrect = sortedSel === sortedCor;
+    showFeedback(fbId, isCorrect ? 'correct' : 'wrong', isCorrect ? correctMsg : wrongMsg);
+    recordAnswer(fbId, isCorrect);
+  }
+
+  function checkSelect(id, correctVal, fbId, correctMsg, wrongMsg) {
+    const val = document.getElementById(id).value;
+    if (!val) { showFeedback(fbId, 'hint', 'Please choose an option first.'); return; }
+    const isCorrect = val === correctVal;
+    showFeedback(fbId, isCorrect ? 'correct' : 'wrong', isCorrect ? correctMsg : wrongMsg);
+    recordAnswer(fbId, isCorrect);
+  }
+
+  function checkDoubleSelect(id1, val1, id2, val2, fbId, correctMsg, wrongMsg) {
+    const v1 = document.getElementById(id1).value;
+    const v2 = document.getElementById(id2).value;
+    if (!v1 || !v2) { showFeedback(fbId, 'hint', 'Please choose both blanks first.'); return; }
+    const isCorrect = v1 === val1 && v2 === val2;
+    showFeedback(fbId, isCorrect ? 'correct' : 'wrong', isCorrect ? correctMsg : wrongMsg);
+    recordAnswer(fbId, isCorrect);
+  }
+
+  function checkMemoryVerse() {
+    const v1 = document.getElementById('mv1').value;
+    const v2 = document.getElementById('mv2').value;
+    const v3 = document.getElementById('mv3').value;
+    if (!v1 || !v2 || !v3) { showFeedback('fb-mv', 'hint', 'Please choose all three blanks.'); return; }
+    const isCorrect = v1 === 'image' && v2 === 'created' && v3 === 'them';
+    showFeedback('fb-mv', isCorrect ? 'correct' : 'wrong',
+      isCorrect ? 'Correct! “…in his own <strong>image</strong>…he <strong>created</strong> them…he created <strong>them</strong>.”' :
+      'Not quite. Read Genesis 1:27 carefully and try again.');
+    recordAnswer('fb-mv', isCorrect);
+  }
+
+  function normalizeText(text) {
+    return text.replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
+  }
+
+  function getEditableText(id) {
+    const el = document.getElementById(id);
+    return normalizeText(el.innerText || el.textContent || '');
+  }
+
+  function checkSentence() {
+    const correct = 'Yehovah provided for Abraham on the mountain.';
+    const input = getEditableText('sentence-input');
+    if (!input || input.length < 5) { showFeedback('fb-sentence', 'hint', 'Tap into the line and correct the sentence first.'); return; }
+
+    if (input === correct) {
+      showFeedback('fb-sentence', 'correct', 'Perfect! Correct capitalization and punctuation.');
+      recordAnswer('fb-sentence', true);
+      return;
+    }
+
+    const issues = [];
+    if (input[0] !== 'Y') issues.push('capitalize “Yehovah” at the start');
+    if (!input.includes('Yehovah')) issues.push('capitalize “Yehovah”');
+    if (!input.includes('Abraham')) issues.push('capitalize “Abraham”');
+    if (!input.endsWith('.')) issues.push('add a period at the end');
+
+    if (issues.length > 0) {
+      showFeedback('fb-sentence', 'wrong', 'Almost — check: ' + issues.join('; ') + '.');
+    } else {
+      showFeedback('fb-sentence', 'wrong', 'Close — compare your answer carefully with the model sentence.');
+    }
+    recordAnswer('fb-sentence', false);
+  }
+
+  function checkParagraph() {
+    const correct = 'Isaac was born just as Yehovah promised. Later, Abraham was tested on the mountain, and Yehovah provided. After Sarah&apos;s death, Rebekah became Isaac&apos;s wife.';
+    const input = getEditableText('paragraph-input');
+    if (!input || input.length < 10) { showFeedback('fb-paragraph', 'hint', 'Tap into the paragraph and edit it first.'); return; }
+
+    if (input === correct) {
+      showFeedback('fb-paragraph', 'correct', 'Excellent! Correct capitals, commas, and sentence breaks throughout.');
+      recordAnswer('fb-paragraph', true);
+      return;
+    }
+
+    const issues = [];
+    if (!input.includes('Isaac')) issues.push('capitalize Isaac');
+    if (!input.includes('Yehovah')) issues.push('capitalize Yehovah');
+    if (!input.includes('Abraham')) issues.push('capitalize Abraham');
+    if (!input.includes('Rebekah')) issues.push('capitalize Rebekah');
+    if (!input.includes('mountain,')) issues.push('add a comma after “mountain”');
+    if (!input.includes('provided.')) issues.push('end the second sentence with a period');
+    const sentences = input.split(/[.!?]+/).filter(s => s.trim().length > 0);
+    if (sentences.length < 3) issues.push('break the paragraph into three sentences');
+
+    if (issues.length > 0) {
+      showFeedback('fb-paragraph', 'wrong', 'Still needs work: ' + issues.join('; ') + '.');
+    } else {
+      showFeedback('fb-paragraph', 'wrong', 'Very close. Compare carefully with the hints above.');
+    }
+    recordAnswer('fb-paragraph', false);
+  }
+
+  function showSummary() {
+    const card = document.getElementById('summaryCard');
+    const { attempted, mastered, total } = getSummaryCounts();
+    const studentName = getEditableText('student-name-input');
+    card.classList.add('visible');
+    document.getElementById('summaryStudentName').textContent = studentName || 'Not entered';
+    document.getElementById('summaryDisplay').textContent = `${mastered} / ${total}`;
+    document.querySelector('.summary-label').textContent = `${attempted} attempted · ${mastered} mastered`;
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+</script>
+</body>
+</html>

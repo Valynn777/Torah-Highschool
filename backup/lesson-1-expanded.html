@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Genesis 1–5: The Foundation of the Word</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --parchment: #f5f0e8;
+      --parchment-dark: #e8e0cc;
+      --parchment-mid: #ede6d6;
+      --ink: #1e1a13;
+      --ink-light: #4a4234;
+      --ink-faint: #7a6f5e;
+      --accent: #8b4513;
+      --accent-light: #c0703a;
+      --accent-pale: #f5e8dc;
+      --gold: #c49a2a;
+      --gold-pale: #fdf7e6;
+      --green-correct: #2d6a3f;
+      --green-correct-pale: #e8f5ec;
+      --red-wrong: #8b2020;
+      --red-wrong-pale: #fdf0f0;
+      --radius: 10px;
+      --shadow: 0 2px 12px rgba(30,26,19,0.10);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: var(--parchment);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.65;
+    }
+
+    header {
+      background: var(--ink);
+      color: var(--parchment);
+      padding: 36px 24px 28px;
+      text-align: center;
+      border-bottom: 4px solid var(--gold);
+      position: relative;
+    }
+    header h1 { font-family: 'Lora', serif; font-size: 2.2rem; color: var(--gold); margin-bottom: 8px; }
+
+    .memory-verse-box {
+      display: inline-block;
+      margin-top: 18px;
+      background: rgba(196,154,42,0.12);
+      border: 1px solid rgba(196,154,42,0.35);
+      border-radius: var(--radius);
+      padding: 12px 22px;
+      max-width: 560px;
+    }
+
+    .progress-bar-wrap { background: var(--parchment-dark); height: 6px; position: sticky; top: 0; z-index: 100; }
+    .progress-bar-fill { height: 100%; background: var(--gold); width: 0%; transition: width 0.4s ease; }
+
+    main { max-width: 760px; margin: 0 auto; padding: 32px 20px 60px; }
+
+    .card { background: #fff; border: 1px solid var(--parchment-dark); border-radius: var(--radius); padding: 24px 26px; margin-bottom: 24px; box-shadow: var(--shadow); }
+    .card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--parchment-dark); }
+    .card h2 { font-family: 'Lora', serif; font-size: 1.15rem; font-weight: 600; color: var(--ink); }
+
+    .section-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--ink-faint); margin: 32px 0 18px; display: flex; align-items: center; gap: 10px; }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--parchment-dark); }
+
+    /* Interactive Elements */
+    details { background: var(--parchment-mid); padding: 12px; border-radius: 8px; margin-top: 10px; border-left: 3px solid var(--gold); }
+    summary { font-weight: 600; cursor: pointer; color: var(--accent); font-size: 0.9rem; list-style: none; }
+    .concept-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+    @media (max-width: 480px) { .concept-grid { grid-template-columns: 1fr; } }
+    
+    .vocab-grid { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+    .vocab-card { background: var(--parchment); border-left: 4px solid var(--gold); padding: 12px; border-radius: 8px; }
+    .vocab-word { font-family: serif; font-style: italic; font-weight: 700; }
+
+    .question { margin: 14px 0; padding: 14px 16px; background: var(--parchment); border-radius: 8px; border: 1px solid var(--parchment-dark); }
+    .editable-line, .editable-block { border: 1px solid #ccc; border-radius: 8px; padding: 12px; background: #fff; margin-top: 8px; min-height: 48px; }
+
+    .btn { display: inline-flex; align-items: center; padding: 8px 18px; border: 1.5px solid var(--ink); border-radius: 8px; background: var(--ink); color: var(--parchment); cursor: pointer; font-weight: 600; }
+    .btn:hover { background: var(--accent); border-color: var(--accent); }
+
+    .feedback { display: none; margin-top: 10px; padding: 10px 14px; border-radius: 8px; font-size: 0.9rem; }
+    .feedback.correct { display: block; background: var(--green-correct-pale); color: var(--green-correct); }
+    .feedback.wrong { display: block; background: var(--red-wrong-pale); color: var(--red-wrong); }
+    .feedback.hint { display: block; background: var(--gold-pale); color: #7a5a10; }
+
+    .summary-card { display: none; text-align: center; padding: 32px 24px; background: var(--ink); color: var(--parchment); border-radius: var(--radius); margin-top: 24px; }
+    .summary-card.visible { display: block; }
+  </style>
+</head>
+<body>
+
+<div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressBar"></div></div>
+
+<header>
+  <h1>Genesis 1–5</h1>
+  <p><strong>Today’s Reading:</strong> Genesis 1–5 · <strong>Perspective:</strong> The Torah as the Living Word</p>
+  <div class="memory-verse-box">
+    <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--gold); font-weight: 600;">Memory Verse</div>
+    <blockquote style="font-family: 'Lora', serif; font-style: italic; color: var(--parchment);">
+      "So Elohim created mankind in his own image, in the image of Elohim he created them; male and female he created them."
+    </blockquote>
+    <p style="font-size:0.78rem;color:var(--gold);margin-top:6px;">— Genesis 1:27</p>
+  </div>
+</header>
+
+<main>
+  <div class="card">
+    <div class="card-header"><h2>Student Name</h2></div>
+    <div id="student-name-input" class="editable-line" contenteditable="true" aria-label="Student name"></div>
+  </div>
+
+  <div class="section-label">Part 1: The Word in Action</div>
+  <div class="card">
+    <div class="card-header"><h2>Learn: Point & Purpose</h2></div>
+    <div class="learn-body">
+      <p>Genesis 1–5 establishes who Elohim is and reveals the Torah as the framework of all reality. Because Yeshua is the Word made flesh, we see His nature in every creative act.</p>
+      
+      <div class="concept-grid">
+        <div class="concept-box" style="background:var(--parchment-mid); padding:10px; border-radius:8px; border-left:3px solid var(--gold);">
+          <strong>Order & Filling</strong>
+          <p style="font-size:0.9rem;">Elohim first creates "spaces" (Light, Sky, Land) and then "fills" them. Torah is about bringing order to chaos.</p>
+        </div>
+        <div class="concept-box" style="background:var(--parchment-mid); padding:10px; border-radius:8px; border-left:3px solid var(--gold);">
+          <strong>The Presence</strong>
+          <p style="font-size:0.9rem;">Mankind was made to be the Temple of Elohim—a place where the Creator and the created walk together.</p>
+        </div>
+      </div>
+
+      <details>
+        <summary>✦ Commentary: The Meaning of the Fall (Gen 3)</summary>
+        <p style="font-size:0.92rem; margin-top:8px;">The serpent’s goal was to make Adam and Chavah doubt the <em>goodness</em> of the Commandment. Sin is "turning away" from Life. The exile was the natural result of moving away from the Source of Life.</p>
+      </details>
+
+      <div class="vocab-grid">
+        <div class="vocab-card"><span class="vocab-word">Bereshit (בְּרֵאשִׁית)</span> — In the beginning. The very first word of Torah.</div>
+        <div class="vocab-card"><span class="vocab-word">Bara (בָּרָא)</span> — To create. Used only of Elohim's creative power.</div>
+        <div class="vocab-card"><span class="vocab-word">Imago Dei</span> — Latin for "Image of Elohim." Our source of dignity.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Part 2: Observations</div>
+  <div class="card">
+    <div class="question">
+      <p class="q-text">Which of these show <em>order</em> in Genesis 1? (Select all that apply.)</p>
+      <label><input type="checkbox" class="chk-notice1" value="a"> Creation happens in a deliberate sequence</label><br>
+      <label><input type="checkbox" class="chk-notice1" value="b"> Elohim separates light from darkness</label><br>
+      <label><input type="checkbox" class="chk-notice1" value="d"> Mankind is given a specific role and purpose</label><br>
+      <button class="btn" onclick="checkCheckboxes('chk-notice1', ['a','b','d'], 'fb-notice1', 'Correct! Order reflects the character of the Law-Giver.')">Check</button>
+      <div class="feedback" id="fb-notice1"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">In Genesis 4, when does Elohim's warning to Cain occur?</p>
+      <label><input type="radio" name="q-cain"> After the murder</label><br>
+      <label><input type="radio" name="q-cain"> Before the act — giving him a choice to master sin</label><br>
+      <button class="btn" onclick="checkRadio('q-cain', 1, 'fb-cain', 'Correct. Elohim warns before the sin takes hold.')">Check</button>
+      <div class="feedback" id="fb-cain"></div>
+    </div>
+  </div>
+
+  <div class="section-label">Part 3: History & Science</div>
+  <div class="card">
+    <div class="card-header"><h2>Scientific & Historical Context</h2></div>
+    <div class="learn-body">
+      <div class="vocab-card">
+        <strong>The Law of "Kinds" (Biological Order)</strong>
+        <p style="font-size:0.9rem;">Genesis 1 emphasizes life reproducing "after its kind." We see this as genetic boundaries. Elohim built stability into the world so it would be reliable.</p>
+      </div>
+      <div class="vocab-card">
+        <strong>Chronogenealogies (The Science of Time)</strong>
+        <p style="font-size:0.9rem;">Genesis 5 records the decay of human longevity. It provides a physical record of the consequences of the Fall on the human body over centuries.</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">What repeated phrase in Genesis 5 highlights the physical reality of the Fall?</p>
+      <label><input type="radio" name="q-gen5"> "And he built an altar"</label><br>
+      <label><input type="radio" name="q-gen5"> "And he died"</label><br>
+      <button class="btn" onclick="checkRadio('q-gen5', 1, 'fb-gen5', 'Correct. These words underline the solemn reality of sin.')">Check</button>
+      <div class="feedback" id="fb-gen5"></div>
+    </div>
+  </div>
+
+  <div class="section-label">Part 4: Language & Grammar</div>
+  <div class="card">
+    <div class="question">
+      <p class="q-text">Sentence Correction: Fix the capitalization and punctuation.</p>
+      <div id="sentence-input" class="editable-line" contenteditable="true">yehovah made adam and chavah in his image</div>
+      <button class="btn" onclick="checkSentence()">Check</button>
+      <div class="feedback" id="fb-sentence"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Translate "Lux" (Latin) and "Bara" (Hebrew):</p>
+      <select id="lat1"><option value="">Lux means...</option><option>Light</option><option>Earth</option></select>
+      <select id="heb2"><option value="">Bara means...</option><option>To create</option><option>To rule</option></select>
+      <button class="btn" onclick="checkDoubleSelect('lat1','Light','heb2','To create','fb-lang', 'Correct! Lux = Light; Bara = To Create.')">Check</button>
+      <div class="feedback" id="fb-lang"></div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:20px;">
+    <button class="btn" style="padding:12px 32px;font-size:1rem;" onclick="showSummary()">See My Summary</button>
+  </div>
+
+  <div class="summary-card" id="summaryCard">
+    <h2>Lesson Summary</h2>
+    <p><strong>Student:</strong> <span id="summaryStudentName">—</span></p>
+    <div id="summaryDisplay" style="font-size:3rem; color:var(--gold); margin:14px 0;">–</div>
+    <button class="btn" onclick="window.print()">Print / Save PDF</button>
+  </div>
+</main>
+
+<script>
+  const questionState = {};
+  const gradedIds = ['fb-notice1', 'fb-cain', 'fb-gen5', 'fb-sentence', 'fb-lang'];
+
+  function updateProgress() {
+    const attempted = Object.keys(questionState).length;
+    document.getElementById('progressBar').style.width = (attempted / gradedIds.length * 100) + '%';
+  }
+
+  function checkRadio(name, correctIdx, fbId, msg) {
+    const radios = document.querySelectorAll(`input[name="${name}"]`);
+    let sel = -1; radios.forEach((r, i) => { if (r.checked) sel = i; });
+    if (sel === -1) return;
+    const isCorrect = sel === correctIdx;
+    showFB(fbId, isCorrect, msg, "Try again.");
+    questionState[fbId] = isCorrect; updateProgress();
+  }
+
+  function checkCheckboxes(cls, correct, fbId, msg) {
+    const selected = Array.from(document.querySelectorAll('.'+cls)).filter(b => b.checked).map(b => b.value).sort().join(',');
+    const isCorrect = selected === correct.sort().join(',');
+    showFB(fbId, isCorrect, msg, "Not quite all of them.");
+    questionState[fbId] = isCorrect; updateProgress();
+  }
+
+  function checkDoubleSelect(id1, val1, id2, val2, fbId, msg) {
+    const isCorrect = document.getElementById(id1).value === val1 && document.getElementById(id2).value === val2;
+    showFB(fbId, isCorrect, msg, "Check both definitions.");
+    questionState[fbId] = isCorrect; updateProgress();
+  }
+
+  function checkSentence() {
+    const input = document.getElementById('sentence-input').innerText.trim();
+    const isCorrect = input === "Yehovah made Adam and Chavah in his image.";
+    showFB('fb-sentence', isCorrect, "Perfect!", "Check capitals for names and the period.");
+    questionState['fb-sentence'] = isCorrect; updateProgress();
+  }
+
+  function showFB(id, isCorrect, corMsg, wrgMsg) {
+    const el = document.getElementById(id);
+    el.className = 'feedback ' + (isCorrect ? 'correct' : 'wrong');
+    el.innerHTML = (isCorrect ? '✓ ' : '✗ ') + (isCorrect ? corMsg : wrgMsg);
+  }
+
+  function showSummary() {
+    const card = document.getElementById('summaryCard');
+    const mastered = Object.values(questionState).filter(v => v === true).length;
+    document.getElementById('summaryStudentName').textContent = document.getElementById('student-name-input').innerText || 'Not entered';
+    document.getElementById('summaryDisplay').textContent = `${mastered} / ${gradedIds.length}`;
+    card.classList.add('visible');
+    card.scrollIntoView({ behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>

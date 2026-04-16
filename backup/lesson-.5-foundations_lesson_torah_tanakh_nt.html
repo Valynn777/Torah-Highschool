@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foundations Lesson — Torah, Tanakh, and the Apostolic Writings</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --parchment: #f5f0e8;
+      --parchment-dark: #e8e0cc;
+      --parchment-mid: #ede6d6;
+      --ink: #1e1a13;
+      --ink-light: #4a4234;
+      --ink-faint: #7a6f5e;
+      --accent: #8b4513;
+      --gold: #c49a2a;
+      --gold-pale: #fdf7e6;
+      --green-correct: #2d6a3f;
+      --green-correct-pale: #e8f5ec;
+      --red-wrong: #8b2020;
+      --red-wrong-pale: #fdf0f0;
+      --radius: 10px;
+      --shadow: 0 2px 12px rgba(30,26,19,0.10);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: var(--parchment);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.65;
+    }
+
+    header {
+      background: var(--ink);
+      color: var(--parchment);
+      padding: 36px 24px 28px;
+      text-align: center;
+      border-bottom: 4px solid var(--gold);
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 18px,
+        rgba(196,154,42,0.04) 18px,
+        rgba(196,154,42,0.04) 36px
+      );
+      pointer-events: none;
+    }
+    header h1 {
+      font-family: 'Lora', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--parchment-dark);
+      font-size: 0.95rem;
+      margin-top: 4px;
+    }
+    header strong { color: var(--gold); }
+
+    .memory-verse-box {
+      display: inline-block;
+      margin-top: 18px;
+      background: rgba(196,154,42,0.12);
+      border: 1px solid rgba(196,154,42,0.35);
+      border-radius: var(--radius);
+      padding: 12px 22px;
+      max-width: 650px;
+    }
+    .memory-verse-box .label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+    .memory-verse-box blockquote {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 1.02rem;
+      color: var(--parchment);
+      line-height: 1.55;
+    }
+
+    .progress-bar-wrap {
+      background: var(--parchment-dark);
+      height: 6px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--gold);
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--ink-faint);
+      margin-bottom: 18px;
+      margin-top: 32px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--parchment-dark);
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--parchment-dark);
+      border-radius: var(--radius);
+      padding: 24px 26px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--parchment-dark);
+    }
+    .card-icon {
+      width: 32px; height: 32px;
+      background: var(--ink);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .card h2 {
+      font-family: 'Lora', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.01em;
+    }
+    .card-number {
+      margin-left: auto;
+      font-size: 0.75rem;
+      color: var(--ink-faint);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .learn-body p { margin-bottom: 12px; }
+    .learn-body p:last-child { margin-bottom: 0; }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    @media (max-width: 480px) { .concept-grid { grid-template-columns: 1fr; } }
+    .concept-box {
+      background: var(--parchment-mid);
+      border-radius: 8px;
+      padding: 12px 14px;
+      border-left: 3px solid var(--gold);
+    }
+    .concept-box strong {
+      display: block;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .concept-box p { font-size: 0.92rem; color: var(--ink-light); margin: 0; }
+
+    .question {
+      margin: 14px 0;
+      padding: 14px 16px;
+      background: var(--parchment);
+      border-radius: 8px;
+      border: 1px solid var(--parchment-dark);
+    }
+    .question p.q-text {
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 10px;
+      font-size: 0.97rem;
+    }
+    .question label {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 6px 0;
+      cursor: pointer;
+      font-size: 0.95rem;
+      color: var(--ink-light);
+      border-radius: 6px;
+    }
+    .question label input { margin-top: 3px; accent-color: var(--accent); flex-shrink: 0; }
+    .question label:hover { color: var(--ink); }
+
+    select, textarea {
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 0.93rem;
+      color: var(--ink);
+      background: #fff;
+      margin-top: 6px;
+      line-height: 1.6;
+    }
+    select { cursor: pointer; }
+    select:focus, textarea:focus { outline: 2px solid var(--gold); border-color: transparent; }
+    textarea { resize: vertical; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      padding: 8px 18px;
+      border: 1.5px solid var(--ink);
+      border-radius: 8px;
+      background: var(--ink);
+      color: var(--parchment);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    .btn:hover { background: var(--accent); border-color: var(--accent); }
+    .btn-outline { background: transparent; color: var(--ink); }
+    .btn-outline:hover { background: var(--ink); color: var(--parchment); }
+
+    .feedback {
+      display: none;
+      margin-top: 10px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .feedback.correct {
+      display: block;
+      background: var(--green-correct-pale);
+      color: var(--green-correct);
+      border: 1px solid #b2dfc0;
+    }
+    .feedback.wrong {
+      display: block;
+      background: var(--red-wrong-pale);
+      color: var(--red-wrong);
+      border: 1px solid #f5c0c0;
+    }
+    .feedback.hint {
+      display: block;
+      background: var(--gold-pale);
+      color: #7a5a10;
+      border: 1px solid #e8d08a;
+    }
+
+    .vocab-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .vocab-card {
+      background: var(--parchment);
+      border: 1px solid var(--parchment-dark);
+      border-left: 4px solid var(--gold);
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+    .vocab-word {
+      font-family: serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .vocab-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      background: var(--ink);
+      color: var(--gold);
+      border-radius: 4px;
+      padding: 1px 6px;
+      margin: 4px 0 5px;
+    }
+    .vocab-meaning {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 0.97rem;
+      display: block;
+      margin-bottom: 3px;
+    }
+    .vocab-note {
+      font-size: 0.83rem;
+      color: var(--ink-light);
+    }
+
+    .summary-card {
+      display: none;
+      text-align: center;
+      padding: 32px 24px;
+      background: var(--ink);
+      color: var(--parchment);
+      border-radius: var(--radius);
+      margin-top: 24px;
+    }
+    .summary-card.visible { display: block; }
+    .summary-card h2 {
+      font-family: 'Lora', serif;
+      font-size: 1.5rem;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .summary-number {
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      margin: 14px 0;
+    }
+    .summary-label { font-size: 0.9rem; color: var(--parchment-dark); }
+
+    .action-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 16px;
+    }
+    .btn-print { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+    .btn-print:hover { background: #a07e1a; border-color: #a07e1a; color: #fff; }
+  </style>
+</head>
+<body>
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressBar"></div></div>
+
+  <header>
+    <h1>Foundations: Torah, Tanakh, and the Apostolic Writings</h1>
+    <p><strong>Lesson Focus:</strong> What Scripture is · How the books fit together · Why we study</p>
+    <div class="memory-verse-box">
+      <div class="label">Memory Verse</div>
+      <blockquote>
+        "All Scripture is breathed out by Elohim and profitable for teaching, for reproof, for correction, and for training in righteousness."
+      </blockquote>
+      <p style="font-size:0.78rem;color:var(--gold);margin-top:6px;">— 2 Timothy 3:16</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="section-label">Part 1</div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <h2>Learn</h2>
+        <span class="card-number">Foundation</span>
+      </div>
+      <div class="learn-body">
+        <p><strong>The Torah</strong> is the first five books of Scripture: Genesis, Exodus, Leviticus, Numbers, and Deuteronomy. The word <em>Torah</em> means instruction. These books lay the foundation for everything that follows. They tell us about creation, covenant, redemption, holiness, and the ways of Yehovah.</p>
+        <p><strong>The Tanakh</strong> is the full collection often called the Old Testament. The name comes from three parts: <em>Torah</em> (Instruction), <em>Nevi’im</em> (Prophets), and <em>Ketuvim</em> (Writings). So when we say Tanakh, we mean the Scriptures from Genesis through Chronicles.</p>
+        <p>The books often called the <strong>New Testament</strong> come after the Tanakh in our Bible. In this lesson we will call them the <strong>Apostolic Writings</strong>. They do not stand outside the earlier Scriptures or replace them. They fit after the Torah, Prophets, and Writings, and they continue the same story — showing Messiah, the good news of the kingdom, the witness of the apostles, and instruction for the assemblies.</p>
+        <p>We study Scripture because Yehovah tells us that his word is good, true, and profitable. We also study because we love him. Love is not empty feeling. If we love him, we want to know him, understand his ways, learn what pleases him, and walk in the instruction he has given. We are not studying just to gather information. We are studying so that we may know his word, treasure it, and live faithfully before him.</p>
+
+        <div class="concept-grid">
+          <div class="concept-box">
+            <strong>Torah</strong>
+            <p>The first five books: Genesis, Exodus, Leviticus, Numbers, and Deuteronomy — the foundation of Scripture.</p>
+          </div>
+          <div class="concept-box">
+            <strong>Tanakh</strong>
+            <p>The Torah, Prophets, and Writings together — the full collection from Genesis through Chronicles.</p>
+          </div>
+          <div class="concept-box">
+            <strong>Apostolic Writings</strong>
+            <p>The Gospels, Acts, Letters, and Revelation. These fit after the Tanakh and continue the same story.</p>
+          </div>
+          <div class="concept-box">
+            <strong>Why We Study</strong>
+            <p>We study because Scripture is from Elohim, and because we love Yehovah and want to know what pleases him.</p>
+          </div>
+        </div>
+
+        <div style="margin-top:22px;">
+          <p style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--ink-faint);font-weight:600;margin-bottom:10px;">Hebrew &amp; Latin — Vocabulary Reference</p>
+          <div class="vocab-grid">
+            <div class="vocab-card">
+              <div class="vocab-word">Torah (תּוֹרָה)</div>
+              <span class="vocab-tag">Hebrew</span>
+              <span class="vocab-meaning">Instruction / Teaching</span>
+              <span class="vocab-note">Often translated law, but its meaning is broader: guidance, instruction, teaching from Yehovah.</span>
+            </div>
+            <div class="vocab-card">
+              <div class="vocab-word">Tanakh (תנ״ך)</div>
+              <span class="vocab-tag">Hebrew</span>
+              <span class="vocab-meaning">Torah, Prophets, and Writings</span>
+              <span class="vocab-note">A name made from the three main sections of the Hebrew Scriptures.</span>
+            </div>
+            <div class="vocab-card">
+              <div class="vocab-word">Ketuvim (כְּתוּבִים)</div>
+              <span class="vocab-tag">Hebrew</span>
+              <span class="vocab-meaning">Writings</span>
+              <span class="vocab-note">Includes books such as Psalms, Proverbs, Job, and Chronicles.</span>
+            </div>
+            <div class="vocab-card">
+              <div class="vocab-word">Scriptura</div>
+              <span class="vocab-tag">Latin</span>
+              <span class="vocab-meaning">Writing / Scripture</span>
+              <span class="vocab-note">The Latin root behind the English word Scripture.</span>
+            </div>
+            <div class="vocab-card">
+              <div class="vocab-word">Verbum</div>
+              <span class="vocab-tag">Latin</span>
+              <span class="vocab-meaning">Word</span>
+              <span class="vocab-note">A useful Latin word for “word,” important for language study and vocabulary building.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label">Part 2</div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🔍</div>
+        <h2>Notice</h2>
+        <span class="card-number">Observation</span>
+      </div>
+
+      <div class="question">
+        <p class="q-text">Which books belong to the Torah? (Select all that apply.)</p>
+        <label><input type="checkbox" class="chk-torah" value="a"> Genesis</label>
+        <label><input type="checkbox" class="chk-torah" value="b"> Exodus</label>
+        <label><input type="checkbox" class="chk-torah" value="c"> Psalms</label>
+        <label><input type="checkbox" class="chk-torah" value="d"> Leviticus</label>
+        <label><input type="checkbox" class="chk-torah" value="e"> Numbers</label>
+        <label><input type="checkbox" class="chk-torah" value="f"> Deuteronomy</label>
+        <button class="btn" onclick="checkCheckboxes('chk-torah', ['a','b','d','e','f'], 'fb-torah', 'Correct. The Torah is Genesis, Exodus, Leviticus, Numbers, and Deuteronomy.', 'Not quite. The Torah is only the first five books.')">Check</button>
+        <div class="feedback" id="fb-torah"></div>
+      </div>
+
+      <div class="question">
+        <p class="q-text">The Tanakh is made up of which three sections?</p>
+        <label><input type="radio" name="q-tanakh"> Torah, Gospels, and Letters</label>
+        <label><input type="radio" name="q-tanakh"> Torah, Prophets, and Writings</label>
+        <label><input type="radio" name="q-tanakh"> Law, Wisdom, and Revelation</label>
+        <button class="btn" onclick="checkRadio('q-tanakh', 1, 'fb-tanakh', 'Correct. Tanakh stands for Torah, Prophets, and Writings.', 'Look again at the three Hebrew sections named in the Learn section.')">Check</button>
+        <div class="feedback" id="fb-tanakh"></div>
+      </div>
+
+      <div class="question">
+        <p class="q-text">The Apostolic Writings fit…</p>
+        <label><input type="radio" name="q-ntfit"> after the Tanakh as the continuation of the same story</label>
+        <label><input type="radio" name="q-ntfit"> in place of the Torah because the Torah no longer matters</label>
+        <label><input type="radio" name="q-ntfit"> before the Prophets and Writings</label>
+        <button class="btn" onclick="checkRadio('q-ntfit', 0, 'fb-ntfit', 'Correct. The Apostolic Writings come after the Tanakh and continue the same scriptural story.', 'Not quite. The Apostolic Writings do not replace the earlier Scriptures.')">Check</button>
+        <div class="feedback" id="fb-ntfit"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">✦</div>
+        <h2>Memory Verse</h2>
+        <span class="card-number">2 Timothy 3:16</span>
+      </div>
+
+      <div class="question">
+        <p class="q-text">Fill in the blanks. “All Scripture is breathed out by Elohim and profitable for teaching, for reproof, for correction, and for training in ______.”</p>
+        <select id="mv1">
+          <option value="">Choose</option>
+          <option>righteousness</option>
+          <option>knowledge</option>
+          <option>tradition</option>
+        </select>
+        <button class="btn" onclick="checkSelect('mv1','righteousness','fb-mv','Correct. Scripture trains us in righteousness.', 'Not quite. Read the verse carefully and choose the final key word.')">Check</button>
+        <div class="feedback" id="fb-mv"></div>
+      </div>
+    </div>
+
+    <div class="section-label">Part 3</div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">📝</div>
+        <h2>Words</h2>
+        <span class="card-number">Vocabulary</span>
+      </div>
+
+      <div class="question">
+        <p class="q-text">Choose the correct meaning of <em>Torah</em>.</p>
+        <label><input type="radio" name="q-torahmeaning"> Prophecy only</label>
+        <label><input type="radio" name="q-torahmeaning"> Instruction / teaching</label>
+        <label><input type="radio" name="q-torahmeaning"> Temple song</label>
+        <button class="btn btn-outline" onclick="checkRadio('q-torahmeaning', 1, 'fb-torahmeaning', 'Correct. Torah means instruction or teaching.', 'Not quite. Torah is broader than a legal code alone.')">Check</button>
+        <div class="feedback" id="fb-torahmeaning"></div>
+      </div>
+
+      <div class="question">
+        <p class="q-text">Choose the correct spelling:</p>
+        <label><input type="radio" name="q-spell"> Deuteronomy</label>
+        <label><input type="radio" name="q-spell"> Deuteronamy</label>
+        <label><input type="radio" name="q-spell"> Deuteronemy</label>
+        <button class="btn btn-outline" onclick="checkRadio('q-spell', 0, 'fb-spell', 'Correct — Deuteronomy.', 'Look again at the ending of the word.')">Check</button>
+        <div class="feedback" id="fb-spell"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">✏️</div>
+        <h2>English</h2>
+        <span class="card-number">Grammar &amp; Writing</span>
+      </div>
+
+      <div class="question">
+        <p class="q-text">Sentence correction: Choose the correctly capitalized sentence.</p>
+        <label><input type="radio" name="q-english1"> the Torah is the first five books of Scripture.</label>
+        <label><input type="radio" name="q-english1"> The Torah is the first five books of Scripture.</label>
+        <label><input type="radio" name="q-english1"> The torah is the first five books of scripture.</label>
+        <button class="btn" onclick="checkRadio('q-english1', 1, 'fb-english1', 'Correct. The sentence begins with a capital, Torah is capitalized here as a title, and Scripture is also capitalized.', 'Look carefully at the capitals in the sentence.')">Check</button>
+        <div class="feedback" id="fb-english1"></div>
+      </div>
+
+      <div class="question">
+        <p class="q-text">Short response (optional): Pick only one if assigned. These will not appear in every lesson.</p>
+        <textarea rows="4" placeholder="Option 1: Why is it important to know what the Torah and Tanakh are?"></textarea>
+        <textarea rows="4" placeholder="Option 2: Why do we study Scripture, according to this lesson?" style="margin-top:10px;"></textarea>
+      </div>
+    </div>
+
+    <div class="section-label">Part 4</div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">𐤀</div>
+        <h2>Hebrew &amp; Latin</h2>
+        <span class="card-number">Language</span>
+      </div>
+
+      <div class="question">
+        <p class="q-text">What does <em>scriptura</em> mean in Latin?</p>
+        <label><input type="radio" name="q-latin1"> Writing / Scripture</label>
+        <label><input type="radio" name="q-latin1"> Mountain</label>
+        <label><input type="radio" name="q-latin1"> Covenant</label>
+        <button class="btn btn-outline" onclick="checkRadio('q-latin1', 0, 'fb-latin1', 'Correct. Scriptura is the Latin root behind the English word Scripture.', 'Not quite. Think about the English word that comes from this Latin root.')">Check</button>
+        <div class="feedback" id="fb-latin1"></div>
+      </div>
+
+      <div class="question">
+        <p class="q-text">What does <em>Ketuvim</em> mean?</p>
+        <label><input type="radio" name="q-hebrew1"> Writings</label>
+        <label><input type="radio" name="q-hebrew1"> Kings</label>
+        <label><input type="radio" name="q-hebrew1"> Offerings</label>
+        <button class="btn btn-outline" onclick="checkRadio('q-hebrew1', 0, 'fb-hebrew1', 'Correct. Ketuvim means Writings.', 'Not quite. Ketuvim is the third section of the Tanakh.')">Check</button>
+        <div class="feedback" id="fb-hebrew1"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🌿</div>
+        <h2>History &amp; Scripture</h2>
+        <span class="card-number">Context</span>
+      </div>
+
+      <div class="question">
+        <p class="q-text">What comes first in the order of the Bible?</p>
+        <label><input type="radio" name="q-order1"> The Apostolic Writings</label>
+        <label><input type="radio" name="q-order1"> The Torah</label>
+        <label><input type="radio" name="q-order1"> Revelation</label>
+        <button class="btn" onclick="checkRadio('q-order1', 1, 'fb-order1', 'Correct. The Torah stands at the beginning and lays the foundation for the rest.', 'Not quite. Think about the first section named in this lesson.')">Check</button>
+        <div class="feedback" id="fb-order1"></div>
+      </div>
+
+      <div class="question">
+        <p class="q-text">Why should we study Scripture according to this lesson? (Select all that apply.)</p>
+        <label><input type="checkbox" class="chk-why" value="a"> Because Scripture is from Elohim and is profitable for teaching</label>
+        <label><input type="checkbox" class="chk-why" value="b"> Because we love Yehovah and want to know what pleases him</label>
+        <label><input type="checkbox" class="chk-why" value="c"> Because studying only matters if we win arguments</label>
+        <label><input type="checkbox" class="chk-why" value="d"> Because we want to know his word and walk faithfully</label>
+        <button class="btn" onclick="checkCheckboxes('chk-why', ['a','b','d'], 'fb-why', 'Correct. We study because Scripture is from Elohim, and because we love him and want to walk in his ways.', 'Not quite. Choose the reasons that match the Learn section.')">Check</button>
+        <div class="feedback" id="fb-why"></div>
+      </div>
+    </div>
+
+    <div class="section-label">Part 5</div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">◉</div>
+        <h2>Review</h2>
+        <span class="card-number">Summary</span>
+      </div>
+
+      <div class="question">
+        <p class="q-text">Which section of Scripture includes Psalms, Proverbs, Job, and Chronicles?</p>
+        <label><input type="radio" name="q-review1"> Torah</label>
+        <label><input type="radio" name="q-review1"> Writings</label>
+        <label><input type="radio" name="q-review1"> Gospels</label>
+        <button class="btn" onclick="checkRadio('q-review1', 1, 'fb-review1', 'Correct. These belong to the Writings, or Ketuvim.', 'Not quite. Think about the third section of the Tanakh.')">Check</button>
+        <div class="feedback" id="fb-review1"></div>
+      </div>
+
+      <div style="text-align:center;margin-top:20px;">
+        <button class="btn" style="padding:12px 32px;font-size:1rem;" onclick="showSummary()">See My Summary</button>
+      </div>
+    </div>
+
+    <div class="summary-card" id="summaryCard">
+      <h2>Lesson Summary</h2>
+      <div class="summary-number" id="summaryDisplay">–</div>
+      <div class="summary-label">mastery on auto-checked sections</div>
+      <p style="margin-top:18px;color:var(--parchment-dark);font-size:0.9rem;">Review any missed questions above, then save your work as a PDF.</p>
+      <div class="action-bar" style="margin-top:24px;">
+        <button class="btn btn-print" onclick="window.print()" style="padding:11px 22px;">🖨 Print / Save as PDF</button>
+      </div>
+      <p style="font-size:0.78rem;color:var(--parchment-dark);margin-top:12px;">
+        <strong>To save as PDF:</strong> tap Print, then choose “Save as PDF” or pinch outward on the print preview and save to Files.
+      </p>
+    </div>
+  </main>
+
+  <script>
+    const questionState = {};
+    const gradedQuestionIds = [
+      'fb-torah',
+      'fb-tanakh',
+      'fb-ntfit',
+      'fb-mv',
+      'fb-torahmeaning',
+      'fb-spell',
+      'fb-english1',
+      'fb-latin1',
+      'fb-hebrew1',
+      'fb-order1',
+      'fb-why',
+      'fb-review1'
+    ];
+
+    function updateProgress() {
+      const attempted = gradedQuestionIds.filter(id => id in questionState).length;
+      const pct = Math.round((attempted / gradedQuestionIds.length) * 100);
+      document.getElementById('progressBar').style.width = pct + '%';
+    }
+
+    function recordAnswer(id, correct) {
+      questionState[id] = !!correct;
+      updateProgress();
+    }
+
+    function getSummaryCounts() {
+      const attempted = gradedQuestionIds.filter(id => id in questionState).length;
+      const mastered = gradedQuestionIds.filter(id => questionState[id] === true).length;
+      return { attempted, mastered, total: gradedQuestionIds.length };
+    }
+
+    function showFeedback(id, type, html) {
+      const el = document.getElementById(id);
+      el.className = 'feedback ' + type;
+      el.innerHTML = (type === 'correct' ? '✓ ' : type === 'wrong' ? '✗ ' : '💡 ') + html;
+    }
+
+    function checkRadio(name, correctIndex, fbId, correctMsg, wrongMsg) {
+      const radios = document.querySelectorAll(`input[name="${name}"]`);
+      let selected = -1;
+      radios.forEach((r, i) => { if (r.checked) selected = i; });
+      if (selected === -1) { showFeedback(fbId, 'hint', 'Please select an answer first.'); return; }
+      const isCorrect = selected === correctIndex;
+      showFeedback(fbId, isCorrect ? 'correct' : 'wrong', isCorrect ? correctMsg : wrongMsg);
+      recordAnswer(fbId, isCorrect);
+    }
+
+    function checkCheckboxes(cls, correctValues, fbId, correctMsg, wrongMsg) {
+      const boxes = document.querySelectorAll('.' + cls);
+      const selected = [];
+      boxes.forEach(b => { if (b.checked) selected.push(b.value); });
+      if (selected.length === 0) { showFeedback(fbId, 'hint', 'Select at least one answer.'); return; }
+      const sortedSel = [...selected].sort().join(',');
+      const sortedCor = [...correctValues].sort().join(',');
+      const isCorrect = sortedSel === sortedCor;
+      showFeedback(fbId, isCorrect ? 'correct' : 'wrong', isCorrect ? correctMsg : wrongMsg);
+      recordAnswer(fbId, isCorrect);
+    }
+
+    function checkSelect(id, correctVal, fbId, correctMsg, wrongMsg) {
+      const val = document.getElementById(id).value;
+      if (!val) { showFeedback(fbId, 'hint', 'Please choose an option first.'); return; }
+      const isCorrect = val === correctVal;
+      showFeedback(fbId, isCorrect ? 'correct' : 'wrong', isCorrect ? correctMsg : wrongMsg);
+      recordAnswer(fbId, isCorrect);
+    }
+
+    function showSummary() {
+      const card = document.getElementById('summaryCard');
+      const { attempted, mastered, total } = getSummaryCounts();
+      card.classList.add('visible');
+      document.getElementById('summaryDisplay').textContent = `${mastered} / ${total}`;
+      document.querySelector('.summary-label').textContent = `${attempted} attempted · ${mastered} mastered`;
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  </script>
+</body>
+</html>

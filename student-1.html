@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Noah Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tracker.css" />
+</head>
+<body class="student-page" data-student-key="student-1" data-student-label="Noah">
+  <header class="student-hero">
+    <div class="student-hero-inner">
+      <a class="back-link" href="index.html">← Back to Home</a>
+      <p class="eyebrow">Lesson Progress</p>
+      <h1 id="studentTitle">Noah</h1>
+      <p class="hero-copy">Track completed lessons, open the next assignment quickly, and watch progress move week by week.</p>
+    </div>
+  </header>
+
+  <div class="progress-wrap">
+    <div class="progress-topline">
+      <div>
+        <p class="progress-label">Overall Progress</p>
+        <h2 id="progressNumbers">0 / 0 completed</h2>
+      </div>
+      <div class="pace-box">
+        <label for="paceInput">Lessons per week</label>
+        <input id="paceInput" type="number" min="1" max="14" step="1" />
+      </div>
+    </div>
+    <div class="progress-bar-shell" aria-hidden="true">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-meta">
+      <span id="completedCount">0 completed</span>
+      <span id="remainingCount">0 remaining</span>
+      <span id="projectedDate">Projected completion: —</span>
+    </div>
+  </div>
+
+  <main class="page-shell student-shell">
+    <section class="card quick-actions">
+      <div>
+        <h2>Current Focus</h2>
+        <p id="nextLessonText">The next lesson will appear here once the page loads.</p>
+      </div>
+      <div class="button-row">
+        <button id="jumpToNextBtn" class="tracker-btn" type="button">Jump to Next Lesson</button>
+        <button id="resetProgressBtn" class="tracker-btn tracker-btn-outline" type="button">Reset This Student</button>
+      </div>
+    </section>
+
+    <section id="weeksMount" class="weeks-stack" aria-live="polite"></section>
+  </main>
+
+  <script src="tracker.js"></script>
+</body>
+</html>
