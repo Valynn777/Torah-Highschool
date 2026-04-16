@@ -1335,7 +1335,11 @@
   }
 
   function normalizeText(text) {
-    return text.replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
+    return text
+      .replace(/&apos;|&#39;/g, "'")
+      .replace(/\u00a0/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
   }
 
   function getEditableText(id) {
