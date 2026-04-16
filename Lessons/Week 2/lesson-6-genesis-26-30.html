@@ -4,198 +4,326 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Genesis 26–30 Lesson</title>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Spectral:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --parchment: #f5f0e8;
-      --parchment-dark: #e8e0cc;
-      --parchment-mid: #ede6d6;
-      --ink: #1e1a13;
-      --ink-light: #4a4234;
-      --ink-faint: #7a6f5e;
-      --accent: #8b4513;
-      --accent-light: #c0703a;
-      --accent-pale: #f5e8dc;
-      --gold: #c49a2a;
-      --gold-pale: #fdf7e6;
-      --green-correct: #2d6a3f;
-      --green-correct-pale: #e8f5ec;
-      --red-wrong: #8b2020;
-      --red-wrong-pale: #fdf0f0;
-      --radius: 10px;
-      --shadow: 0 2px 12px rgba(30,26,19,0.10);
+      --parchment:     #f7f2e8;
+      --parchment-mid: #ede5d0;
+      --parchment-drk: #ddd3ba;
+      --ink:           #1b1710;
+      --ink-light:     #3e3628;
+      --ink-faint:     #7a6f58;
+      --sienna:        #8b3a1a;
+      --sienna-light:  #c0623a;
+      --sienna-pale:   #f6ece5;
+      --gold:          #b8892a;
+      --gold-pale:     #fdf5e0;
+      --deep-blue:     #1a2d4a;
+      --blue-light:    #e8eef6;
+      --green:         #2a5c3a;
+      --green-pale:    #e5f2e8;
+      --red-pale:      #fdf0f0;
+      --radius:        10px;
+      --shadow:        0 3px 16px rgba(27,23,16,0.12);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Source Sans 3', sans-serif;
+      font-family: 'Spectral', serif;
       background: var(--parchment);
       color: var(--ink);
       font-size: 16px;
-      line-height: 1.65;
-    }
-
-    header {
-      background: var(--ink);
-      color: var(--parchment);
-      padding: 36px 24px 28px;
-      text-align: center;
-      border-bottom: 4px solid var(--gold);
-      position: relative;
-      overflow: hidden;
-    }
-    header::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(
-        -45deg,
-        transparent,
-        transparent 18px,
-        rgba(196,154,42,0.04) 18px,
-        rgba(196,154,42,0.04) 36px
-      );
-      pointer-events: none;
-    }
-    header h1 {
-      font-family: 'Lora', serif;
-      font-size: 2.2rem;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      color: var(--gold);
-      margin-bottom: 8px;
-    }
-    header p {
-      color: var(--parchment-dark);
-      font-size: 0.95rem;
-      margin-top: 4px;
-    }
-    header strong { color: var(--gold); }
-
-    .memory-verse-box {
-      display: inline-block;
-      margin-top: 18px;
-      background: rgba(196,154,42,0.12);
-      border: 1px solid rgba(196,154,42,0.35);
-      border-radius: var(--radius);
-      padding: 12px 22px;
-      max-width: 560px;
-    }
-    .memory-verse-box .label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--gold);
-      margin-bottom: 5px;
-      font-weight: 600;
-    }
-    .memory-verse-box blockquote {
-      font-family: 'Lora', serif;
-      font-style: italic;
-      font-size: 1.05rem;
-      color: var(--parchment);
-      line-height: 1.55;
+      line-height: 1.75;
     }
 
     .progress-bar-wrap {
-      background: var(--parchment-dark);
-      height: 6px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      position: sticky; top: 0; z-index: 200;
+      height: 5px; background: var(--parchment-drk);
     }
     .progress-bar-fill {
       height: 100%;
-      background: var(--gold);
-      width: 0%;
-      transition: width 0.4s ease;
+      background: linear-gradient(90deg, var(--gold), var(--sienna));
+      width: 0%; transition: width 0.4s ease;
     }
 
-    main {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 32px 20px 60px;
+    header {
+      background: var(--deep-blue);
+      color: var(--parchment);
+      padding: 44px 24px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 3px solid var(--gold);
+    }
+    header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 120%, rgba(184,137,42,0.15), transparent),
+        repeating-linear-gradient(-45deg, transparent, transparent 24px, rgba(255,255,255,0.02) 24px, rgba(255,255,255,0.02) 48px);
+      pointer-events: none;
+    }
+    .header-hebrew {
+      font-family: 'Crimson Pro', serif;
+      font-size: 2.6rem;
+      color: rgba(184,137,42,0.35);
+      position: absolute;
+      top: 10px; right: 20px;
+      user-select: none;
+      pointer-events: none;
+      letter-spacing: 0.1em;
+    }
+    header h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+      margin-bottom: 6px;
+      position: relative;
+    }
+    header .subtitle {
+      font-family: 'Spectral', serif;
+      font-size: 0.9rem;
+      color: rgba(247,242,232,0.7);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    header .themes {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      justify-content: center; margin: 12px 0 20px;
+    }
+    header .theme-chip {
+      background: rgba(184,137,42,0.18);
+      border: 1px solid rgba(184,137,42,0.4);
+      border-radius: 20px;
+      padding: 3px 14px;
+      font-size: 0.78rem;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .memory-verse-box {
+      display: inline-block;
+      background: rgba(184,137,42,0.1);
+      border: 1px solid rgba(184,137,42,0.3);
+      border-radius: var(--radius);
+      padding: 14px 24px;
+      max-width: 580px;
+      margin-top: 4px;
+    }
+    .memory-verse-box .label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .memory-verse-box blockquote {
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--parchment);
+      line-height: 1.6;
+    }
+
+    main { max-width: 800px; margin: 0 auto; padding: 28px 20px 80px; }
+
+    .subject-band {
+      display: flex; align-items: center; gap: 12px;
+      margin: 30px 0 16px;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--ink-faint);
+    }
+    .subject-band::before, .subject-band::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--parchment-drk), transparent);
+    }
+    .subject-band .band-label {
+      display: flex; align-items: center; gap: 6px;
+    }
+    .band-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
     }
 
     .card {
       background: #fff;
-      border: 1px solid var(--parchment-dark);
+      border: 1px solid var(--parchment-mid);
       border-radius: var(--radius);
-      padding: 24px 26px;
-      margin-bottom: 24px;
+      padding: 26px 28px;
+      margin-bottom: 22px;
       box-shadow: var(--shadow);
+      position: relative;
+      overflow: visible;
     }
-
     .card-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 18px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--parchment-dark);
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--parchment-mid);
     }
     .card-icon {
-      width: 32px; height: 32px;
+      width: 34px; height: 34px;
       background: var(--ink);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 14px;
+      font-size: 15px;
       flex-shrink: 0;
     }
     .card h2 {
-      font-family: 'Lora', serif;
-      font-size: 1.15rem;
-      font-weight: 600;
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
       color: var(--ink);
-      letter-spacing: 0.01em;
     }
     .card-number {
       margin-left: auto;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: var(--ink-faint);
       font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
     }
 
-    .learn-body p { margin-bottom: 12px; }
+    .learn-body p { margin-bottom: 14px; }
     .learn-body p:last-child { margin-bottom: 0; }
     .concept-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
-      margin-top: 16px;
+      margin-top: 20px;
     }
-    @media (max-width: 480px) { .concept-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 500px) { .concept-grid { grid-template-columns: 1fr; } }
     .concept-box {
-      background: var(--parchment-mid);
+      background: var(--parchment);
       border-radius: 8px;
-      padding: 12px 14px;
+      padding: 14px 16px;
       border-left: 3px solid var(--gold);
     }
     .concept-box strong {
       display: block;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: var(--accent);
-      margin-bottom: 4px;
+      color: var(--sienna);
+      margin-bottom: 6px;
     }
     .concept-box p { font-size: 0.92rem; color: var(--ink-light); margin: 0; }
 
+    .subject-callout {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      border: 1px solid var(--parchment-mid);
+      border-left: 4px solid var(--gold);
+      border-radius: 10px;
+      background: linear-gradient(180deg, #fffdfa, var(--parchment));
+      padding: 16px 18px;
+      margin: 16px 0;
+    }
+    .callout-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--deep-blue);
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 17px;
+    }
+    .callout-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--sienna);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .callout-body p { margin: 0; font-size: 0.94rem; color: var(--ink-light); }
+
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+      margin: 18px 0;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 9px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--gold), var(--sienna));
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 16px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -22px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 1px var(--gold);
+    }
+    .timeline-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--sienna);
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .timeline-text { font-size: 0.9rem; color: var(--ink-light); }
+
+    details {
+      background: #fffdfa;
+      border: 1px solid var(--parchment-mid);
+      border-radius: 10px;
+      padding: 0 16px;
+      margin-top: 14px;
+    }
+    details summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 14px 0;
+      font-family: 'Libre Baskerville', serif;
+      font-size: 0.95rem;
+      color: var(--ink);
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details[open] summary { border-bottom: 1px solid var(--parchment-mid); margin-bottom: 12px; }
+    .detail-body { padding-bottom: 14px; }
+    .detail-body p { margin-bottom: 10px; }
+    .detail-body p:last-child { margin-bottom: 0; }
+
+
     .question {
       margin: 14px 0;
-      padding: 14px 16px;
-      background: var(--parchment);
+      padding: 16px 18px;
+      background: linear-gradient(180deg, #fffdfa, var(--parchment));
       border-radius: 8px;
-      border: 1px solid var(--parchment-dark);
+      border: 1px solid var(--parchment-mid);
     }
     .question p.q-text {
       font-weight: 600;
       color: var(--ink);
       margin-bottom: 10px;
-      font-size: 0.97rem;
+      font-size: 0.98rem;
     }
     .question label {
       display: flex;
@@ -207,60 +335,41 @@
       color: var(--ink-light);
       border-radius: 6px;
     }
-    .question label input { margin-top: 3px; accent-color: var(--accent); flex-shrink: 0; }
+    .question label input { margin-top: 3px; accent-color: var(--sienna); flex-shrink: 0; }
     .question label:hover { color: var(--ink); }
 
-    select {
-      border: 1px solid #ccc;
+    select, textarea {
+      border: 1px solid #cfc2ad;
       border-radius: 6px;
-      padding: 7px 10px;
+      padding: 8px 10px;
       font-family: inherit;
       font-size: 0.93rem;
       background: #fff;
       color: var(--ink);
-      cursor: pointer;
-      margin-top: 4px;
     }
-    select:focus { outline: 2px solid var(--gold); }
-
-    textarea {
-      width: 100%;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 10px 12px;
-      font-family: inherit;
-      font-size: 0.93rem;
-      color: var(--ink);
-      background: #fff;
-      resize: vertical;
-      margin-top: 6px;
-      line-height: 1.6;
-    }
-    textarea:focus { outline: 2px solid var(--gold); border-color: transparent; }
+    textarea { width: 100%; resize: vertical; line-height: 1.55; }
 
     .editable-line, .editable-block {
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 12px;
       background: #fff;
+      border: 1.5px dashed #c4b69c;
+      border-radius: 8px;
+      padding: 10px 12px;
+      min-height: 48px;
+      line-height: 1.55;
+      font-size: 0.95rem;
       color: var(--ink);
-      line-height: 1.7;
-      margin-top: 8px;
-    }
-    .editable-line { min-height: 48px; }
-    .editable-block { min-height: 140px; }
-    .editable-line[contenteditable="true"], .editable-block[contenteditable="true"] {
-      cursor: text;
     }
     .editable-line:focus, .editable-block:focus {
-      outline: 2px solid var(--gold);
-      border-color: transparent;
+      outline: 2px solid rgba(184,137,42,0.25);
+      border-color: var(--gold);
+    }
+    .editable-line:empty::before, .editable-block:empty::before {
+      content: 'Tap here to type...';
+      color: #9a8f7c;
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+    .btn, button.btn {
+      display: inline-flex; align-items: center; gap: 6px;
       margin-top: 10px;
       padding: 8px 18px;
       border: 1.5px solid var(--ink);
@@ -268,209 +377,128 @@
       background: var(--ink);
       color: var(--parchment);
       cursor: pointer;
-      font-family: inherit;
-      font-size: 0.88rem;
+      font-family: 'Spectral', serif;
+      font-size: 0.85rem;
       font-weight: 600;
       letter-spacing: 0.04em;
-      transition: background 0.15s, color 0.15s;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
     }
-    .btn:hover { background: var(--accent); border-color: var(--accent); }
-    .btn-outline {
-      background: transparent;
-      color: var(--ink);
-    }
+    .btn:hover { background: var(--sienna); border-color: var(--sienna); }
+    .btn-outline { background: transparent; color: var(--ink); }
     .btn-outline:hover { background: var(--ink); color: var(--parchment); }
+    .btn-print { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+    .btn-print:hover { background: #9a7020; border-color: #9a7020; color: #fff; }
 
     .feedback {
       display: none;
-      margin-top: 10px;
-      padding: 10px 14px;
+      margin-top: 10px; padding: 10px 14px;
       border-radius: 8px;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 600;
+      line-height: 1.5;
     }
-    .feedback.correct {
-      display: block;
-      background: var(--green-correct-pale);
-      color: var(--green-correct);
-      border: 1px solid #b2dfc0;
-    }
-    .feedback.wrong {
-      display: block;
-      background: var(--red-wrong-pale);
-      color: var(--red-wrong);
-      border: 1px solid #f5c0c0;
-    }
-    .feedback.hint {
-      display: block;
-      background: var(--gold-pale);
-      color: #7a5a10;
-      border: 1px solid #e8d08a;
-    }
+    .feedback.correct { display: block; background: var(--green-pale); color: #1a4a28; border: 1px solid #b2d4bc; }
+    .feedback.wrong   { display: block; background: var(--red-pale);  color: #8b2020; border: 1px solid #f5c0c0; }
+    .feedback.hint    { display: block; background: var(--gold-pale);  color: #6a4a10; border: 1px solid #e8d08a; }
 
     .word-bank {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 12px;
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-bottom: 14px;
     }
     .word-chip {
-      padding: 4px 12px;
-      background: var(--parchment-mid);
-      border: 1px solid var(--parchment-dark);
-      border-radius: 20px;
-      font-size: 0.85rem;
-      color: var(--ink-light);
-      font-style: italic;
+      background: var(--sienna-pale);
+      color: var(--sienna);
+      border: 1px solid #e1c3b6;
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 0.82rem;
+      font-weight: 600;
     }
 
     .vocab-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 10px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+      margin-top: 8px;
     }
-    .vocab-card {
+    .vocab-card, .vocab-quiz-item {
       background: var(--parchment);
-      border: 1px solid var(--parchment-dark);
-      border-left: 4px solid var(--gold);
-      border-radius: 8px;
-      padding: 12px 14px;
-    }
-    .vocab-word {
-      font-family: serif;
-      font-size: 1.1rem;
-      font-style: italic;
-      color: var(--ink);
-      font-weight: 600;
-    }
-    .vocab-tag {
-      display: inline-block;
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      background: var(--ink);
-      color: var(--gold);
-      border-radius: 4px;
-      padding: 1px 6px;
-      margin: 4px 0 5px;
-    }
-    .vocab-meaning {
-      font-weight: 700;
-      color: var(--accent);
-      font-size: 0.97rem;
-      display: block;
-      margin-bottom: 3px;
-    }
-    .vocab-note {
-      font-size: 0.83rem;
-      color: var(--ink-light);
-    }
-
-    .vocab-quiz-item {
-      background: var(--parchment);
-      border: 1px solid var(--parchment-dark);
+      border: 1px solid var(--parchment-mid);
       border-radius: 8px;
       padding: 14px 16px;
-      margin-bottom: 12px;
     }
-    .vocab-quiz-item .word-label {
-      font-family: serif;
-      font-size: 1.1rem;
+    .vocab-word, .word-label {
+      font-family: 'Crimson Pro', serif;
+      font-size: 1.15rem;
       font-style: italic;
       font-weight: 700;
       color: var(--ink);
       margin-bottom: 4px;
     }
-    .vocab-quiz-item .lang-badge {
+    .vocab-tag, .lang-badge {
       display: inline-block;
-      font-size: 0.68rem;
+      font-size: 0.62rem;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       background: var(--ink);
       color: var(--gold);
       border-radius: 4px;
-      padding: 1px 6px;
+      padding: 1px 7px;
       margin-bottom: 8px;
     }
-    .vocab-quiz-item select {
+    .vocab-meaning {
       display: block;
-      width: 100%;
-      margin-bottom: 0;
+      font-size: 0.92rem;
+      color: var(--ink-light);
+      font-weight: 700;
+      margin-bottom: 6px;
     }
-
-    .action-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      margin-top: 16px;
+    .vocab-note {
+      display: block;
+      font-size: 0.84rem;
+      color: var(--ink-light);
+      line-height: 1.5;
     }
-    .btn-print { background: var(--gold); border-color: var(--gold); color: var(--ink); }
-    .btn-print:hover { background: #a07e1a; border-color: #a07e1a; color: #fff; }
-
-    @media print {
-      .progress-bar-wrap, .action-bar, button, .btn { display: none !important; }
-      header { background: #fff !important; color: #000 !important; border: 2px solid #000; }
-      header h1, header strong { color: #000 !important; }
-      header p { color: #333 !important; }
-      .memory-verse-box { background: #f5f5f5 !important; border: 1px solid #ccc !important; }
-      .memory-verse-box .label { color: #555 !important; }
-      .memory-verse-box blockquote { color: #000 !important; }
-      body { background: #fff; font-size: 13px; }
-      .card { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; margin-bottom: 14px; }
-      .feedback { display: block !important; }
-      .feedback.correct { background: #e8f5ec !important; color: #1a4a28 !important; border: 1px solid #aad4b8; }
-      .feedback.wrong { background: #fdf0f0 !important; color: #6b1a1a !important; border: 1px solid #f5b8b8; }
-      .feedback.hint { display: none !important; }
-      .section-label { color: #555; }
-      .section-label::after { background: #ccc; }
-      .summary-card { display: block !important; background: #f5f5f5 !important; color: #000 !important; border: 2px solid #000; }
-      .summary-card h2 { color: #000 !important; }
-      .summary-number { color: #333 !important; }
-    }
+    .vocab-quiz-item select { display: block; width: 100%; margin-bottom: 0; }
 
     .summary-card {
       display: none;
       text-align: center;
-      padding: 32px 24px;
+      padding: 36px 28px;
       background: var(--ink);
       color: var(--parchment);
       border-radius: var(--radius);
       margin-top: 24px;
+      border: 1px solid rgba(184,137,42,0.3);
     }
     .summary-card.visible { display: block; }
     .summary-card h2 {
-      font-family: 'Lora', serif;
+      font-family: 'Libre Baskerville', serif;
       font-size: 1.5rem;
       color: var(--gold);
       margin-bottom: 10px;
     }
     .summary-number {
-      font-size: 3rem;
+      font-family: 'Spectral', serif;
+      font-size: 3.2rem;
       font-weight: 300;
       color: var(--gold);
       line-height: 1;
-      margin: 14px 0;
+      margin: 16px 0;
     }
-    .summary-label { font-size: 0.9rem; color: var(--parchment-dark); }
+    .summary-label { font-size: 0.88rem; color: var(--parchment-mid); }
+    .action-bar {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      justify-content: center; margin-top: 18px;
+    }
 
-    .section-label {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--ink-faint);
-      margin-bottom: 18px;
-      margin-top: 32px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--parchment-dark);
+    @media print {
+      .progress-bar-wrap, .action-bar, button, .btn { display: none !important; }
+      header { background: #fff !important; color: #000 !important; border: 2px solid #000; }
+      header h1 { color: #000 !important; }
+      .summary-card { display: block !important; background: #f0f0f0 !important; color: #000 !important; }
+      .memory-verse-box { background: #f5f5f5 !important; border: 1px solid #ccc !important; }
+      .memory-verse-box .label, .memory-verse-box blockquote { color: #000 !important; }
     }
   </style>
 </head>
@@ -479,14 +507,20 @@
 <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressBar"></div></div>
 
 <header>
-  <h1>Genesis 26–30</h1>
-  <p><strong>Today’s Reading:</strong> Genesis 26–30</p>
-  <p><strong>Themes:</strong> Isaac · Jacob · Bethel · Covenant Line</p>
+  <div class="header-hebrew" aria-hidden="true">תּוֹלְדֹת</div>
+  <p class="subtitle">Torah-Based Homeschool Curriculum · High School Level</p>
+  <h1>Genesis 26–30 <span style="color:rgba(184,137,42,0.5);font-size:1.4rem;"> / Toledot</span></h1>
+  <div class="themes">
+    <span class="theme-chip">Isaac</span>
+    <span class="theme-chip">Jacob</span>
+    <span class="theme-chip">Bethel</span>
+    <span class="theme-chip">Covenant Line</span>
+    <span class="theme-chip">Household Growth</span>
+    <span class="theme-chip">Wells</span>
+  </div>
   <div class="memory-verse-box">
     <div class="label">Memory Verse</div>
-    <blockquote>
-      "I am with you and will watch over you wherever you go, and I will bring you back to this land."
-    </blockquote>
+    <blockquote>"I am with you and will watch over you wherever you go, and I will bring you back to this land."</blockquote>
     <p style="font-size:0.78rem;color:var(--gold);margin-top:6px;">— Genesis 28:15</p>
   </div>
 </header>
@@ -504,19 +538,63 @@
     </div>
   </div>
 
-  <div class="section-label">Part 1</div>
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 1 — Torah Reading & Background</span></div>
   <div class="card">
     <div class="card-header">
       <div class="card-icon">📖</div>
       <h2>Learn</h2>
-      <span class="card-number">Background</span>
+      <span class="card-number">Background &amp; Themes</span>
     </div>
-    <div class="learn-body">
-      <p>Genesis 26–30 follows Isaac and then Jacob as the covenant line continues through conflict, travel, promises, and household growth. These chapters move from wells and blessing to Bethel, Laban&apos;s house, and the birth of the next generation.</p>
-      <p>Genesis 26 keeps attention on the land, on wells, and on Yehovah&apos;s blessing over Isaac. The chapter shows that ordinary matters like water, conflict, and settlement are not outside the covenant story.</p>
-      <p>Genesis 27–28 are full of tension. Blessing, family conflict, and Jacob&apos;s departure all shape the story, yet Yehovah still speaks clearly at Bethel and confirms His covenant promise.</p>
-      <p>Genesis 29–30 show Jacob&apos;s years with Laban, the painful rivalry between Rachel and Leah, and the growth of the household. The tribes begin to take shape in a setting that is anything but simple.</p>
-      <p>These chapters show that Yehovah does not abandon His covenant when families are messy or circumstances are uncertain. He remains present, keeps His word, and leads the story forward.</p>
+        <div class="learn-body">
+      <p><strong>Before you begin:</strong> Read Genesis 26–30 in full before working through this lesson. The material below is meant to help you slow down, notice patterns, and think more carefully about what the text is teaching.</p>
+
+      <p>Genesis 26–30 keeps the covenant story moving through Isaac and Jacob, but it does so in a way that feels very earthy and human. Wells, flocks, household conflict, travel, marriage, rivalry, and labor all become part of the covenant story. Scripture is showing that Yehovah&apos;s promises are not only about dramatic miracles. They are also about daily life in the land and the long unfolding of a family line.</p>
+
+      <p><strong>Genesis 26</strong> centers on Isaac in the land. The repeated conflict over wells is not random background detail. Water means survival, settlement, fruitfulness, and peace in a dry land. The chapter shows that blessing does not remove all conflict, but Yehovah still preserves Isaac and makes room for him.</p>
+
+      <p><strong>Genesis 27–28</strong> move through family tension, blessing, and departure. The story is painful and morally tangled, yet it does not end in confusion alone. At Bethel, Yehovah speaks over Jacob&apos;s uncertainty and confirms that the covenant promise has not been lost. The journey begins under strain, but it does not begin without Yehovah.</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-label">Genesis 26</div>
+          <div class="timeline-text">Isaac remains in the land, reopens wells, and learns again that room and provision come from Yehovah.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-label">Genesis 27–28</div>
+          <div class="timeline-text">Blessing and departure unfold together, and Jacob hears Yehovah&apos;s covenant promise at Bethel.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-label">Genesis 29–30</div>
+          <div class="timeline-text">Jacob&apos;s household grows through labor, grief, rivalry, and long waiting, yet the tribes begin to take shape.</div>
+        </div>
+      </div>
+
+      <div class="subject-callout history">
+        <div class="callout-icon">🏛️</div>
+        <div class="callout-body">
+          <div class="callout-label">Ancient World Setting</div>
+          <p>In the patriarchal world, wells, grazing land, servants, marriage arrangements, and household agreements were major markers of stability. That helps explain why Genesis 26 spends so much time on disputes over water and why Genesis 29–30 treats family structure and labor as spiritually weighty rather than ordinary side details.</p>
+        </div>
+      </div>
+
+      <p><strong>Genesis 29–30</strong> show that covenant history unfolds through a household that is anything but tidy. Rachel and Leah both carry pain, longing, and rivalry. Jacob labors under Laban, and the family grows in a setting full of tension. Yet Yehovah is still at work. These chapters teach students not to confuse covenant faithfulness with a perfectly smooth life.</p>
+
+      <div class="subject-callout science">
+        <div class="callout-icon">🔬</div>
+        <div class="callout-body">
+          <div class="callout-label">Science Connection</div>
+          <p>Week 2&apos;s earth-science focus fits these chapters well: wells, famine, flocks, and land use all matter. Water access shapes settlement and conflict. Pasture, livestock care, and seasonal pressure all help explain why the text pays close attention to land and household resources.</p>
+        </div>
+      </div>
+
+      <div class="subject-callout writing">
+        <div class="callout-icon">✍️</div>
+        <div class="callout-body">
+          <div class="callout-label">Writing &amp; Discernment</div>
+          <p>These chapters are useful for tracing contrast: conflict and promise, fear and presence, rivalry and growth. Watch how Genesis does not hide human weakness, but still keeps Yehovah&apos;s word at the center. Good writing notices both sides of that tension without flattening the passage into a simple moral slogan.</p>
+        </div>
+      </div>
+
       <div class="concept-grid">
         <div class="concept-box">
           <strong>Wells and Land</strong>
@@ -539,6 +617,30 @@
           <p>Even while Jacob is far from home, Yehovah is still with him. His presence is central to the lesson, not background detail.</p>
         </div>
       </div>
+
+      <details>
+        <summary>Commentary: Why the wells matter in Genesis 26</summary>
+        <div class="detail-body">
+          <p>At first glance, repeated disputes over wells can feel small compared with dreams, blessings, or covenant promises. But Genesis 26 treats them as important because they are tied to survival and to the question of whether Isaac can dwell in the land with peace. In other words, the covenant story is not happening somewhere above ordinary life. It is happening in the middle of ordinary dependence on water, land, and provision.</p>
+          <p>That matters for students because it shows that faithfulness is not only about rare spiritual moments. Trusting Yehovah also includes how people respond when resources are scarce, when conflict rises, and when life feels practical rather than dramatic.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Commentary: Bethel and the meaning of presence</summary>
+        <div class="detail-body">
+          <p>Genesis 28 is a turning point because Jacob is not standing in strength when Yehovah speaks. He is leaving home under strain and uncertainty. Yet the promise at Bethel is full of steadiness: “I am with you... I will watch over you... I will bring you back.” The emphasis is not first on Jacob&apos;s strength, but on Yehovah&apos;s presence and faithfulness.</p>
+          <p>This helps students read the memory verse in context. It is not a vague promise of comfort detached from covenant. It is Yehovah binding His presence to the covenant line and promising to preserve the journey He Himself has appointed.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Going Deeper: Household pain and covenant continuity</summary>
+        <div class="detail-body">
+          <p>Genesis 29–30 are honest about sorrow inside the covenant household. Rivalry, longing, and wounded relationships are all present. Scripture does not hide them. But it also does not present these chapters as meaningless family drama. The tribes of Israel begin to emerge here, in the middle of exactly that brokenness.</p>
+          <p>The lesson is not that pain is good in itself. It is that Yehovah&apos;s purposes are not defeated by family confusion, delay, or tears. He keeps His word and moves the story forward even when the people inside it are still learning trust.</p>
+        </div>
+      </details>
 
       <div style="margin-top:22px;">
         <p style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--ink-faint);font-weight:600;margin-bottom:10px;">Hebrew &amp; Latin — Vocabulary Reference</p>
@@ -580,7 +682,7 @@
     </div>
   </div>
 
-  <div class="section-label">Part 2</div>
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 2 — Observation & Memory</span></div>
   <div class="card">
     <div class="card-header">
       <div class="card-icon">🔍</div>
@@ -666,7 +768,7 @@
     </div>
   </div>
 
-  <div class="section-label">Part 3</div>
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 3 — Vocabulary & Writing</span></div>
   <div class="card">
     <div class="card-header">
       <div class="card-icon">📝</div>
@@ -754,7 +856,7 @@
     </div>
   </div>
 
-  <div class="section-label">Part 4</div>
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 4 — Hebrew, Latin & Context</span></div>
   <div class="card">
     <div class="card-header">
       <div class="card-icon">𐤀</div>
@@ -839,7 +941,7 @@
     </div>
   </div>
 
-  <div class="section-label">Part 5</div>
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 5 — Review & Reflection</span></div>
   <div class="card">
     <div class="card-header">
       <div class="card-icon">◉</div>
