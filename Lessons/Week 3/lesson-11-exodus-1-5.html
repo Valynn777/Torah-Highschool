@@ -3,107 +3,1609 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Exodus 1–5 Placeholder</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>Exodus 1–5 — Week 3, Day 1</title>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Spectral:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink: #201a16;
-      --ink-soft: #5d5147;
-      --paper: #f6f0e5;
-      --paper-deep: #e7dcc9;
-      --accent: #8c5a2b;
-      --accent-soft: #d7b48b;
-      --card: #fffaf1;
-      --border: #d6c7b1;
-      --radius: 16px;
-      --shadow: 0 10px 30px rgba(32, 26, 22, 0.08);
+      --parchment:     #f7f2e8;
+      --parchment-mid: #ede5d0;
+      --parchment-drk: #ddd3ba;
+      --ink:           #1b1710;
+      --ink-light:     #3e3628;
+      --ink-faint:     #7a6f58;
+      --sienna:        #8b3a1a;
+      --sienna-light:  #c0623a;
+      --sienna-pale:   #f6ece5;
+      --gold:          #b8892a;
+      --gold-pale:     #fdf5e0;
+      --deep-blue:     #1a2d4a;
+      --blue-light:    #e8eef6;
+      --green:         #2a5c3a;
+      --green-pale:    #e5f2e8;
+      --red-pale:      #fdf0f0;
+      --purple-pale:   #f5edf8;
+      --radius:        10px;
+      --shadow:        0 3px 16px rgba(27,23,16,0.12);
     }
-    * { box-sizing: border-box; }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      margin: 0;
-      font-family: 'Source Sans 3', sans-serif;
+      font-family: 'Spectral', serif;
+      background: var(--parchment);
       color: var(--ink);
-      background: linear-gradient(180deg, #efe5d4 0%, var(--paper) 28%, #f9f5ee 100%);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    a {
+      color: var(--deep-blue);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    a:hover {
+      color: var(--sienna);
+    }
+
+    .progress-bar-wrap {
+      position: sticky; top: 0; z-index: 200;
+      height: 5px; background: var(--parchment-drk);
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--sienna));
+      width: 0%; transition: width 0.4s ease;
+    }
+
+    header {
+      background: var(--deep-blue);
+      color: var(--parchment);
+      padding: 44px 24px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 3px solid var(--gold);
+    }
+    header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 120%, rgba(184,137,42,0.15), transparent),
+        repeating-linear-gradient(-45deg, transparent, transparent 24px, rgba(255,255,255,0.02) 24px, rgba(255,255,255,0.02) 48px);
+      pointer-events: none;
+    }
+    .header-hebrew {
+      font-family: 'Crimson Pro', serif;
+      font-size: 2.6rem;
+      color: rgba(184,137,42,0.35);
+      position: absolute;
+      top: 10px; right: 20px;
+      user-select: none;
+      pointer-events: none;
+      letter-spacing: 0.1em;
+    }
+    header h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+      margin-bottom: 6px;
+      position: relative;
+    }
+    header .subtitle {
+      font-family: 'Spectral', serif;
+      font-size: 0.9rem;
+      color: rgba(247,242,232,0.7);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    header .themes {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      justify-content: center; margin: 12px 0 20px;
+    }
+    header .theme-chip {
+      background: rgba(184,137,42,0.18);
+      border: 1px solid rgba(184,137,42,0.4);
+      border-radius: 20px;
+      padding: 3px 14px;
+      font-size: 0.78rem;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .memory-verse-box {
+      display: inline-block;
+      background: rgba(184,137,42,0.1);
+      border: 1px solid rgba(184,137,42,0.3);
+      border-radius: var(--radius);
+      padding: 14px 24px;
+      max-width: 650px;
+      margin-top: 4px;
+    }
+    .memory-verse-box .mv-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .memory-verse-box blockquote {
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--parchment);
+      line-height: 1.6;
+    }
+    .memory-verse-box .ref {
+      font-size: 0.75rem; color: var(--gold); margin-top: 6px;
+    }
+
+    .subject-band {
+      display: flex; align-items: center; gap: 12px;
+      margin: 30px 0 16px;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--ink-faint);
+    }
+    .subject-band::before, .subject-band::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--parchment-drk), transparent);
+    }
+    .subject-band .band-label {
+      display: flex; align-items: center; gap: 6px;
+    }
+    .band-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    main { max-width: 800px; margin: 0 auto; padding: 28px 20px 80px; }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--parchment-mid);
+      border-radius: var(--radius);
+      padding: 26px 28px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: visible;
+    }
+    .card-header {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--parchment-mid);
+    }
+    .card-icon {
+      width: 34px; height: 34px;
+      background: var(--ink);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px;
+      flex-shrink: 0;
+      color: var(--parchment);
+    }
+    .card h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .card-number {
+      margin-left: auto;
+      font-size: 0.7rem;
+      color: var(--ink-faint);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .learn-body p { margin-bottom: 14px; }
+    .learn-body p:last-child { margin-bottom: 0; }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    @media (max-width: 500px) {
+      .concept-grid { grid-template-columns: 1fr; }
+    }
+    .concept-box {
+      background: var(--parchment);
+      border-radius: 8px;
+      padding: 14px 16px;
+      border-left: 3px solid var(--gold);
+    }
+    .concept-box strong {
+      display: block;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--sienna);
+      margin-bottom: 5px;
+      font-family: 'Spectral', serif;
+    }
+    .concept-box p { font-size: 0.9rem; color: var(--ink-light); margin: 0; }
+
+    .subject-callout {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin: 14px 0;
+      display: flex; gap: 12px; align-items: flex-start;
+    }
+    .subject-callout.science { background: var(--blue-light); border-left: 3px solid var(--deep-blue); }
+    .subject-callout.history { background: var(--sienna-pale); border-left: 3px solid var(--sienna); }
+    .subject-callout.math    { background: #f0ede8; border-left: 3px solid #8a7a5a; }
+    .subject-callout.writing { background: var(--green-pale); border-left: 3px solid var(--green); }
+    .subject-callout.art     { background: var(--purple-pale); border-left: 3px solid #7a3a8a; }
+    .callout-icon { font-size: 1.3rem; flex-shrink: 0; line-height: 1; }
+    .callout-body { flex: 1; }
+    .callout-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+    .science .callout-label { color: var(--deep-blue); }
+    .history .callout-label { color: var(--sienna); }
+    .math .callout-label    { color: #5a4a2a; }
+    .writing .callout-label { color: var(--green); }
+    .art .callout-label     { color: #7a3a8a; }
+    .callout-body p { font-size: 0.9rem; color: var(--ink-light); margin: 0; line-height: 1.6; }
+
+    details {
+      margin-top: 14px;
+      border: 1px solid var(--parchment-mid);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    details summary {
+      padding: 12px 16px;
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--sienna);
+      background: var(--parchment);
+      list-style: none;
+      display: flex; align-items: center; gap: 8px;
+      user-select: none;
+    }
+    details summary::before {
+      content: '▶';
+      font-size: 0.6rem;
+      transition: transform 0.2s;
+    }
+    details[open] summary::before { transform: rotate(90deg); }
+    details .detail-body {
+      padding: 14px 16px;
+      font-size: 0.9rem;
+      color: var(--ink-light);
+      line-height: 1.7;
+      border-top: 1px solid var(--parchment-mid);
+    }
+    details .detail-body p { margin-bottom: 10px; }
+    details .detail-body p:last-child { margin-bottom: 0; }
+
+    .vocab-section-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--ink-faint);
+      font-weight: 600;
+      margin: 22px 0 12px;
+    }
+    .vocab-flip-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .flip-card {
+      height: 110px;
+      perspective: 900px;
+      cursor: pointer;
+    }
+    .flip-card-inner {
+      position: relative; width: 100%; height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.55s cubic-bezier(0.4,0,0.2,1);
+    }
+    .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+    .flip-card-front, .flip-card-back {
+      position: absolute; inset: 0;
+      backface-visibility: hidden;
+      border-radius: 8px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 10px;
+      text-align: center;
+    }
+    .flip-card-front {
+      background: var(--ink);
+      border: 1px solid rgba(184,137,42,0.4);
+    }
+    .flip-card-back {
+      background: var(--gold-pale);
+      border: 1px solid var(--gold);
+      transform: rotateY(180deg);
+    }
+    .flip-word {
+      font-family: 'Crimson Pro', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .flip-lang {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      background: rgba(184,137,42,0.25);
+      color: var(--gold);
+      border-radius: 3px;
+      padding: 1px 7px;
+      margin-bottom: 4px;
+    }
+    .flip-hint {
+      font-size: 0.7rem;
+      color: rgba(184,137,42,0.6);
+      font-style: italic;
+    }
+    .flip-meaning {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--sienna);
+      margin-bottom: 4px;
+    }
+    .flip-note {
+      font-size: 0.72rem;
+      color: var(--ink-faint);
+      line-height: 1.4;
+    }
+    .vocab-tap-hint {
+      font-size: 0.75rem;
+      color: var(--ink-faint);
+      font-style: italic;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .tooltip-word {
+      color: var(--sienna);
+      font-weight: 600;
+      cursor: pointer;
+      border-bottom: 1px dotted var(--sienna-light);
+      position: relative;
+    }
+    .tooltip-word .tooltip-pop {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--ink);
+      color: var(--parchment);
+      border: 1px solid var(--gold);
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 0.78rem;
+      width: 190px;
+      z-index: 300;
+      line-height: 1.45;
+      pointer-events: none;
+      font-style: normal;
+      text-align: left;
+    }
+    .tooltip-word .tooltip-pop::after {
+      content: '';
+      position: absolute;
+      top: 100%; left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: var(--gold);
+    }
+    .tooltip-word:hover .tooltip-pop,
+    .tooltip-word.tip-open .tooltip-pop { display: block; }
+    .tooltip-pop .tp-word {
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      color: var(--gold);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .tooltip-pop .tp-lang {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(184,137,42,0.7);
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .question {
+      margin: 14px 0;
+      padding: 16px 18px;
+      background: var(--parchment);
+      border-radius: 8px;
+      border: 1px solid var(--parchment-mid);
+    }
+    .question p.q-text {
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+    .question label {
+      display: flex; align-items: flex-start; gap: 9px;
+      padding: 6px 0;
+      cursor: pointer;
+      font-size: 0.93rem;
+      color: var(--ink-light);
+      border-radius: 6px;
+    }
+    .q-note {
+      font-size: 0.78rem;
+      color: var(--ink-faint);
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    select {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 7px 10px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      background: #fff;
+      color: var(--ink);
+      cursor: pointer;
+      margin-top: 4px;
+    }
+    select:focus { outline: 2px solid var(--gold); }
+
+    textarea {
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      color: var(--ink);
+      background: #fff;
+      resize: vertical;
+      margin-top: 6px;
       line-height: 1.65;
     }
-    .hero {
-      padding: 56px 22px 36px;
-      background: radial-gradient(circle at top, rgba(214, 199, 177, 0.45), transparent 58%), #2b211b;
-      color: #f7f0e3;
-      border-bottom: 4px solid var(--accent);
+    textarea:focus { outline: 2px solid var(--gold); border-color: transparent; }
+
+    .editable-line, .editable-block {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 12px 14px;
+      background: #fff;
+      color: var(--ink);
+      line-height: 1.7;
+      margin-top: 8px;
     }
-    .hero-inner, main { max-width: 820px; margin: 0 auto; }
-    .eyebrow { letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.78rem; color: #dbc6a7; margin: 0 0 12px; }
-    h1 { font-family: 'Lora', serif; font-size: clamp(2rem, 4vw, 3rem); margin: 0 0 10px; color: #f5d7a6; }
-    .hero p { margin: 0; max-width: 680px; color: #f1e6d4; }
-    main { padding: 30px 22px 64px; }
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
+    .editable-line { min-height: 48px; }
+    .editable-block { min-height: 140px; }
+    .editable-line:focus, .editable-block:focus {
+      outline: 2px solid var(--gold); border-color: transparent;
+    }
+
+    .word-bank {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-bottom: 12px;
+    }
+    .word-chip {
+      padding: 4px 13px;
+      background: var(--parchment-mid);
+      border: 1px solid var(--parchment-drk);
+      border-radius: 20px;
+      font-size: 0.82rem;
+      color: var(--ink-light);
+      font-style: italic;
+      font-family: 'Crimson Pro', serif;
+    }
+
+    .resource-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .resource-item {
+      background: var(--parchment);
+      border: 1px solid var(--parchment-mid);
+      border-left: 3px solid var(--deep-blue);
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+    .resource-tag {
+      display: inline-block;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      background: var(--deep-blue);
+      color: var(--parchment);
+      border-radius: 4px;
+      padding: 2px 8px;
+      margin-bottom: 6px;
+    }
+    .resource-item h3 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1rem;
+      margin-bottom: 4px;
+      color: var(--ink);
+    }
+    .resource-item p {
+      font-size: 0.9rem;
+      color: var(--ink-light);
+      margin: 0;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 10px;
+      padding: 8px 18px;
+      border: 1.5px solid var(--ink);
+      border-radius: 8px;
+      background: var(--ink);
+      color: var(--parchment);
+      cursor: pointer;
+      font-family: 'Spectral', serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .btn:hover { background: var(--sienna); border-color: var(--sienna); }
+    .btn-outline {
+      background: transparent; color: var(--ink);
+    }
+    .btn-outline:hover { background: var(--ink); color: var(--parchment); }
+    .btn-gold { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+    .btn-gold:hover { background: #9a7020; border-color: #9a7020; color: #fff; }
+
+    .feedback {
+      display: none;
+      margin-top: 10px; padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+    .feedback.correct { display: block; background: var(--green-pale); color: #1a4a28; border: 1px solid #b2d4bc; }
+    .feedback.wrong   { display: block; background: var(--red-pale);  color: #8b2020; border: 1px solid #f5c0c0; }
+    .feedback.hint    { display: block; background: var(--gold-pale);  color: #6a4a10; border: 1px solid #e8d08a; }
+
+    .vocab-quiz-item {
+      background: var(--parchment);
+      border: 1px solid var(--parchment-mid);
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+    }
+    .word-label {
+      font-family: 'Crimson Pro', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .lang-badge {
+      display: inline-block;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      background: var(--ink);
+      color: var(--gold);
+      border-radius: 4px;
+      padding: 1px 7px;
+      margin-bottom: 8px;
+    }
+    .vocab-quiz-item select { display: block; width: 100%; margin-bottom: 0; }
+
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+      margin: 16px 0;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 9px; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--gold), var(--sienna));
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 16px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -22px; top: 6px;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 1px var(--gold);
+    }
+    .timeline-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--sienna);
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .timeline-text { font-size: 0.9rem; color: var(--ink-light); }
+
+    .summary-card {
+      display: none;
+      text-align: center;
+      padding: 36px 28px;
+      background: var(--ink);
+      color: var(--parchment);
       border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 24px;
-      margin-bottom: 20px;
+      margin-top: 24px;
+      border: 1px solid rgba(184,137,42,0.3);
     }
-    h2 { font-family: 'Lora', serif; margin-top: 0; margin-bottom: 12px; }
-    .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
-    .meta-item { background: #fcf7ee; border: 1px solid #e7dbc9; border-radius: 12px; padding: 14px; }
-    .meta-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); margin-bottom: 6px; }
-    .notice { border-left: 4px solid var(--accent); background: #fff7ec; }
-    .back-link { color: var(--accent); font-weight: 700; text-decoration: none; }
-    ul { margin: 12px 0 0; padding-left: 20px; }
+    .summary-card.visible { display: block; }
+    .summary-card h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.5rem;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .summary-number {
+      font-family: 'Spectral', serif;
+      font-size: 3.2rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      margin: 16px 0;
+    }
+    .summary-label { font-size: 0.88rem; color: var(--parchment-mid); }
+    .action-bar {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      justify-content: center; margin-top: 18px;
+    }
+
+    .reflection-box {
+      background: var(--parchment);
+      border: 1px solid var(--parchment-mid);
+      border-top: 3px solid var(--gold);
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin: 12px 0;
+    }
+    .reflection-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .reflection-box p { font-size: 0.92rem; color: var(--ink-light); margin: 0; }
+
+    @media print {
+      .progress-bar-wrap, .action-bar, button, .btn { display: none !important; }
+      header { background: #fff !important; color: #000 !important; border: 2px solid #000; }
+      header h1 { color: #000 !important; }
+      .summary-card { display: block !important; background: #f0f0f0 !important; color: #000 !important; }
+      a { color: #000 !important; text-decoration: underline; }
+    }
   </style>
 </head>
 <body>
-  <header class="hero">
-    <div class="hero-inner">
-      <p class="eyebrow">Lesson Placeholder</p>
-      <h1>Exodus 1–5</h1>
-      <p>This page is a temporary lesson placeholder so the tracker can open the correct reading assignment while the full lesson content is still being written.</p>
+
+<div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressBar"></div></div>
+
+<header>
+  <div class="header-hebrew" aria-hidden="true">שְׁמוֹת</div>
+  <p class="subtitle">Torah-Based Homeschool Curriculum · Week 3, Day 1 · High School Level</p>
+  <h1>Exodus 1–5 <span style="color:rgba(184,137,42,0.5);font-size:1.4rem;">/ Shemot</span></h1>
+  <div class="themes">
+    <span class="theme-chip">Preservation</span>
+    <span class="theme-chip">Bondage</span>
+    <span class="theme-chip">Moses</span>
+    <span class="theme-chip">The Burning Bush</span>
+    <span class="theme-chip">Passover Foretold</span>
+    <span class="theme-chip">Yehovah Remembers</span>
+  </div>
+  <div class="memory-verse-box">
+    <div class="mv-label">Memory Verse</div>
+    <blockquote>"And Elohim said to Moses, ‘I AM WHO I AM.’ And he said, ‘Say this to the people of Israel: I AM has sent me to you.’"</blockquote>
+    <p class="ref">— Exodus 3:14</p>
+  </div>
+</header>
+
+<main>
+  <div class="card" style="margin-top:24px;">
+    <div class="card-header">
+      <div class="card-icon">👤</div>
+      <h2>Student Name</h2>
+      <span class="card-number">Identification</span>
     </div>
-  </header>
-  <main>
-    <section class="card notice">
-      <h2>Coming Soon</h2>
-      <p>The full lesson for this reading has not been added yet. For now, this page keeps the lesson link live and shows the planned reading block from the curriculum outline.</p>
-      <p><a class="back-link" href="../../index.html">Return to Lesson Tracker</a></p>
-    </section>
-    <section class="card">
-      <h2>Assignment Snapshot</h2>
-      <div class="meta-grid">
-        <div class="meta-item">
-          <div class="meta-label">Week</div>
-          <div>Week 3</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Day</div>
-          <div>Day 1</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Reading</div>
-          <div>Exodus 1–5</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Memory Verse</div>
-          <div>Exodus 3:14 or 12:13</div>
+    <div class="question">
+      <p class="q-text">Type your name below. It will appear on your printed summary.</p>
+      <div id="student-name-input" class="editable-line" contenteditable="true" aria-label="Student name"></div>
+    </div>
+  </div>
+
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 1 — Torah Reading &amp; Background</span></div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📖</div>
+      <h2>Learn</h2>
+      <span class="card-number">Background &amp; Themes</span>
+    </div>
+    <div class="learn-body">
+      <p><strong>Before you begin:</strong> Read Exodus 1–5 in full in your Torah or Bible before working through this lesson. Everything below is meant to help you reflect on what you have already read, not to replace reading.</p>
+
+      <p>Exodus opens with a nation — not just a family. The sons of Israel who came to Egypt with Jacob have multiplied greatly, just as Elohim promised Abraham. But what began as a place of rescue under Joseph has become a house of slavery. Pharaoh, a king who knows nothing of Joseph or his Elohim, sees the growing people of Israel as a threat. The opening chapters of Exodus set the stage for one of the most defining events in all of Scripture: the redemption of Elohim's people out of bondage.</p>
+
+      <p><strong>Exodus 1</strong> describes the rapid multiplication of Israel in Egypt and Pharaoh's growing fear. He enslaves the people and commands the death of Hebrew male infants. The midwives —
+        <span class="tooltip-word">Shiphrah and Puah<span class="tooltip-pop"><span class="tp-word">Shiphrah &amp; Puah</span><span class="tp-lang">Hebrew</span>Two Hebrew midwives who feared Elohim more than Pharaoh and refused his command to kill newborn boys.</span></span>
+        — fear Elohim more than Pharaoh and refuse. Their courage is honored. Even as oppression increases, Israel continues to grow.</p>
+
+      <p><strong>Exodus 2</strong> introduces Moses. Born to a Levite family, hidden for three months, and then placed in a basket on the river by his mother, he is found and raised by Pharaoh's own daughter. Moses grows up in the palace but sees the suffering of his people. When he kills an Egyptian who was beating a Hebrew, he flees to Midian, marries, and lives as a shepherd in a foreign land. Meanwhile, back in Egypt, the people cry out under their bondage — and Elohim hears.</p>
+
+      <div class="subject-callout history">
+        <div class="callout-icon">🏛️</div>
+        <div class="callout-body">
+          <div class="callout-label">History Connection — Egypt and Slavery</div>
+          <p>Large-scale forced labor was a known feature of ancient Egyptian society, especially for major building projects. Records from ancient Egypt show Semitic people working under Egyptian overseers. The pattern described in Exodus — forced labor on cities, brick-making, oppressive taskmasters — fits precisely the kind of labor system attested in the ancient Near East. This was not a comfortable life. The suffering described is real and the cry of Israel rises from genuine affliction.</p>
         </div>
       </div>
-    </section>
-    <section class="card">
-      <h2>Week Focus</h2>
-      <p>Joseph in Egypt, preservation, bondage, Moses, the plagues, Passover</p>
-    </section>
-    <section class="card">
-      <h2>Suggested Until Full Lesson Is Ready</h2>
-      <ul>
-        <li>Read the assigned chapters carefully.</li>
-        <li>Write down one thing this passage teaches about Yehovah's character.</li>
-        <li>Write down one command, warning, promise, or example worth remembering.</li>
-        <li>Review the memory verse listed above.</li>
-      </ul>
-    </section>
-  </main>
+
+      <p><strong>Exodus 3</strong> is the turning point: the burning bush. Yehovah appears to Moses in the wilderness of Midian. The bush burns but is not consumed. Elohim identifies Himself as the Elohim of Abraham, Isaac, and Jacob — the covenant Elohim of the patriarchs. He tells Moses He has seen the suffering of His people, heard their cry, and is sending Moses to Pharaoh to bring them out. Moses pushes back with five objections, and Yehovah answers each one. He reveals His name —
+        <span class="tooltip-word">I AM WHO I AM<span class="tooltip-pop"><span class="tp-word">Ehyeh Asher Ehyeh</span><span class="tp-lang">Hebrew</span>"I AM WHO I AM" — related to the covenant name Yehovah. It speaks of His self-existence, faithfulness, and presence with His people.</span></span>
+        — and gives Moses signs to confirm his calling.</p>
+
+      <div class="subject-callout writing">
+        <div class="callout-icon">✍️</div>
+        <div class="callout-body">
+          <div class="callout-label">Logic &amp; Rhetoric — Moses's Objections</div>
+          <p>In Exodus 3–4, Moses raises five separate objections to his calling. List them as you read. Then notice how Yehovah responds to each one — not with frustration, but with provision. This pattern (objection → assurance → sign) is worth examining closely. Moses is not punished for his questions. He is answered. What does this tell you about how Yehovah deals with those He calls?</p>
+        </div>
+      </div>
+
+      <p><strong>Exodus 4</strong> continues the encounter. Moses's final objection — that he is not a good speaker — is met with both a rebuke and a provision: Aaron, his brother, will speak for him. Yehovah also gives Moses three signs: a staff that becomes a serpent, a hand made leprous and restored, and water turned to blood. Moses returns to Egypt. The elders of Israel hear his words and believe. They bow down and worship when they hear that Yehovah has seen their suffering.</p>
+
+      <p><strong>Exodus 5</strong> brings the first confrontation with Pharaoh. Moses and Aaron say: "Let my people go, that they may hold a feast to me in the wilderness." Pharaoh refuses. He increases the burden on Israel — now they must gather their own straw while still meeting the same quota of bricks. The people turn against Moses and Aaron. Moses cries out to Yehovah in anguish. These chapters do not end in easy victory. The story is honest: obedience does not always bring immediate relief. But Yehovah's purpose is moving forward.</p>
+
+      <div class="subject-callout science">
+        <div class="callout-icon">🔬</div>
+        <div class="callout-body">
+          <div class="callout-label">Science &amp; the Natural World — The Burning Bush</div>
+          <p>The burning bush that is not consumed stands apart from ordinary fire. Fire is a rapid oxidation reaction that consumes its fuel. A bush that burns without being consumed is not explained by natural chemistry — it is a sign, something outside the normal order. Scripture does not try to explain it away. The point of the sign is precisely that it is not ordinary. Elohim is getting Moses's attention. How does the miraculous function alongside the natural world in these chapters?</p>
+        </div>
+      </div>
+
+      <div class="concept-grid">
+        <div class="concept-box">
+          <strong>Preservation Through Oppression</strong>
+          <p>The more Pharaoh oppresses Israel, the more they multiply. His plans to destroy them fail. Elohim's purposes cannot be stopped by human power.</p>
+        </div>
+        <div class="concept-box">
+          <strong>The Covenant Remembered</strong>
+          <p>Elohim identifies Himself as the Elohim of Abraham, Isaac, and Jacob. He has not forgotten His promises. The covenant made centuries earlier now moves toward fulfillment.</p>
+        </div>
+        <div class="concept-box">
+          <strong>Elohim Sees and Hears</strong>
+          <p>Exodus 2:24–25 says Elohim heard their groaning and remembered His covenant. He is not distant or unaware. He sees suffering and responds.</p>
+        </div>
+        <div class="concept-box">
+          <strong>Called and Equipped</strong>
+          <p>Moses does not see himself as qualified. Elohim does not call him because he is capable — He equips what He calls. The signs, the words, and the brother are all provision.</p>
+        </div>
+        <div class="concept-box">
+          <strong>Fear of Elohim vs. Fear of Man</strong>
+          <p>The midwives feared Elohim rather than Pharaoh. This is presented as wisdom and faithfulness, not rebellion. Fearing Elohim gives one the courage to do right even under pressure.</p>
+        </div>
+        <div class="concept-box">
+          <strong>Obedience Without Immediate Results</strong>
+          <p>Moses obeys, yet Pharaoh hardens. Israel suffers more. Exodus 5 shows that faithfulness does not always produce instant change. Yehovah's purposes work on a longer timeline.</p>
+        </div>
+      </div>
+
+      <details>
+        <summary>Commentary: Why Joseph? — The Bridge from Genesis to Exodus</summary>
+        <div class="detail-body">
+          <p>Exodus 1:8 says "there arose a new king over Egypt, who did not know Joseph." This is a hinge verse. The entire protection that Israel had in Egypt rested on one man's favor — and that man was now forgotten. This is a reminder that human protection is always temporary. Rulers change, memories fade, political winds shift. What does not change is Elohim's covenant with Abraham, Isaac, and Jacob — which is exactly how Elohim identifies Himself when He speaks to Moses in chapter 3.</p>
+          <p>The preservation of Joseph's family in Genesis becomes the setup for the redemption of a nation in Exodus. Elohim was working in Joseph's suffering toward a purpose larger than Joseph's lifetime could contain.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Commentary: The Name — I AM WHO I AM (Exodus 3:14)</summary>
+        <div class="detail-body">
+          <p>When Moses asks Elohim His name, the answer given is one of the most profound statements in all of Scripture: <em>Ehyeh Asher Ehyeh</em> — "I AM WHO I AM." This name speaks of absolute self-existence. Yehovah does not derive His being from anything else. He simply is. He was, He is, and He will be — the One who defines and sustains all existence.</p>
+          <p>This name is also deeply personal and covenantal. It is given in the context of a promise: "I will be with you." The great "I AM" is not a distant philosophical concept but the One who goes with His people into Egypt and out of it again. Every time the name Yehovah appears in Scripture, it carries the weight of this moment at the bush.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Going Deeper: Passover in These Chapters — What Is Being Set Up?</summary>
+        <div class="detail-body">
+          <p>Exodus 1–5 does not yet describe the Passover in full — that comes in Exodus 12. But these chapters are building toward it. The blood of Hebrew infants in chapter 1, the basket of Moses saved from the water in chapter 2, the sign of blood in chapter 4 (water turned to blood), and the first demand to "let my people go, that they may hold a feast to me" in chapter 5 — all of these set the stage. Pharaoh's repeated refusal will bring the ten plagues, culminating in the night of Passover when the destroyer passes over the blood-marked houses of Israel. Knowing where the story is going changes how you read what comes before it.</p>
+        </div>
+      </details>
+
+      <p class="vocab-section-label">Hebrew &amp; Latin — Vocabulary Reference</p>
+      <p class="vocab-tap-hint">Tap or click any card to reveal its meaning →</p>
+      <div class="vocab-flip-grid">
+        <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flip-word">Shemot</div>
+              <div class="flip-lang">Hebrew</div>
+              <div class="flip-hint">שְׁמוֹת</div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-meaning">Names</div>
+              <div class="flip-note">Hebrew title of Exodus — begins "These are the names of the sons of Israel…"</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flip-word">Moshe</div>
+              <div class="flip-lang">Hebrew</div>
+              <div class="flip-hint">מֹשֶׁה</div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-meaning">Moses / Drawn Out</div>
+              <div class="flip-note">Named by Pharaoh's daughter — "because I drew him out of the water" (Ex. 2:10)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flip-word">Ehyeh</div>
+              <div class="flip-lang">Hebrew</div>
+              <div class="flip-hint">אֶהְיֶה</div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-meaning">I AM / I Will Be</div>
+              <div class="flip-note">The form spoken in Exodus 3:14 — the declaration at the burning bush</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flip-word">Geulah</div>
+              <div class="flip-lang">Hebrew</div>
+              <div class="flip-hint">גְּאֻלָּה</div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-meaning">Redemption</div>
+              <div class="flip-note">The act of buying back or delivering — a core theme of the Exodus story</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flip-word">Pesach</div>
+              <div class="flip-lang">Hebrew</div>
+              <div class="flip-hint">פֶּסַח</div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-meaning">Passover / Pass Over</div>
+              <div class="flip-note">The appointed feast rooted in the night Elohim passed over the blood-marked houses</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flip-word">Servus</div>
+              <div class="flip-lang">Latin</div>
+              <div class="flip-hint">servus, -i</div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-meaning">Slave / Servant</div>
+              <div class="flip-note">Root of: servant, serve, service, servitude — connects to Israel's bondage in Egypt</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flip-word">Libertas</div>
+              <div class="flip-lang">Latin</div>
+              <div class="flip-hint">libertas, -atis</div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-meaning">Freedom / Liberty</div>
+              <div class="flip-note">Root of: liberty, liberal, liberate — the goal of the Exodus redemption</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flip-word">Vox</div>
+              <div class="flip-lang">Latin</div>
+              <div class="flip-hint">vox, vocis</div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-meaning">Voice / Cry</div>
+              <div class="flip-note">Root of: vocal, invoke, advocate — Israel's cry rises to Elohim in Ex. 2:23–24</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p style="font-size:0.78rem;color:var(--ink-faint);margin-top:8px;">Word study tip: As you read, look up key words in the Blue Letter Bible app or a Strong's concordance. A Hebrew word often carries more depth than any single English translation can show.</p>
+    </div>
+  </div>
+
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 2 — Observation &amp; Memory</span></div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔍</div>
+      <h2>Observe</h2>
+      <span class="card-number">Reading Questions</span>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Which of the following show that Yehovah is <em>actively present</em> in Exodus 1–5? (Select all that apply.)</p>
+      <label><input type="checkbox" class="chk-obs1" value="a"> He hears Israel's cry and remembers His covenant (Exodus 2:24)</label>
+      <label><input type="checkbox" class="chk-obs1" value="b"> He appears to Moses in the burning bush and speaks directly to him</label>
+      <label><input type="checkbox" class="chk-obs1" value="c"> He causes the midwives to fear Him and protect the Hebrew infants</label>
+      <label><input type="checkbox" class="chk-obs1" value="d"> He stands silently by and watches without involvement</label>
+      <label><input type="checkbox" class="chk-obs1" value="e"> He gives Moses signs to confirm his calling</label>
+      <button class="btn" onclick="checkCheckboxes('chk-obs1', ['a','b','c','e'], 'fb-obs1',
+        'Correct. In these chapters Yehovah hears, sees, remembers, speaks, empowers, and equips. He is not distant. From the midwives to the burning bush to the signs given to Moses, His hand is moving throughout.',
+        'Not quite. Look for the choices that show Yehovah acting, speaking, or responding — not standing back.')">Check</button>
+      <div class="feedback" id="fb-obs1"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Why do the midwives Shiphrah and Puah refuse Pharaoh's command to kill the Hebrew male infants?</p>
+      <label><input type="radio" name="q-midwives"> They did not understand the command</label>
+      <label><input type="radio" name="q-midwives"> They feared Elohim and would not obey a command that violated His purposes</label>
+      <label><input type="radio" name="q-midwives"> They were ordered to stop by Moses</label>
+      <button class="btn" onclick="checkRadio('q-midwives', 1, 'fb-midwives',
+        'Correct. Exodus 1:17 says the midwives &quot;feared Elohim and did not do as the king of Egypt commanded them.&quot; Their fear of Elohim gave them the courage to disobey an unjust command from the most powerful ruler in the world.',
+        'Re-read Exodus 1:17. What does the text specifically say is the reason they did not obey Pharaoh?')">Check</button>
+      <div class="feedback" id="fb-midwives"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">What does Elohim say He has seen, heard, and knows when He speaks to Moses at the burning bush? (Exodus 3:7)</p>
+      <label><input type="radio" name="q-bush"> That Pharaoh is wicked and will be punished</label>
+      <label><input type="radio" name="q-bush"> The affliction of His people, their cry, and their sufferings</label>
+      <label><input type="radio" name="q-bush"> That Moses is the strongest leader in Israel</label>
+      <button class="btn" onclick="checkRadio('q-bush', 1, 'fb-bush',
+        'Correct. Elohim says: &quot;I have surely seen the affliction of my people… and have heard their cry… I know their sufferings.&quot; This is deeply personal language. He does not respond to a political problem — He responds to suffering people He knows.',
+        'Re-read Exodus 3:7 carefully. What three things does Yehovah say about His awareness of Israel&#39;s situation?')">Check</button>
+      <div class="feedback" id="fb-bush"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">What happens after Moses and Aaron first go to Pharaoh and say &quot;let my people go&quot; in Exodus 5?</p>
+      <label><input type="radio" name="q-pharaoh"> Pharaoh releases Israel immediately</label>
+      <label><input type="radio" name="q-pharaoh"> Pharaoh increases Israel's labor burden and the people turn against Moses</label>
+      <label><input type="radio" name="q-pharaoh"> Pharaoh asks to meet with Elohim before deciding</label>
+      <button class="btn" onclick="checkRadio('q-pharaoh', 1, 'fb-pharaoh',
+        'Correct. Pharaoh responds to the request by making the work harder — now Israel must gather their own straw while maintaining the same brick quota. The people suffer more and blame Moses. Obedience does not always bring immediate relief.',
+        'Re-read Exodus 5 carefully. What specific change does Pharaoh make to Israel&#39;s labor, and how do the people respond?')">Check</button>
+      <div class="feedback" id="fb-pharaoh"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">✦</div>
+      <h2>Memory Verse</h2>
+      <span class="card-number">Exodus 3:14</span>
+    </div>
+    <div class="question">
+      <p class="q-text">Fill in the blanks: "And Elohim said to Moses, '<strong>___</strong> <strong>___</strong> <strong>___</strong>.' And he said, 'Say this to the people of Israel: <strong>___</strong> has sent me to you.'"</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;">
+        <div>
+          <label style="font-size:0.78rem;color:var(--ink-faint);display:block;margin-bottom:4px;">First blank:</label>
+          <select id="mv1">
+            <option value="">Choose</option>
+            <option>I</option>
+            <option>He</option>
+            <option>You</option>
+          </select>
+        </div>
+        <div>
+          <label style="font-size:0.78rem;color:var(--ink-faint);display:block;margin-bottom:4px;">Second blank:</label>
+          <select id="mv2">
+            <option value="">Choose</option>
+            <option>AM</option>
+            <option>WAS</option>
+            <option>WILL</option>
+          </select>
+        </div>
+        <div>
+          <label style="font-size:0.78rem;color:var(--ink-faint);display:block;margin-bottom:4px;">Third blank:</label>
+          <select id="mv3">
+            <option value="">Choose</option>
+            <option>WHO I AM</option>
+            <option>THAT I WAS</option>
+            <option>WHOM YOU SEEK</option>
+          </select>
+        </div>
+        <div>
+          <label style="font-size:0.78rem;color:var(--ink-faint);display:block;margin-bottom:4px;">Final blank:</label>
+          <select id="mv4">
+            <option value="">Choose</option>
+            <option>I AM</option>
+            <option>Elohim</option>
+            <option>Moses</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" onclick="checkMemoryVerse()">Check</button>
+      <div class="feedback" id="fb-mv"></div>
+    </div>
+  </div>
+
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 3 — Vocabulary &amp; Language</span></div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📝</div>
+      <h2>Words</h2>
+      <span class="card-number">English Vocabulary</span>
+    </div>
+    <div class="word-bank">
+      <span class="word-chip">affliction</span>
+      <span class="word-chip">bondage</span>
+      <span class="word-chip">covenant</span>
+      <span class="word-chip">taskmaster</span>
+      <span class="word-chip">plague</span>
+      <span class="word-chip">redeem</span>
+    </div>
+
+    <div class="question">
+      <p class="q-text">1. Israel was placed under harsh ______ in Egypt, forced to build cities for Pharaoh. (Exodus 1:11–14)</p>
+      <select id="voc1"><option value="">Choose</option><option>affliction</option><option>bondage</option><option>covenant</option><option>taskmaster</option><option>plague</option><option>redeem</option></select>
+      <button class="btn btn-outline" onclick="checkSelect('voc1','bondage','fb-voc1','Correct. Bondage means the state of being enslaved or under the control of another by force. Israel&#39;s bondage in Egypt is the central problem that the Exodus resolves.','Not quite. Which word describes the condition of being enslaved?')">Check</button>
+      <div class="feedback" id="fb-voc1"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">2. Elohim remembered His ______ with Abraham, Isaac, and Jacob when He heard Israel's cry. (Exodus 2:24)</p>
+      <select id="voc2a" style="margin-right:8px;"><option value="">Choose</option><option>covenant</option><option>plague</option><option>taskmaster</option></select>
+      <button class="btn btn-outline" onclick="checkSelect('voc2a','covenant','fb-voc2','Correct. A covenant is a solemn, binding agreement — often sealed with an oath or sign. Elohim&#39;s covenant with the patriarchs is the reason He acts on Israel&#39;s behalf.','Not quite. What word describes the binding agreement Elohim made with the patriarchs?')">Check</button>
+      <div class="feedback" id="fb-voc2"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">3. Choose the correctly spelled word:</p>
+      <label><input type="radio" name="spell1"> affliction</label>
+      <label><input type="radio" name="spell1"> afflikshun</label>
+      <label><input type="radio" name="spell1"> aflliction</label>
+      <button class="btn btn-outline" onclick="checkRadio('spell1', 0, 'fb-spell1','Correct. Affliction: two f&#39;s, -ction ending. Comes from the Latin afflictio, meaning distress or suffering — the condition of Israel in Egypt.','Look again — the correct form has two f&#39;s and ends in -ction.')">Check</button>
+      <div class="feedback" id="fb-spell1"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">✏️</div>
+      <h2>English Grammar &amp; Writing</h2>
+      <span class="card-number">Grammar</span>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Sentence correction: Edit the line below — fix capitalization and punctuation.</p>
+      <p class="q-note">Hint: Proper nouns and sentence beginnings need capitals. Do not forget the period at the end.</p>
+      <div id="sentence-input" class="editable-line" contenteditable="true">yehovah told moses to go to pharaoh and bring israel out of egypt</div>
+      <button class="btn" onclick="checkSentence()">Check</button>
+      <div class="feedback" id="fb-sentence"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Paragraph editing: Add correct capitalization, commas, and sentence breaks.</p>
+      <p class="q-note">Hint: Three separate sentences are needed. Proper names must be capitalized. Introductory phrases often need commas.</p>
+      <div id="paragraph-input" class="editable-block" contenteditable="true">moses saw a burning bush in the wilderness and yehovah spoke to him from the fire he told moses that he had seen the suffering of israel and was sending him to pharaoh when moses arrived in egypt he and aaron demanded that pharaoh let the people go</div>
+      <button class="btn" onclick="checkParagraph()">Check</button>
+      <div class="feedback" id="fb-paragraph"></div>
+    </div>
+
+    <div style="margin-top:18px;">
+      <p style="font-size:0.82rem;font-weight:600;color:var(--ink-faint);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">Deeper Writing — Choose ONE (if assigned)</p>
+      <div class="reflection-box">
+        <div class="reflection-label">Option A — Analysis</div>
+        <p>In 2–4 sentences: Moses raises five objections when Elohim calls him at the burning bush. Choose two objections and explain how Yehovah responds to each. What does His response reveal about His character?</p>
+      </div>
+      <div class="reflection-box" style="margin-top:10px;">
+        <div class="reflection-label">Option B — Reflection</div>
+        <p>In 3–5 sentences: What does Exodus 5 (where obedience makes things worse before they get better) teach about following Yehovah's call? Give a specific detail from the text and connect it to a principle about faith.</p>
+      </div>
+      <div class="reflection-box" style="margin-top:10px;">
+        <div class="reflection-label">Option C — Creative</div>
+        <p>Write a short paragraph (4–6 sentences) from the perspective of one of the Hebrew midwives — Shiphrah or Puah — at the moment she decides not to obey Pharaoh's command. What does she think and feel? Stay close to what the text shows about her.</p>
+      </div>
+      <textarea rows="5" placeholder="Write your response here…" style="margin-top:10px;"></textarea>
+    </div>
+  </div>
+
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 4 — Hebrew &amp; Latin</span></div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">𐤀</div>
+      <h2>Hebrew &amp; Latin Quiz</h2>
+      <span class="card-number">Language</span>
+    </div>
+    <p class="q-note" style="margin-bottom:14px;">Review the flip cards in Part 1 before completing this section. You can scroll up at any time.</p>
+
+    <div class="vocab-quiz-item">
+      <div class="word-label">Shemot (שְׁמוֹת)</div>
+      <span class="lang-badge">Hebrew</span>
+      <select id="heb1"><option value="">What does this word mean?</option><option>Names</option><option>Waters</option><option>Bondage</option><option>Wilderness</option></select>
+      <button class="btn btn-outline" style="margin-top:10px;" onclick="checkSelect('heb1','Names','fb-heb1','Correct. Shemot means &quot;Names&quot; — the Hebrew title of Exodus. It begins &quot;These are the names of the sons of Israel who came to Egypt.&quot;','Not quite. This is the first word of the book of Exodus in Hebrew.')">Check</button>
+      <div class="feedback" id="fb-heb1"></div>
+    </div>
+
+    <div class="vocab-quiz-item">
+      <div class="word-label">Ehyeh (אֶהְיֶה)</div>
+      <span class="lang-badge">Hebrew</span>
+      <select id="heb2"><option value="">What does this word mean?</option><option>I AM / I Will Be</option><option>Come out</option><option>I will fight</option><option>Shepherd</option></select>
+      <button class="btn btn-outline" style="margin-top:10px;" onclick="checkSelect('heb2','I AM / I Will Be','fb-heb2','Correct. Ehyeh is the form spoken in Exodus 3:14 — the declaration at the burning bush.','Not quite. This is the form Elohim gives Moses when he asks who is sending him.')">Check</button>
+      <div class="feedback" id="fb-heb2"></div>
+    </div>
+
+    <div class="vocab-quiz-item">
+      <div class="word-label">Pesach (פֶּסַח)</div>
+      <span class="lang-badge">Hebrew</span>
+      <select id="heb3"><option value="">What does this word mean?</option><option>Passover / Pass Over</option><option>Wilderness</option><option>Unleavened bread</option><option>Firstborn</option></select>
+      <button class="btn btn-outline" style="margin-top:10px;" onclick="checkSelect('heb3','Passover / Pass Over','fb-heb3','Correct. Pesach refers to the appointed feast rooted in the night Elohim passed over the blood-marked doorposts of Israel. These early chapters are already building toward that night.','Not quite. Think about the feast that commemorates Elohim&#39;s protection on the night of the final plague.')">Check</button>
+      <div class="feedback" id="fb-heb3"></div>
+    </div>
+
+    <div class="vocab-quiz-item">
+      <div class="word-label">Servus</div>
+      <span class="lang-badge">Latin</span>
+      <select id="lat1"><option value="">What does this word mean?</option><option>Slave / Servant</option><option>Fire</option><option>River</option><option>King</option></select>
+      <button class="btn btn-outline" style="margin-top:10px;" onclick="checkSelect('lat1','Slave / Servant','fb-lat1','Correct. Servus means slave or servant — root of servant, serve, service, and servitude. It connects directly to Israel&#39;s condition of forced labor in Egypt.','Not quite. Think about what Israel was forced to become under Pharaoh.')">Check</button>
+      <div class="feedback" id="fb-lat1"></div>
+    </div>
+
+    <div class="vocab-quiz-item">
+      <div class="word-label">Libertas</div>
+      <span class="lang-badge">Latin</span>
+      <select id="lat2"><option value="">What does this word mean?</option><option>Freedom / Liberty</option><option>Darkness</option><option>Blood</option><option>Command</option></select>
+      <button class="btn btn-outline" style="margin-top:10px;" onclick="checkSelect('lat2','Freedom / Liberty','fb-lat2','Correct. Libertas is the root of liberty, liberal, and liberate — the very thing Yehovah is working to give Israel when He sends Moses to Pharaoh.','Not quite. This Latin word is the root of a word that appears in almost every national founding document in the Western world.')">Check</button>
+      <div class="feedback" id="fb-lat2"></div>
+    </div>
+  </div>
+
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 5 — Outside Study Resources</span></div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔗</div>
+      <h2>Optional Outside Study</h2>
+      <span class="card-number">Narrowed Resources</span>
+    </div>
+
+    <div class="learn-body">
+      <p>These outside resources are optional and are meant to support the integrated subjects in this lesson, not replace Scripture. Use them for background, grammar help, and language support if assigned.</p>
+
+      <div class="resource-list">
+        <div class="resource-item">
+          <div class="resource-tag">History</div>
+          <h3>Ancient Egypt Overview</h3>
+          <p>A clear overview of ancient Egypt to help place Pharaoh, forced labor, and Egyptian society in context.<br>
+            <a href="https://www.khanacademy.org/humanities/world-history/world-history-beginnings/ancient-egypt-hittites/a/egypt-article" target="_blank" rel="noopener noreferrer">Open Khan Academy — Ancient Egypt Overview</a>
+          </p>
+        </div>
+
+        <div class="resource-item">
+          <div class="resource-tag">Science</div>
+          <h3>Fire, Oxidation, and Chemical Change</h3>
+          <p>A short science explanation of oxidation and combustion to help students understand why the burning bush stands apart from ordinary fire.<br>
+            <a href="https://www.khanacademy.org/science/chemistry/oxidation-reduction/redox-oxidation-reduction/v/introduction-to-oxidation-and-reduction" target="_blank" rel="noopener noreferrer">Open Khan Academy — Introduction to Oxidation and Reduction</a>
+          </p>
+        </div>
+
+        <div class="resource-item">
+          <div class="resource-tag">Grammar</div>
+          <h3>Capitalization Help</h3>
+          <p>A direct page on sentence beginnings and proper nouns, useful for the sentence and paragraph correction work in this lesson.<br>
+            <a href="https://owl.purdue.edu/owl/general_writing/mechanics/help_with_capitals.html" target="_blank" rel="noopener noreferrer">Open Purdue OWL — A Little Help with Capitals</a>
+          </p>
+        </div>
+
+        <div class="resource-item">
+          <div class="resource-tag">Grammar</div>
+          <h3>Ending a Sentence Correctly</h3>
+          <p>A short explanation of the main ways sentences are correctly ended.<br>
+            <a href="https://www.khanacademy.org/humanities/grammar/punctuation-the-comma-and-the-apostrophe/introduction-to-commas/v/three-ways-to-end-a-sentence-punctuation-khan-academy" target="_blank" rel="noopener noreferrer">Open Khan Academy — Three Ways to End a Sentence</a>
+          </p>
+        </div>
+
+        <div class="resource-item">
+          <div class="resource-tag">Grammar</div>
+          <h3>What Makes a Complete Sentence</h3>
+          <p>A focused lesson on complete sentences, helpful for checking whether thoughts are written as full sentences rather than fragments.<br>
+            <a href="https://www.khanacademy.org/humanities/grammar/syntax-sentences-and-clauses/introduction-to-sentences/v/what-is-a-sentence-syntax-khan-academy" target="_blank" rel="noopener noreferrer">Open Khan Academy — What Is a Sentence?</a>
+          </p>
+        </div>
+
+        <div class="resource-item">
+          <div class="resource-tag">Grammar</div>
+          <h3>Sentence Fragments</h3>
+          <p>A direct help page for identifying and fixing incomplete sentences.<br>
+            <a href="https://owl.purdue.edu/owl/general_writing/mechanics/sentence_fragments.html" target="_blank" rel="noopener noreferrer">Open Purdue OWL — Sentence Fragments</a>
+          </p>
+        </div>
+
+        <div class="resource-item">
+          <div class="resource-tag">Grammar</div>
+          <h3>Run-ons and Comma Splices</h3>
+          <p>A focused guide for fixing sentences that are joined incorrectly.<br>
+            <a href="https://owl.purdue.edu/owl/general_writing/punctuation/independent_and_dependent_clauses/runonsentences.html" target="_blank" rel="noopener noreferrer">Open Purdue OWL — Run-ons, Comma Splices, and Fused Sentences</a>
+          </p>
+        </div>
+
+        <div class="resource-item">
+          <div class="resource-tag">Grammar</div>
+          <h3>Comma Quick Rules</h3>
+          <p>A direct reference for common comma uses, especially useful for introductory phrases and joined clauses.<br>
+            <a href="https://owl.purdue.edu/owl/general_writing/punctuation/commas/index.html" target="_blank" rel="noopener noreferrer">Open Purdue OWL — Commas</a>
+          </p>
+        </div>
+
+        <div class="resource-item">
+          <div class="resource-tag">Language</div>
+          <h3>Latin Help</h3>
+          <p>A beginner-friendly Latin resource for word roots and basic language support.<br>
+            <a href="https://latinitium.com/" target="_blank" rel="noopener noreferrer">Open Latinitium</a>
+          </p>
+        </div>
+      </div>
+
+      <p style="font-size:0.8rem;color:var(--ink-faint);margin-top:14px;">Suggested use: assign the Egypt background link once for the week, then use the grammar links only as needed for sentence correction and paragraph editing.</p>
+    </div>
+  </div>
+
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 6 — History, Science &amp; Context</span></div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🌿</div>
+      <h2>History &amp; Context</h2>
+      <span class="card-number">Context</span>
+    </div>
+
+    <div class="learn-body" style="margin-bottom:16px;">
+      <p>Exodus 1–5 picks up the story of Israel hundreds of years after Joseph's death. These chapters span a long stretch of time — from the multiplication of Israel under a friendly Pharaoh, to enslavement under a hostile one, to Elohim's call of Moses at the burning bush, to the first confrontation with Pharaoh.</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-label">Exodus 1</div>
+          <div class="timeline-text">Israel multiplies in Egypt. A new Pharaoh enslaves them. The midwives fear Elohim and resist his command to kill Hebrew infants.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-label">Exodus 2</div>
+          <div class="timeline-text">Moses is born, hidden, found, raised in Pharaoh's house. He flees to Midian after killing an Egyptian. Israel's cry rises to Elohim — and He hears.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-label">Exodus 3–4</div>
+          <div class="timeline-text">The burning bush. Yehovah reveals His name and commissions Moses. Moses returns to Egypt. The elders of Israel hear and believe.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-label">Exodus 5</div>
+          <div class="timeline-text">First confrontation with Pharaoh. He refuses, increases the burden. The people despair. Moses cries out to Yehovah.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-label">Exodus 6 onward</div>
+          <div class="timeline-text">Yehovah renews His promise. The plagues begin. These events come after the scope of this lesson.</div>
+        </div>
+      </div>
+
+      <div class="subject-callout history" style="margin-top:16px;">
+        <div class="callout-icon">🏛️</div>
+        <div class="callout-body">
+          <div class="callout-label">Ancient Egypt — Power and Religion</div>
+          <p>In ancient Egypt, Pharaoh was considered divine — a god on earth, the son of Ra. His word was absolute law. When Moses stands before Pharaoh and says "Yehovah says, let my people go," he is not simply delivering a political message. He is declaring that the Elohim of a nation of slaves outranks the living god of the most powerful empire on earth. The ten plagues that follow are often understood as direct confrontations with specific Egyptian deities — Elohim demonstrating His superiority over every power Egypt worshipped.</p>
+        </div>
+      </div>
+
+      <div class="subject-callout science" style="margin-top:10px;">
+        <div class="callout-icon">🔬</div>
+        <div class="callout-body">
+          <div class="callout-label">Science — Signs and the Natural Order</div>
+          <p>In Exodus 4, Yehovah gives Moses three signs: a staff turned to a serpent, a hand made leprous and restored, and water turned to blood. Each sign is a reversal or transformation of natural processes — a staff is dead wood, not a living animal; leprosy does not simply vanish; water does not turn to blood. These are not tricks or illusions. They are demonstrations of authority over the created order. The One who made nature is showing that He can alter it. As you read further into Exodus, consider: what is each sign designed to prove, and to whom?</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Where do Exodus 1–5 fit in the biblical timeline?</p>
+      <label><input type="radio" name="timeline"> During the time of King David</label>
+      <label><input type="radio" name="timeline"> After Genesis — the story of Israel multiplying in and then being delivered from Egypt</label>
+      <label><input type="radio" name="timeline"> After the giving of the Ten Commandments</label>
+      <button class="btn" onclick="checkRadio('timeline', 1, 'fb-timeline','Correct. Exodus 1–5 follows directly from the end of Genesis. These chapters move from the multiplication of Israel in Egypt, through their enslavement, to Elohim&#39;s call of Moses — all before the plagues begin.','Not quite. These chapters come right after Genesis and take place before the Ten Commandments and the wilderness journey.')">Check</button>
+      <div class="feedback" id="fb-timeline"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Which of the following belong within Exodus 1–5? (Select all that apply.)</p>
+      <label><input type="checkbox" class="chk-ex1" value="a"> The midwives Shiphrah and Puah refuse Pharaoh's command</label>
+      <label><input type="checkbox" class="chk-ex1" value="b"> Moses is placed in a basket on the river as an infant</label>
+      <label><input type="checkbox" class="chk-ex1" value="c"> The giving of the Ten Commandments at Sinai</label>
+      <label><input type="checkbox" class="chk-ex1" value="d"> Yehovah speaks to Moses from the burning bush</label>
+      <label><input type="checkbox" class="chk-ex1" value="e"> Pharaoh increases Israel's labor burden after Moses's first demand</label>
+      <label><input type="checkbox" class="chk-ex1" value="f"> The crossing of the Red Sea</label>
+      <button class="btn" onclick="checkCheckboxes('chk-ex1', ['a','b','d','e'], 'fb-ex1','Correct. The midwives, Moses in the basket, the burning bush, and the increased labor burden all occur in Exodus 1–5. The Ten Commandments and the Red Sea crossing come later in Exodus.','Check again. Choose only the events that take place before the plagues begin — not events from later in the Exodus narrative.')">Check</button>
+      <div class="feedback" id="fb-ex1"></div>
+    </div>
+  </div>
+
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 7 — Review &amp; Reflection</span></div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">◉</div>
+      <h2>Review</h2>
+      <span class="card-number">Summary Questions</span>
+    </div>
+
+    <div class="question">
+      <p class="q-text">What phrase in Exodus 2:24–25 shows that Elohim has not forgotten His people or His covenant?</p>
+      <label><input type="radio" name="review1"> "And Elohim judged Pharaoh"</label>
+      <label><input type="radio" name="review1"> "And Elohim heard their groaning, and Elohim remembered his covenant"</label>
+      <label><input type="radio" name="review1"> "And Elohim sent a plague upon Egypt"</label>
+      <button class="btn" onclick="checkRadio('review1', 1, 'fb-review1','Correct. This verse is a turning point in the story. After the long silence of Israel&#39;s suffering, these words confirm that Elohim has been present all along — hearing, seeing, and remembering. The rescue that follows is rooted in covenant faithfulness.','Re-read Exodus 2:24–25. Look for the verse that specifically mentions Elohim hearing and remembering.')">Check</button>
+      <div class="feedback" id="fb-review1"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">What is the significance of Yehovah identifying Himself as "the Elohim of Abraham, of Isaac, and of Jacob" when He speaks to Moses?</p>
+      <label><input type="radio" name="review2"> It shows that He is one of many local gods of the region</label>
+      <label><input type="radio" name="review2"> It connects the deliverance of Israel to the covenant promises made to the patriarchs — He is the same faithful Elohim</label>
+      <label><input type="radio" name="review2"> It shows that Moses was descended from a royal family</label>
+      <button class="btn" onclick="checkRadio('review2', 1, 'fb-review2','Correct. By naming Himself as the Elohim of the patriarchs, Yehovah is saying: the covenant made with Abraham, confirmed with Isaac, and passed to Jacob is now being fulfilled. What He promised, He is now doing. The God of these chapters is the same God of Genesis.','Re-read Exodus 3:6. Why does Elohim give that specific identification at that moment?')">Check</button>
+      <div class="feedback" id="fb-review2"></div>
+    </div>
+
+    <div class="question">
+      <p class="q-text">Which of the following best describes the theme of Exodus 1–5?</p>
+      <label><input type="radio" name="review3"> A powerful nation rising to greatness through its own strength</label>
+      <label><input type="radio" name="review3"> Elohim seeing, hearing, and moving to redeem a suffering people — through an unlikely and reluctant leader — in fulfillment of His covenant</label>
+      <label><input type="radio" name="review3"> Moses deciding on his own to lead a political rebellion against Egypt</label>
+      <button class="btn" onclick="checkRadio('review3', 1, 'fb-review3','Correct. Every major detail in Exodus 1–5 points to this: Elohim is the one who initiates, equips, and drives the redemption. Moses does not volunteer — he is called, equipped, and sent. The rescue of Israel begins with Elohim&#39;s covenant faithfulness, not human ambition.','Read back through chapters 1–5 and ask: who is taking the initiative at every key moment?')">Check</button>
+      <div class="feedback" id="fb-review3"></div>
+    </div>
+
+    <div style="margin-top:22px;">
+      <p style="font-size:0.82rem;font-weight:600;color:var(--ink-faint);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">Short Response — Choose One if Assigned</p>
+      <div class="reflection-box">
+        <div class="reflection-label">Option A</div>
+        <p>In 2–4 sentences: How does Exodus 2:24–25 connect what happens in Exodus 3 to the promises Elohim made in Genesis? Give a specific detail from the text.</p>
+      </div>
+      <div class="reflection-box" style="margin-top:10px;">
+        <div class="reflection-label">Option B</div>
+        <p>What is one thing from Exodus 1–5 that surprised you, stood out to you, or that you want to understand better? Explain briefly.</p>
+      </div>
+      <textarea rows="4" placeholder="Write your response here…" style="margin-top:10px;"></textarea>
+      <p class="q-note" style="margin-top:8px;">Complete only one prompt if your teacher assigns it. Depth in this lesson comes mainly through reading, discussion, and reflection.</p>
+    </div>
+
+    <div style="text-align:center;margin-top:24px;">
+      <button class="btn btn-gold" style="padding:12px 34px;font-size:1rem;" onclick="showSummary()">See My Summary</button>
+    </div>
+  </div>
+
+  <div class="summary-card" id="summaryCard">
+    <h2>Lesson Summary</h2>
+    <p style="margin-top:10px;font-size:0.92rem;color:var(--parchment-mid);"><strong>Student:</strong> <span id="summaryStudentName">—</span></p>
+    <div class="summary-number" id="summaryDisplay">–</div>
+    <div class="summary-label" id="summaryLabel">attempted · mastered</div>
+    <p style="margin-top:18px;color:var(--parchment-mid);font-size:0.88rem;">Review any missed questions above, then save your work as a PDF.</p>
+    <div class="action-bar" style="margin-top:24px;">
+      <button class="btn btn-gold" onclick="window.print()" style="padding:11px 22px;">🖨 Print / Save as PDF</button>
+    </div>
+    <p style="font-size:0.75rem;color:var(--ink-faint);margin-top:14px;">
+      <strong style="color:var(--parchment-mid);">To save as PDF:</strong> tap Print → choose "Save as PDF".<br>
+      <strong style="color:var(--parchment-mid);">To email:</strong> save the PDF first, then attach it to an email.
+    </p>
+  </div>
+</main>
+
+<script>
+  const questionState = {};
+  const gradedIds = [
+    'fb-obs1','fb-midwives','fb-bush','fb-pharaoh','fb-mv',
+    'fb-voc1','fb-voc2','fb-spell1','fb-sentence','fb-paragraph',
+    'fb-heb1','fb-heb2','fb-heb3','fb-lat1','fb-lat2',
+    'fb-timeline','fb-ex1','fb-review1','fb-review2','fb-review3'
+  ];
+
+  function updateProgress() {
+    const attempted = gradedIds.filter(id => id in questionState).length;
+    document.getElementById('progressBar').style.width = Math.round((attempted / gradedIds.length) * 100) + '%';
+  }
+
+  function recordAnswer(id, correct) {
+    questionState[id] = !!correct;
+    updateProgress();
+  }
+
+  function showFeedback(id, type, html) {
+    const el = document.getElementById(id);
+    el.className = 'feedback ' + type;
+    el.innerHTML = (type === 'correct' ? '✓ ' : type === 'wrong' ? '✗ ' : '💡 ') + html;
+  }
+
+  function checkRadio(name, correctIndex, fbId, correctMsg, wrongMsg) {
+    const radios = document.querySelectorAll(`input[name="${name}"]`);
+    let selected = -1;
+    radios.forEach((r, i) => { if (r.checked) selected = i; });
+    if (selected === -1) {
+      showFeedback(fbId, 'hint', 'Please select an answer first.');
+      return;
+    }
+    const ok = selected === correctIndex;
+    showFeedback(fbId, ok ? 'correct' : 'wrong', ok ? correctMsg : wrongMsg);
+    recordAnswer(fbId, ok);
+  }
+
+  function checkCheckboxes(cls, correctValues, fbId, correctMsg, wrongMsg) {
+    const boxes = document.querySelectorAll('.' + cls);
+    const selected = [];
+    boxes.forEach(b => { if (b.checked) selected.push(b.value); });
+    if (selected.length === 0) {
+      showFeedback(fbId, 'hint', 'Select at least one answer.');
+      return;
+    }
+    const ok = [...selected].sort().join(',') === [...correctValues].sort().join(',');
+    showFeedback(fbId, ok ? 'correct' : 'wrong', ok ? correctMsg : wrongMsg);
+    recordAnswer(fbId, ok);
+  }
+
+  function checkSelect(id, correctVal, fbId, correctMsg, wrongMsg) {
+    const val = document.getElementById(id).value;
+    if (!val) {
+      showFeedback(fbId, 'hint', 'Please choose an option first.');
+      return;
+    }
+    const ok = val === correctVal;
+    showFeedback(fbId, ok ? 'correct' : 'wrong', ok ? correctMsg : wrongMsg);
+    recordAnswer(fbId, ok);
+  }
+
+  function checkMemoryVerse() {
+    const v1 = document.getElementById('mv1').value;
+    const v2 = document.getElementById('mv2').value;
+    const v3 = document.getElementById('mv3').value;
+    const v4 = document.getElementById('mv4').value;
+    if (!v1 || !v2 || !v3 || !v4) {
+      showFeedback('fb-mv', 'hint', 'Please choose all four blanks.');
+      return;
+    }
+    const ok = v1 === 'I' && v2 === 'AM' && v3 === 'WHO I AM' && v4 === 'I AM';
+    showFeedback('fb-mv', ok ? 'correct' : 'wrong',
+      ok
+        ? 'Correct! &quot;I AM WHO I AM… Say this to the people of Israel: I AM has sent me to you.&quot; — Exodus 3:14'
+        : 'Not quite. Read Exodus 3:14 carefully and try again.'
+    );
+    recordAnswer('fb-mv', ok);
+  }
+
+  function normalizeText(text) {
+    return text.replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
+  }
+
+  function getEditableText(id) {
+    const el = document.getElementById(id);
+    return normalizeText(el.innerText || el.textContent || '');
+  }
+
+  function checkSentence() {
+    const correct = 'Yehovah told Moses to go to Pharaoh and bring Israel out of Egypt.';
+    const input = getEditableText('sentence-input');
+    if (!input || input.length < 5) {
+      showFeedback('fb-sentence', 'hint', 'Tap into the line and correct the sentence first.');
+      return;
+    }
+    if (input === correct) {
+      showFeedback('fb-sentence', 'correct', 'Perfect! Correct capitalization and punctuation.');
+      recordAnswer('fb-sentence', true);
+      return;
+    }
+    const issues = [];
+    if (!input.includes('Yehovah')) issues.push('capitalize "Yehovah"');
+    if (!input.includes('Moses')) issues.push('capitalize "Moses"');
+    if (!input.includes('Pharaoh')) issues.push('capitalize "Pharaoh"');
+    if (!input.includes('Israel')) issues.push('capitalize "Israel"');
+    if (!input.includes('Egypt')) issues.push('capitalize "Egypt"');
+    if (!input.endsWith('.')) issues.push('add a period at the end');
+    showFeedback('fb-sentence', 'wrong', issues.length ? 'Almost — check: ' + issues.join('; ') + '.' : 'Very close — compare carefully with the model sentence.');
+    recordAnswer('fb-sentence', false);
+  }
+
+  function checkParagraph() {
+    const correct = 'Moses saw a burning bush in the wilderness, and Yehovah spoke to him from the fire. He told Moses that he had seen the suffering of Israel and was sending him to Pharaoh. When Moses arrived in Egypt, he and Aaron demanded that Pharaoh let the people go.';
+    const input = getEditableText('paragraph-input');
+    if (!input || input.length < 10) {
+      showFeedback('fb-paragraph', 'hint', 'Tap into the paragraph and edit it first.');
+      return;
+    }
+    if (input === correct) {
+      showFeedback('fb-paragraph', 'correct', 'Excellent! Correct capitals, commas, and sentence breaks throughout.');
+      recordAnswer('fb-paragraph', true);
+      return;
+    }
+    const issues = [];
+    if (!input.includes('Moses')) issues.push('capitalize Moses');
+    if (!input.includes('Yehovah')) issues.push('capitalize Yehovah');
+    if (!input.includes('Israel')) issues.push('capitalize Israel');
+    if (!input.includes('Pharaoh')) issues.push('capitalize Pharaoh');
+    if (!input.includes('Egypt')) issues.push('capitalize Egypt');
+    if (!input.includes('Aaron')) issues.push('capitalize Aaron');
+    if (!input.includes(', and')) issues.push('add a comma before "and" in the first sentence');
+    const sentences = input.split(/[.!?]+/).filter(s => s.trim().length > 0);
+    if (sentences.length < 3) issues.push('break the paragraph into three sentences');
+    showFeedback('fb-paragraph', 'wrong', issues.length ? 'Still needs work: ' + issues.join('; ') + '.' : 'Very close — compare carefully with the model.');
+    recordAnswer('fb-paragraph', false);
+  }
+
+  function showSummary() {
+    const card = document.getElementById('summaryCard');
+    const attempted = gradedIds.filter(id => id in questionState).length;
+    const mastered = gradedIds.filter(id => questionState[id] === true).length;
+    const studentName = getEditableText('student-name-input');
+    card.classList.add('visible');
+    document.getElementById('summaryStudentName').textContent = studentName || 'Not entered';
+    document.getElementById('summaryDisplay').textContent = `${mastered} / ${gradedIds.length}`;
+    document.getElementById('summaryLabel').textContent = `${attempted} attempted · ${mastered} mastered`;
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  document.addEventListener('click', function(e) {
+    const tw = e.target.closest('.tooltip-word');
+    document.querySelectorAll('.tooltip-word.tip-open').forEach(el => {
+      if (el !== tw) el.classList.remove('tip-open');
+    });
+    if (tw) {
+      tw.classList.toggle('tip-open');
+      e.stopPropagation();
+    }
+  });
+</script>
+
 </body>
 </html>
