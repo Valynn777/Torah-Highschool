@@ -876,7 +876,7 @@
         <div class="callout-icon">✍️</div>
         <div class="callout-body">
           <div class="callout-label">Logic &amp; Rhetoric</div>
-          <p>Notice the serpent's technique in Genesis 3:1 — he begins with a question that slightly misquotes the command. Examine how the original command in Gen 2:17 compares to what the serpent says in Gen 3:1. What is subtly changed? This kind of small distortion is a classic rhetorical strategy. Being able to notice it is a skill worth developing.</p>
+          <p>Notice the serpent's technique in Genesis 3:1 — he begins with a question that slightly misquotes the command. Elohim said in Gen 2:17: <em>"you shall not eat of it."</em> The serpent says in Gen 3:1: <em>"Did Elohim actually say, 'You shall not eat of any tree in the garden'?"</em> What is subtly changed? One adds scope ("any tree") that was never there; one introduces doubt about whether Elohim spoke clearly at all. This kind of small distortion is a classic rhetorical strategy. Being able to notice it is a skill worth developing.</p>
         </div>
       </div>
 
@@ -972,7 +972,7 @@
             </div>
             <div class="flip-card-back">
               <div class="flip-meaning">To create</div>
-              <div class="flip-note">Used only of Elohim — points to His unique authority as Creator</div>
+              <div class="flip-note">Used almost exclusively of Elohim's creative act — points to His unique authority as Creator</div>
             </div>
           </div>
         </div>
@@ -1067,7 +1067,7 @@
   </div>
 
   <!-- ══ PART 2: OBSERVE ══ -->
-  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 2 — Observation &amp; Memory · Reading — 20 min</span></div>
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 2 — Observation &amp; Memory · Reading — 45 min</span></div>
 
   <div class="card">
     <div class="card-header">
@@ -1127,7 +1127,7 @@
     <div class="card-header">
       <div class="card-icon">✦</div>
       <h2>Memory Verse</h2>
-      <span class="card-number">Reading / Memory — 45 min</span>
+      <span class="card-number">Memory — 10 min</span>
     </div>
     <div class="question">
       <p class="q-text">Fill in the blanks: "So Elohim created mankind in his own <strong>___</strong>, in the image of Elohim he <strong>___</strong> them; male and female he created <strong>___</strong>."</p>
@@ -1210,7 +1210,7 @@
 
     <div class="question">
       <p class="q-text">Paragraph editing: Add correct capitalization, commas, and sentence breaks.</p>
-      <p class="q-note">Hint: Three separate sentences are needed. Proper names must be capitalized. Introductory phrases often need commas.</p>
+      <p class="q-note">Hint: Three separate sentences are needed. Proper names must be capitalized. A comma is needed before "but" when joining two complete sentences (compound sentence). Introductory phrases also often need commas.</p>
       <div id="paragraph-input" class="editable-block" contenteditable="true">adam and chavah were given a command in the garden but they disobeyed after that they hid from yehovah and blamed others cain later became angry and killed his brother</div>
       <button class="btn" onclick="checkParagraph()">Check</button>
       <div class="feedback" id="fb-paragraph"></div>
@@ -1230,12 +1230,12 @@
         <div class="reflection-label">Option C — Creative</div>
         <p>Write a short paragraph (4–6 sentences) from the perspective of Cain, <em>before</em> he goes into the field — after he has heard Elohim's warning. What might he have been thinking or feeling? Stay close to what the text shows about him.</p>
       </div>
-      <textarea rows="5" placeholder="Write your response here…" style="margin-top:10px;"></textarea>
+      <textarea rows="5" placeholder="Write your response here… (aim for the sentence count listed in your chosen option)"></textarea>
     </div>
   </div>
 
   <!-- ══ PART 4: HEBREW & LATIN ══ -->
-  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 4 — Hebrew &amp; Latin · Non-core — 30 min</span></div>
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 4 — Hebrew &amp; Latin · Non-core — 55 min</span></div>
 
   <div class="card">
     <div class="card-header">
@@ -1511,7 +1511,7 @@
         <div class="reflection-label">Option B</div>
         <p>What is one thing from Genesis 1–5 that surprised you, stood out to you, or that you want to understand better? Explain briefly.</p>
       </div>
-      <textarea rows="4" placeholder="Write your response here…" style="margin-top:10px;"></textarea>
+      <textarea rows="4" placeholder="Write your response here… (aim for the sentence count listed in your chosen option)"></textarea>
       <p class="q-note" style="margin-top:8px;">Complete only one prompt if your teacher assigns it. Depth in this lesson comes mainly through reading, discussion, and reflection.</p>
     </div>
 
@@ -1630,6 +1630,7 @@
       <button class="btn btn-outline" onclick="downloadDailyLogHTML()">Download Readable Log</button>
       <button class="btn btn-outline" onclick="window.print()">Print / Save Lesson PDF</button>
     </div>
+    <p class="q-note" style="margin-top:10px;">💡 <strong>To save as PDF for your portfolio:</strong> click "Print / Save Lesson PDF" above, then choose <em>Save as PDF</em> (or <em>Microsoft Print to PDF</em>) as your printer. On a phone or tablet, tap the share icon and choose <em>Print</em>.</p>
 
     <pre class="log-preview" id="dailyLogPreview"></pre>
   </div>
@@ -1732,10 +1733,11 @@
   }
 
   function checkSentence() {
-    const correct = 'Yehovah made Adam and Chavah in his image.';
+    const correct1 = 'Yehovah made Adam and Chavah in his image.';
+    const correct2 = 'Yehovah made Adam and Chavah in His image.';
     const input = getEditableText('sentence-input');
     if (!input || input.length < 5) { showFeedback('fb-sentence', 'hint', 'Tap into the line and correct the sentence first.'); return; }
-    if (input === correct) { showFeedback('fb-sentence', 'correct', 'Perfect! Correct capitalization and punctuation.'); recordAnswer('fb-sentence', true); return; }
+    if (input === correct1 || input === correct2) { showFeedback('fb-sentence', 'correct', 'Perfect! Correct capitalization and punctuation.'); recordAnswer('fb-sentence', true); return; }
     const issues = [];
     if (!input.includes('Yehovah')) issues.push('capitalize "Yehovah"');
     if (!input.includes('Adam')) issues.push('capitalize "Adam"');
