@@ -669,6 +669,133 @@
     }
     .reflection-box p { font-size: 0.92rem; color: var(--ink-light); margin: 0; }
 
+
+    /* ─── SCHEDULE & OUTSIDE RESOURCES ─── */
+    .schedule-grid, .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .schedule-item, .resource-item {
+      background: var(--parchment);
+      border: 1px solid var(--parchment-mid);
+      border-left: 3px solid var(--gold);
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+    .schedule-item strong, .resource-item strong {
+      display: block;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--sienna);
+      margin-bottom: 4px;
+    }
+    .schedule-item p, .resource-item p {
+      font-size: 0.9rem;
+      color: var(--ink-light);
+      margin: 0 0 8px;
+      line-height: 1.55;
+    }
+    .time-pill {
+      display: inline-block;
+      background: var(--gold-pale);
+      border: 1px solid rgba(184,137,42,0.35);
+      border-radius: 999px;
+      padding: 2px 9px;
+      font-size: 0.72rem;
+      color: #6a4a10;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+    .resource-item a {
+      color: var(--deep-blue);
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 1px dotted var(--deep-blue);
+    }
+    .resource-item a:hover {
+      color: var(--sienna);
+      border-bottom-color: var(--sienna);
+    }
+
+
+    /* ─── COMPLETION LOG ─── */
+    .completion-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin: 14px 0 18px;
+    }
+    .log-field label {
+      display: block;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+    .log-field input, .log-field select {
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-family: inherit;
+      font-size: 0.92rem;
+      background: #fff;
+      color: var(--ink);
+    }
+    .log-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 14px;
+      font-size: 0.9rem;
+    }
+    .log-table th, .log-table td {
+      border: 1px solid var(--parchment-mid);
+      padding: 9px 10px;
+      vertical-align: middle;
+      text-align: left;
+    }
+    .log-table th {
+      background: var(--parchment);
+      color: var(--sienna);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .log-table input[type="number"] {
+      width: 74px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 5px 6px;
+      font-family: inherit;
+    }
+    .log-summary-box {
+      background: var(--gold-pale);
+      border: 1px solid #e8d08a;
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-top: 12px;
+      font-size: 0.9rem;
+      color: #5c4310;
+    }
+    .log-preview {
+      display: none;
+      white-space: pre-wrap;
+      background: #fff;
+      border: 1px solid var(--parchment-mid);
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-top: 14px;
+      font-size: 0.86rem;
+      line-height: 1.55;
+      color: var(--ink-light);
+    }
+    .log-preview.visible { display: block; }
+
     @media print {
       .progress-bar-wrap, .action-bar, button, .btn { display: none !important; }
       header { background: #fff !important; color: #000 !important; border: 2px solid #000; }
@@ -710,18 +837,19 @@
     </div>
     <div class="question">
       <p class="q-text">Type your name below. It will appear on your printed summary.</p>
-      <div id="student-name-input" class="editable-line" contenteditable="true" aria-label="Student name"></div>
+      <div id="student-name-input" class="editable-line" contenteditable="true" aria-label="Student name" oninput="syncLogStudentNameFromTop()"></div>
     </div>
   </div>
 
+
   <!-- ══ PART 1: LEARN ══ -->
-  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 1 — Torah Reading &amp; Background</span></div>
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 1 — Torah Reading &amp; Background · Reading — 25 min</span></div>
 
   <div class="card">
     <div class="card-header">
       <div class="card-icon">📖</div>
       <h2>Learn</h2>
-      <span class="card-number">Background &amp; Themes</span>
+      <span class="card-number">Reading — 25 min</span>
     </div>
     <div class="learn-body">
       <p><strong>Before you begin:</strong> Read Genesis 1–5 in full in your Torah or Bible before working through this lesson. Everything below is meant to help you reflect on what you have already read, not to replace reading.</p>
@@ -939,13 +1067,13 @@
   </div>
 
   <!-- ══ PART 2: OBSERVE ══ -->
-  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 2 — Observation &amp; Memory</span></div>
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 2 — Observation &amp; Memory · Reading — 20 min</span></div>
 
   <div class="card">
     <div class="card-header">
       <div class="card-icon">🔍</div>
       <h2>Observe</h2>
-      <span class="card-number">Reading Questions</span>
+      <span class="card-number">Reading — 45 min</span>
     </div>
 
     <div class="question">
@@ -999,7 +1127,7 @@
     <div class="card-header">
       <div class="card-icon">✦</div>
       <h2>Memory Verse</h2>
-      <span class="card-number">Genesis 1:27</span>
+      <span class="card-number">Reading / Memory — 45 min</span>
     </div>
     <div class="question">
       <p class="q-text">Fill in the blanks: "So Elohim created mankind in his own <strong>___</strong>, in the image of Elohim he <strong>___</strong> them; male and female he created <strong>___</strong>."</p>
@@ -1023,13 +1151,13 @@
   </div>
 
   <!-- ══ PART 3: VOCABULARY & LANGUAGE ══ -->
-  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 3 — Vocabulary &amp; Language</span></div>
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 3 — Vocabulary, Grammar &amp; Writing · Language Arts — 45 min</span></div>
 
   <div class="card">
     <div class="card-header">
       <div class="card-icon">📝</div>
       <h2>Words</h2>
-      <span class="card-number">English Vocabulary</span>
+      <span class="card-number">Language Arts — 45 min</span>
     </div>
     <div class="word-bank">
       <span class="word-chip">image</span>
@@ -1069,7 +1197,7 @@
     <div class="card-header">
       <div class="card-icon">✏️</div>
       <h2>English Grammar &amp; Writing</h2>
-      <span class="card-number">Grammar</span>
+      <span class="card-number">Language Arts — 45 min</span>
     </div>
 
     <div class="question">
@@ -1107,13 +1235,13 @@
   </div>
 
   <!-- ══ PART 4: HEBREW & LATIN ══ -->
-  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 4 — Hebrew &amp; Latin</span></div>
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 4 — Hebrew &amp; Latin · Non-core — 30 min</span></div>
 
   <div class="card">
     <div class="card-header">
       <div class="card-icon">𐤀</div>
       <h2>Hebrew &amp; Latin Quiz</h2>
-      <span class="card-number">Language</span>
+      <span class="card-number">Non-core — 55 min</span>
     </div>
     <p class="q-note" style="margin-bottom:14px;">Review the flip cards in Part 1 before completing this section. You can scroll up at any time.</p>
 
@@ -1158,8 +1286,111 @@
     </div>
   </div>
 
-  <!-- ══ PART 5: HISTORY & SCIENCE ══ -->
-  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 5 — History, Science &amp; Context</span></div>
+
+  <!-- ══ PART 5: OUTSIDE STUDY RESOURCES ══ -->
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 5 — Outside Study Resources &amp; Checks · Social Studies/Science — 30 min each</span></div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔗</div>
+      <h2>Outside Study Resources</h2>
+      <span class="card-number">Narrowed Resources</span>
+    </div>
+    <div class="learn-body">
+      <p>These outside resources support the integrated subjects in this lesson and may be assigned as part of the reading, language arts, social studies, science, or non-core time. They are meant to deepen the lesson and provide outside academic support while Scripture remains the foundation.</p>
+
+      <div class="resource-grid">
+        <div class="resource-item">
+          <strong>Torah / Hebrew Word Study</strong>
+          <p>Use this to look closely at the Hebrew wording in Genesis 1 and to compare key words such as <em>bereshit</em>, <em>bara</em>, and <em>tselem</em>.</p>
+          <p><a href="https://biblehub.com/interlinear/genesis/1.htm" target="_blank" rel="noopener">Bible Hub — Genesis 1 Interlinear</a></p>
+          <p><a href="https://www.blueletterbible.org/tools/interlinear/wlc-kjv/gen/1/1/" target="_blank" rel="noopener">Blue Letter Bible — Genesis 1:1 Hebrew Interlinear</a></p>
+        </div>
+
+        <div class="resource-item">
+          <strong>Language Arts — Capitalization</strong>
+          <p>Use this with the sentence correction and paragraph editing sections. Focus on sentence beginnings, proper nouns, and the pronoun I.</p>
+          <p><a href="https://owl.purdue.edu/owl/general_writing/mechanics/help_with_capitals.html" target="_blank" rel="noopener">Purdue OWL — A Little Help with Capitals</a></p>
+        </div>
+
+        <div class="resource-item">
+          <strong>Language Arts — Punctuation</strong>
+          <p>Use this as a support when editing the paragraph assignment. Review commas, colons, quotation marks, and sentence punctuation as needed.</p>
+          <p><a href="https://owl.purdue.edu/owl/general_writing/punctuation/index.html" target="_blank" rel="noopener">Purdue OWL — Punctuation Resources</a></p>
+        </div>
+
+        <div class="resource-item">
+          <strong>Social Studies — Ancient Near East</strong>
+          <p>Use this for historical background on the region surrounding early biblical history. Look especially for geography, artifacts, writing, and early civilizations.</p>
+          <p><a href="https://www.metmuseum.org/met-publications/art-of-the-ancient-near-east-a-resource-for-educators" target="_blank" rel="noopener">The Met — Art of the Ancient Near East</a></p>
+        </div>
+
+        <div class="resource-item">
+          <strong>Social Studies — Mesopotamia</strong>
+          <p>Use this to support the ancient Near East comparison. Notice how other ancient cultures explained origins, rulers, labor, and the gods.</p>
+          <p><a href="https://www.metmuseum.org/learn/educators/lesson-plans/ancient-mesopotamia" target="_blank" rel="noopener">The Met — Ancient Mesopotamia Lesson</a></p>
+        </div>
+
+        <div class="resource-item">
+          <strong>Science — Biological Classification</strong>
+          <p>Use this with the Genesis 1 discussion of ordered creation and living things according to their kinds. Connect it to your Biology textbook if assigned.</p>
+          <p><a href="https://www.khanacademy.org/science/biology-essentials/x35f699f4a3703d4e%3Anomenclature-and-taxonomy" target="_blank" rel="noopener">Khan Academy — Biological Classification</a></p>
+        </div>
+
+        <div class="resource-item">
+          <strong>Science — Taxonomy Review</strong>
+          <p>Use this short video if the student needs help understanding taxonomy, categories, and the way living things are grouped for study.</p>
+          <p><a href="https://www.khanacademy.org/science/ap-biology/natural-selection/phylogeny/v/taxonomy-and-the-tree-of-life" target="_blank" rel="noopener">Khan Academy — Taxonomy and the Tree of Life</a></p>
+        </div>
+
+        <div class="resource-item">
+          <strong>Latin Roots</strong>
+          <p>Use this for the Latin words in the lesson, especially <em>lux</em>, <em>imago</em>, and <em>generatio</em>. Look for English words that grew from these roots.</p>
+          <p><a href="https://latinitium.com/latin-dictionaries/" target="_blank" rel="noopener">Latinitium — Free Latin Dictionaries</a></p>
+        </div>
+      </div>
+
+      <div class="question" style="margin-top:18px;">
+        <p class="q-text">Social Studies Source Check: After using one Ancient Near East or Mesopotamia source, which region is most closely connected with early biblical-world background?</p>
+        <label><input type="radio" name="q-ane-source1"> South America</label>
+        <label><input type="radio" name="q-ane-source1"> Mesopotamia and the ancient Near East</label>
+        <label><input type="radio" name="q-ane-source1"> Arctic Europe</label>
+        <button class="btn" onclick="checkRadio('q-ane-source1', 1, 'fb-ane-source1','Correct. Mesopotamia and the ancient Near East give important historical background for the early biblical world.','Not quite. Look for the region connected with early civilizations near the Tigris and Euphrates and the broader biblical-world setting.')">Check</button>
+        <div class="feedback" id="fb-ane-source1"></div>
+      </div>
+
+      <div class="question">
+        <p class="q-text">Social Studies Source Check: Many ancient origin stories differ from Genesis because they often present mankind as…</p>
+        <label><input type="radio" name="q-ane-source2"> Made in the image of one sovereign Creator with dignity and purpose</label>
+        <label><input type="radio" name="q-ane-source2"> Created mainly to serve the needs of many gods</label>
+        <label><input type="radio" name="q-ane-source2"> Unrelated to any spiritual or historical claims</label>
+        <button class="btn" onclick="checkRadio('q-ane-source2', 1, 'fb-ane-source2','Correct. This contrast helps students see how Genesis presents mankind with dignity, purpose, and responsibility before Elohim.','Not quite. Compare the dignity given to mankind in Genesis with the way some surrounding ancient cultures described mankind’s purpose.')">Check</button>
+        <div class="feedback" id="fb-ane-source2"></div>
+      </div>
+
+      <div class="question">
+        <p class="q-text">Science Source Check: Biological classification is mainly the practice of…</p>
+        <label><input type="radio" name="q-sci-source1"> Grouping living things by shared traits so they can be studied in an ordered way</label>
+        <label><input type="radio" name="q-sci-source1"> Measuring how fast rivers move</label>
+        <label><input type="radio" name="q-sci-source1"> Writing ancient laws on stone</label>
+        <button class="btn" onclick="checkRadio('q-sci-source1', 0, 'fb-sci-source1','Correct. Classification groups living things by shared traits, which connects well with observing order in creation.','Not quite. Think about how scientists organize plants, animals, and other living things into categories.')">Check</button>
+        <div class="feedback" id="fb-sci-source1"></div>
+      </div>
+
+      <div class="question">
+        <p class="q-text">Science Source Check: The classification/taxonomy topic connects to Genesis 1 because Genesis repeatedly describes living things…</p>
+        <label><input type="radio" name="q-sci-source2"> According to their kinds</label>
+        <label><input type="radio" name="q-sci-source2"> Without any order or pattern</label>
+        <label><input type="radio" name="q-sci-source2"> As belonging only to the sea</label>
+        <button class="btn" onclick="checkRadio('q-sci-source2', 0, 'fb-sci-source2','Correct. Genesis 1 repeatedly emphasizes ordered life and reproduction according to kind.','Not quite. Look for the repeated wording in Genesis 1 about plants and animals.')">Check</button>
+        <div class="feedback" id="fb-sci-source2"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ PART 6: HISTORY & SCIENCE ══ -->
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 6 — History, Science &amp; Context · Included in Social Studies/Science blocks</span></div>
 
   <div class="card">
     <div class="card-header">
@@ -1233,14 +1464,14 @@
     </div>
   </div>
 
-  <!-- ══ PART 6: REVIEW ══ -->
-  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 6 — Review &amp; Reflection</span></div>
+  <!-- ══ PART 7: REVIEW ══ -->
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Part 7 — Review &amp; Reflection · Lesson Evaluation — 15–20 min</span></div>
 
   <div class="card">
     <div class="card-header">
       <div class="card-icon">◉</div>
       <h2>Review</h2>
-      <span class="card-number">Summary Questions</span>
+      <span class="card-number">Evaluation Evidence</span>
     </div>
 
     <div class="question">
@@ -1289,6 +1520,120 @@
     </div>
   </div>
 
+
+  <!-- COMPLETION & DAILY LOG -->
+  <div class="subject-band"><span class="band-label"><span class="band-dot"></span>Completion &amp; Daily Log</span></div>
+
+  <div class="card" id="completion-log-card">
+    <div class="card-header">
+      <div class="card-icon">✓</div>
+      <h2>Completion &amp; Daily Log</h2>
+      <span class="card-number">Daily Record Output</span>
+    </div>
+
+    <div class="learn-body">
+      <p><strong>Use this section after the lesson is finished.</strong> Check the subjects actually completed, adjust the minutes if needed, then download the daily log and save it with the completed lesson PDF.</p>
+      <p class="q-note">Record the actual time completed. If a subject was not completed today, uncheck it so the total is accurate.</p>
+    </div>
+
+    <div class="completion-grid">
+      <div class="log-field">
+        <label for="log-student-name">Student</label>
+        <input id="log-student-name" type="text" placeholder="Student name" oninput="syncStudentNameFromLog()">
+      </div>
+      <div class="log-field">
+        <label for="log-date-completed">Date completed</label>
+        <input id="log-date-completed" type="date">
+      </div>
+      <div class="log-field">
+        <label for="log-location">Location</label>
+        <select id="log-location">
+          <option value="Home">Home</option>
+          <option value="Away">Away</option>
+          <option value="Mixed">Mixed</option>
+        </select>
+      </div>
+      <div class="log-field">
+        <label for="log-school-year">School year</label>
+        <input id="log-school-year" type="text" value="2026-2027">
+      </div>
+    </div>
+
+    <table class="log-table" aria-label="Daily subject log">
+      <thead>
+        <tr>
+          <th>Done</th>
+          <th>Subject</th>
+          <th>Minutes</th>
+          <th>Activity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="checkbox" class="log-subject" data-subject="reading" checked onchange="updateLogTotals()"></td>
+          <td>Reading</td>
+          <td><input type="number" id="mins-reading" value="45" min="0" onchange="updateLogTotals()" oninput="updateLogTotals()"></td>
+          <td>Torah/Tanakh reading and comprehension — Genesis 1–5</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" class="log-subject" data-subject="languageArts" checked onchange="updateLogTotals()"></td>
+          <td>Language Arts</td>
+          <td><input type="number" id="mins-languageArts" value="45" min="0" onchange="updateLogTotals()" oninput="updateLogTotals()"></td>
+          <td>Vocabulary, grammar, sentence correction, paragraph editing, and writing/reflection</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" class="log-subject" data-subject="socialStudies" checked onchange="updateLogTotals()"></td>
+          <td>Social Studies</td>
+          <td><input type="number" id="mins-socialStudies" value="30" min="0" onchange="updateLogTotals()" oninput="updateLogTotals()"></td>
+          <td>Biblical timeline, ancient Near East source study, Mesopotamia comparison, and source-check questions</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" class="log-subject" data-subject="science" checked onchange="updateLogTotals()"></td>
+          <td>Science</td>
+          <td><input type="number" id="mins-science" value="30" min="0" onchange="updateLogTotals()" oninput="updateLogTotals()"></td>
+          <td>Creation order, kinds/classification, biological taxonomy source study, and source-check questions</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" class="log-subject" data-subject="math" checked onchange="updateLogTotals()"></td>
+          <td>Math</td>
+          <td><input type="number" id="mins-math" value="45" min="0" onchange="updateLogTotals()" oninput="updateLogTotals()"></td>
+          <td>Online math lesson completed separately</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" class="log-subject" data-subject="nonCore" checked onchange="updateLogTotals()"></td>
+          <td>Non-core</td>
+          <td><input type="number" id="mins-nonCore" value="55" min="0" onchange="updateLogTotals()" oninput="updateLogTotals()"></td>
+          <td>Hebrew/Latin vocabulary and memory verse, plus PE, art, life skills, or computer skills</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="completion-grid">
+      <label><input type="checkbox" id="log-lesson-pdf" checked> Completed lesson PDF saved to portfolio</label>
+      <label><input type="checkbox" id="log-questions-completed" checked> Lesson review/questions completed</label>
+      <label><input type="checkbox" id="log-outside-sources" checked> Outside source checks completed</label>
+      <label><input type="checkbox" id="log-math-report"> Math report/screenshot saved</label>
+    </div>
+
+    <div class="question" style="margin-top:14px;">
+      <p class="q-text">Notes for today, if needed:</p>
+      <textarea id="log-notes" rows="3" placeholder="Optional notes: extra reading, outside resources used, math lesson number, work sample saved, etc."></textarea>
+    </div>
+
+    <div class="log-summary-box" id="logTotalsBox">
+      Total: 4 hr 10 min · Core: 3 hr 15 min · Non-core: 55 min
+    </div>
+
+    <div class="action-bar" style="justify-content:flex-start;margin-top:16px;">
+      <button class="btn" onclick="showLogPreview()">Preview Log</button>
+      <button class="btn btn-gold" onclick="downloadDailyLogJSON()">Download Daily Log JSON</button>
+      <button class="btn btn-outline" onclick="downloadDailyLogHTML()">Download Readable Log</button>
+      <button class="btn btn-outline" onclick="window.print()">Print / Save Lesson PDF</button>
+    </div>
+
+    <pre class="log-preview" id="dailyLogPreview"></pre>
+  </div>
+
   <!-- SUMMARY -->
   <div class="summary-card" id="summaryCard">
     <h2>Lesson Summary</h2>
@@ -1313,6 +1658,7 @@
     'fb-notice1','fb-cain','fb-gen5a','fb-enoch','fb-mv',
     'fb-voc1','fb-voc2','fb-spell1','fb-sentence','fb-paragraph',
     'fb-heb1','fb-heb2','fb-heb3','fb-lat1','fb-lat2',
+    'fb-ane-source1','fb-ane-source2','fb-sci-source1','fb-sci-source2',
     'fb-timeline','fb-gen1','fb-review1','fb-review2','fb-review3'
   ];
 
@@ -1428,6 +1774,235 @@
     card.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
+
+  const lessonMeta = {
+    curriculum: 'Torah High School Curriculum',
+    schoolYear: '2026-2027',
+    week: 1,
+    day: 1,
+    dayNumber: 1,
+    lessonTitle: 'Genesis 1–5',
+    scriptureReading: 'Genesis 1–5',
+    memoryVerse: 'Genesis 1:27',
+    lessonFile: 'lesson-1-genesis-1-5.html'
+  };
+
+  const logSubjectInfo = {
+    reading: {
+      label: 'Reading',
+      core: true,
+      inputId: 'mins-reading',
+      activity: 'Torah/Tanakh reading and comprehension — Genesis 1–5'
+    },
+    languageArts: {
+      label: 'Language Arts',
+      core: true,
+      inputId: 'mins-languageArts',
+      activity: 'Vocabulary, grammar, sentence correction, paragraph editing, and writing/reflection'
+    },
+    socialStudies: {
+      label: 'Social Studies',
+      core: true,
+      inputId: 'mins-socialStudies',
+      activity: 'Biblical timeline, ancient Near East source study, Mesopotamia comparison, and source-check questions'
+    },
+    science: {
+      label: 'Science',
+      core: true,
+      inputId: 'mins-science',
+      activity: 'Creation order, kinds/classification, biological taxonomy source study, and source-check questions'
+    },
+    math: {
+      label: 'Math',
+      core: true,
+      inputId: 'mins-math',
+      activity: 'Online math lesson completed separately'
+    },
+    nonCore: {
+      label: 'Non-core',
+      core: false,
+      inputId: 'mins-nonCore',
+      activity: 'Hebrew/Latin vocabulary and memory verse, plus PE, art, life skills, or computer skills'
+    }
+  };
+
+  function minutesToHoursText(minutes) {
+    const hrs = Math.floor(minutes / 60);
+    const mins = minutes % 60;
+    if (hrs && mins) return `${hrs} hr ${mins} min`;
+    if (hrs) return `${hrs} hr`;
+    return `${mins} min`;
+  }
+
+  function todayISODate() {
+    const now = new Date();
+    return new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+  }
+
+  function slugifyFilePart(text) {
+    return (text || 'student')
+      .toString()
+      .trim()
+      .replace(/[^a-z0-9]+/gi, '-')
+      .replace(/^-+|-+$/g, '')
+      .toLowerCase() || 'student';
+  }
+
+  function syncLogStudentNameFromTop() {
+    const lessonName = getEditableText('student-name-input');
+    const logNameInput = document.getElementById('log-student-name');
+    if (logNameInput) logNameInput.value = lessonName;
+  }
+
+  function syncStudentNameFromLog() {
+    const logName = document.getElementById('log-student-name').value.trim();
+    const lessonNameBox = document.getElementById('student-name-input');
+    if (lessonNameBox && logName && !getEditableText('student-name-input')) lessonNameBox.innerText = logName;
+  }
+
+  function getCurrentStudentName() {
+    const fromLog = (document.getElementById('log-student-name')?.value || '').trim();
+    const fromLesson = getEditableText('student-name-input');
+    return fromLog || fromLesson || 'Not entered';
+  }
+
+  function getSubjectLogData() {
+    const subjects = {};
+    Object.entries(logSubjectInfo).forEach(([key, info]) => {
+      const checkbox = document.querySelector(`.log-subject[data-subject="${key}"]`);
+      const minutesInput = document.getElementById(info.inputId);
+      const minutes = Math.max(0, parseInt(minutesInput?.value || '0', 10) || 0);
+      const completed = !!checkbox?.checked;
+      subjects[key] = {
+        label: info.label,
+        completed,
+        minutes: completed ? minutes : 0,
+        plannedMinutes: minutes,
+        core: info.core,
+        activity: info.activity
+      };
+    });
+    return subjects;
+  }
+
+  function calculateLogTotals(subjects) {
+    let totalMinutes = 0;
+    let coreMinutes = 0;
+    let nonCoreMinutes = 0;
+    Object.values(subjects).forEach(subject => {
+      if (!subject.completed) return;
+      totalMinutes += subject.minutes;
+      if (subject.core) coreMinutes += subject.minutes;
+      else nonCoreMinutes += subject.minutes;
+    });
+    return { totalMinutes, coreMinutes, nonCoreMinutes };
+  }
+
+  function updateLogTotals() {
+    const subjects = getSubjectLogData();
+    const totals = calculateLogTotals(subjects);
+    const box = document.getElementById('logTotalsBox');
+    if (box) {
+      box.textContent = `Total: ${minutesToHoursText(totals.totalMinutes)} · Core: ${minutesToHoursText(totals.coreMinutes)} · Non-core: ${minutesToHoursText(totals.nonCoreMinutes)}`;
+    }
+    return totals;
+  }
+
+  function getDailyLogData() {
+    const subjects = getSubjectLogData();
+    const totals = calculateLogTotals(subjects);
+    const evaluationEvidence = [];
+    if (document.getElementById('log-questions-completed')?.checked) evaluationEvidence.push('Lesson review/questions completed');
+    if (document.getElementById('log-outside-sources')?.checked) evaluationEvidence.push('Outside source checks completed');
+    if (document.getElementById('log-lesson-pdf')?.checked) evaluationEvidence.push('Completed lesson PDF saved to portfolio');
+    if (document.getElementById('log-math-report')?.checked) evaluationEvidence.push('Math report/screenshot saved');
+    const mastered = gradedIds.filter(id => questionState[id] === true).length;
+    const attempted = gradedIds.filter(id => id in questionState).length;
+    if (attempted > 0) evaluationEvidence.push(`Interactive checks attempted: ${attempted}; mastered: ${mastered}`);
+
+    return {
+      ...lessonMeta,
+      schoolYear: document.getElementById('log-school-year')?.value || lessonMeta.schoolYear,
+      studentName: getCurrentStudentName(),
+      dateCompleted: document.getElementById('log-date-completed')?.value || todayISODate(),
+      location: document.getElementById('log-location')?.value || 'Home',
+      subjects,
+      totalMinutes: totals.totalMinutes,
+      coreMinutes: totals.coreMinutes,
+      nonCoreMinutes: totals.nonCoreMinutes,
+      totalTimeText: minutesToHoursText(totals.totalMinutes),
+      coreTimeText: minutesToHoursText(totals.coreMinutes),
+      nonCoreTimeText: minutesToHoursText(totals.nonCoreMinutes),
+      portfolioSampleSaved: !!document.getElementById('log-lesson-pdf')?.checked,
+      lessonQuestionsCompleted: !!document.getElementById('log-questions-completed')?.checked,
+      outsideSourcesCompleted: !!document.getElementById('log-outside-sources')?.checked,
+      mathReportSaved: !!document.getElementById('log-math-report')?.checked,
+      evaluationEvidence,
+      parentNotes: document.getElementById('log-notes')?.value || '',
+      generatedAt: new Date().toISOString()
+    };
+  }
+
+  function formatDailyLogText(log) {
+    const subjectLines = Object.values(log.subjects).map(s => {
+      const status = s.completed ? 'completed' : 'not completed';
+      const minutes = s.completed ? `${s.minutes} minutes` : `planned ${s.plannedMinutes} minutes`;
+      return `${s.label} — ${minutes} — ${status}\n  Activity: ${s.activity}`;
+    }).join('\n');
+
+    const evidence = log.evaluationEvidence.length ? log.evaluationEvidence.map(e => `- ${e}`).join('\n') : '- None noted';
+    const notes = log.parentNotes.trim() ? log.parentNotes.trim() : 'None';
+
+    return `Torah High School Daily Completion Log\n\nStudent: ${log.studentName}\nSchool Year: ${log.schoolYear}\nDate Completed: ${log.dateCompleted}\nLocation: ${log.location}\n\nWeek: ${log.week}\nDay: ${log.day}\nDay Number: ${log.dayNumber}\nLesson: ${log.lessonTitle}\nScripture Reading: ${log.scriptureReading}\nMemory Verse: ${log.memoryVerse}\n\nSubjects / Time:\n${subjectLines}\n\nTotals:\nTotal Instruction: ${log.totalTimeText} (${log.totalMinutes} minutes)\nCore Instruction: ${log.coreTimeText} (${log.coreMinutes} minutes)\nNon-core Instruction: ${log.nonCoreTimeText} (${log.nonCoreMinutes} minutes)\n\nPortfolio / Evaluation Evidence:\n${evidence}\nNotes: ${notes}\n`;
+  }
+
+  function showLogPreview() {
+    const log = getDailyLogData();
+    const preview = document.getElementById('dailyLogPreview');
+    preview.textContent = formatDailyLogText(log);
+    preview.classList.add('visible');
+    updateLogTotals();
+    preview.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function downloadBlob(filename, content, mimeType) {
+    const blob = new Blob([content], { type: mimeType });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  function dailyLogBaseFilename(log) {
+    return `Day-${String(log.dayNumber).padStart(3, '0')}-${slugifyFilePart(log.lessonTitle)}-${slugifyFilePart(log.studentName)}-log`;
+  }
+
+  function downloadDailyLogJSON() {
+    const log = getDailyLogData();
+    downloadBlob(dailyLogBaseFilename(log) + '.json', JSON.stringify(log, null, 2), 'application/json');
+  }
+
+  function escapeHtmlForLog(text) {
+    return String(text).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  }
+
+  function downloadDailyLogHTML() {
+    const log = getDailyLogData();
+    const plain = formatDailyLogText(log);
+    const html = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>${escapeHtmlForLog(log.lessonTitle)} Daily Log</title><style>body{font-family:Georgia,serif;line-height:1.6;max-width:800px;margin:40px auto;padding:0 20px;color:#222}h1{font-size:1.5rem}pre{white-space:pre-wrap;background:#f8f5ed;border:1px solid #ddd;padding:18px;border-radius:10px}</style></head><body><h1>Daily Completion Log</h1><pre>${escapeHtmlForLog(plain)}</pre></body></html>`;
+    downloadBlob(dailyLogBaseFilename(log) + '.html', html, 'text/html');
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const dateInput = document.getElementById('log-date-completed');
+    if (dateInput && !dateInput.value) dateInput.value = todayISODate();
+    updateLogTotals();
+  });
+
   // Touch-friendly tooltip toggle for mobile
   document.addEventListener('click', function(e) {
     const tw = e.target.closest('.tooltip-word');
@@ -1436,6 +2011,11 @@
     });
     if (tw) { tw.classList.toggle('tip-open'); e.stopPropagation(); }
   });
+  document.addEventListener('DOMContentLoaded', () => {
+    syncLogStudentNameFromTop();
+    updateLogTotals();
+  });
+
 </script>
 </body>
 </html>
